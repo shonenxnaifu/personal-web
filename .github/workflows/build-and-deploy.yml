@@ -66,6 +66,4 @@ jobs:
             # Remove old container
             docker rm $(echo $CONTAINER_NAME)
             # Run a new container from a new image
-            docker run -d -p 3010:3000 \
-            --name $(echo $CONTAINER_NAME) \
-            $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo $GITHUB_SHA | head -c7)
+            docker run -d -p 3010:3000 --name $(echo $CONTAINER_NAME) $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo $GITHUB_SHA | head -c7)
