@@ -8,7 +8,7 @@ WORKDIR /usr/src
 COPY . /usr/src
 
 # install dependencies
-RUN npm install
+RUN yarn install
 
 # start app
 RUN npm run build
