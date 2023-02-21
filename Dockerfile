@@ -9,7 +9,7 @@ COPY . /usr/src
 
 # install dependencies
 # RUN yarn install
-RUN npm run install
+RUN npm install
 
 # start app
 RUN npm run build
