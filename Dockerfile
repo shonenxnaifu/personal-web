@@ -8,10 +8,11 @@ WORKDIR /usr/src
 COPY . /usr/src
 
 # install dependencies
-# RUN yarn install
-RUN npm install
+RUN yarn
+# RUN npm install
 
 # start app
 RUN npm run build
+RUN rm -rf /usr/src/node_modules
 EXPOSE 3000
 CMD npm run start
