@@ -1,4 +1,4 @@
-name: CI
+name: CI/CD Web shonen-dev
 
 # 1
 # Controls when the workflow will run
@@ -16,8 +16,8 @@ on:
 #2
 env:
   REGISTRY: "registry.digitalocean.com/research-dev-registry"
-  IMAGE_NAME: "docker_nextjs"
-  CONTAINER_NAME: "docker_nextjs_container"
+  IMAGE_NAME: "docker_shonen_dev"
+  CONTAINER_NAME: "docker_shonen_dev_ctr"
 
 #3
 jobs:
@@ -26,23 +26,26 @@ jobs:
     steps:
       - name: Checkout the repo 
         uses: actions/checkout@v2
-        
-      - name: Build container image
-        run: docker build -t $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo $GITHUB_SHA | head -c7) .
 
-      - name: Install doctl
-        uses: digitalocean/action-doctl@v2
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
         with:
-          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-    
-      - name: Log in to DigitalOcean Container Registry with short-lived credentials
-        run: doctl registry login --expiry-seconds 600
-      
-      - name: Remove all old images
-        run: if [ ! -z "$(doctl registry repository list | grep "$(echo $IMAGE_NAME)")" ]; then doctl registry repository delete-manifest $(echo $IMAGE_NAME) $(doctl registry repository list-tags $(echo $IMAGE_NAME) | grep -o "sha.*") --force; else echo "No repository"; fi
-        
-      - name: Push image to DigitalOcean Container Registry
-        run: docker push $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo $GITHUB_SHA | head -c7)
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+        with:
+          images: pawitrawarda/$(echo $IMAGE_NAME)
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+        with:
+          context: .
+          push: true
+          tags: pawitrawarda/$(echo $IMAGE_NAME):latest
+          labels: latest
         
   deploy:
     runs-on: ubuntu-latest
@@ -58,13 +61,11 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           envs: IMAGE_NAME,REGISTRY,CONTAINER_NAME,{{ secrets.DIGITALOCEAN_ACCESS_TOKEN }},GITHUB_SHA
           script: |
-            # Login to registry
-            docker login -u ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} -p ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} registry.digitalocean.com
             # Pull registry
-            docker pull $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo $GITHUB_SHA | head -c7)
+            docker pull pawitrawarda/$(echo $IMAGE_NAME):latest
             # Stop running container
             docker stop $(echo $CONTAINER_NAME)
             # Remove old container
             docker rm $(echo $CONTAINER_NAME)
             # Run a new container from a new image
-            docker run -d -p 3010:3000 --name $(echo $CONTAINER_NAME) $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo $GITHUB_SHA | head -c7)
+            docker run -d -p 8092:3000 --name $(echo $CONTAINER_NAME) pawitrawarda/$(echo $IMAGE_NAME):latest
