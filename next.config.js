@@ -1,11 +1,11 @@
-/** @type {import('next').NextConfig} */
+/** @type {import("next").NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   experimental: {
     appDir: true,
     esmExternals: "loose",
   },
-  output: 'standalone'
-}
+  output: "standalone",
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
