@@ -5,10 +5,9 @@
 	},
   "extends": [
     "next/core-web-vitals",
-    "airbnb",
-    "airbnb-typescript",
-    "plugin:import/typescript",
-		"plugin:prettier/recommended"
+		"airbnb",
+		"airbnb-typescript",
+		"plugin:import/typescript"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -21,8 +20,7 @@
 	},
   "plugins": [
 		"react",
-		"@typescript-eslint",
-		"prettier"
+		"@typescript-eslint"
 	],
   "rules": {
 		"quotes": [
@@ -41,7 +39,7 @@
 		],
 		"react/jsx-uses-react": ["off"],
 		"react/react-in-jsx-scope": ["off"],
-		"react/jsx-props-no-spreading": ["off"],
+		"react/jsx-props-no-spreading": ["warn"],
 		"no-shadow": "off"
 	}
 }
