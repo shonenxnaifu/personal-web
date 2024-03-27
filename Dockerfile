@@ -2,14 +2,13 @@ FROM node:18-alpine AS dependency
 
 WORKDIR /app
 COPY package.json .
-COPY yarn.lock .
-RUN yarn install --frozen-lockfile
+RUN npm ci
 
 FROM node:18-alpine AS builder
 WORKDIR /app
 COPY . .
 COPY --from=dependency /app/node_modules ./node_modules
-RUN yarn build
+RUN npm run build
 
 FROM node:18-alpine AS runner
 WORKDIR /app
