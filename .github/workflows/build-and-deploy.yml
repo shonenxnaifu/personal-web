@@ -1,4 +1,4 @@
-name: CI/CD Web shonen-dev
+name: Build and Deploy Web shonen-dev
 
 # 1
 # Controls when the workflow will run
