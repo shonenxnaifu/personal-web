@@ -2,6 +2,7 @@ FROM node:18-alpine AS dependency
 
 WORKDIR /app
 COPY package.json .
+COPY package-lock.json .
 RUN npm ci
 
 FROM node:18-alpine AS builder
