@@ -4,9 +4,9 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <header>
-        <h1 className="text-2xl text-gray-200 text-center md:hidden">
+        <h1 className="text-lg text-gray-200 text-center md:hidden">
           Welcome to <br />
-          <span className="text-3xl font-semibold text-teal-400">
+          <span className="text-xl font-semibold text-teal-400">
             shonen-dev
           </span>
           <span className="text-teal-400">.xyz</span>
