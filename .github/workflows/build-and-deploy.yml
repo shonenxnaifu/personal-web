@@ -1,17 +1,17 @@
-name: CI/CD Web shonen-dev
+name: Build and Deploy Web shonen-dev
 
 # 1
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push events but only for the master branch
   push:
-    branches: [ development ]
+    branches: [development]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
     inputs:
       version:
-        description: 'Image version'
+        description: "Image version"
         required: true
 #2
 env:
@@ -24,7 +24,7 @@ jobs:
   build_and_push:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout the repo 
+      - name: Checkout the repo
         uses: actions/checkout@v2
 
       - name: Log in to Docker Hub
@@ -46,7 +46,7 @@ jobs:
           push: true
           tags: pawitrawarda/docker_shonen_dev:latest
           labels: latest
-        
+
   deploy:
     runs-on: ubuntu-latest
     needs: build_and_push
