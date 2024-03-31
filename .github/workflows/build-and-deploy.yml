@@ -1,4 +1,4 @@
-name: Build and Deploy Web shonen-dev
+name: Build and Deploy Web shonen-dev to Development
 
 # 1
 # Controls when the workflow will run
@@ -68,4 +68,4 @@ jobs:
             # Remove old container
             docker rm $(echo $CONTAINER_NAME)
             # Run a new container from a new image
-            docker run -d -p 8092:3000 --name $(echo $CONTAINER_NAME) pawitrawarda/$(echo $IMAGE_NAME):latest
+            docker run -d -p 8093:3002 --name $(echo $CONTAINER_NAME) pawitrawarda/$(echo $IMAGE_NAME):latest
