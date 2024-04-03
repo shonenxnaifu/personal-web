@@ -17,6 +17,7 @@ export default function Home() {
             shonen-dev
           </span>
           <span className="text-teal-400">.xyz</span>
+          (dev)
         </h1>
         <picture className="h-40 w-40 relative block rounded-full overflow-hidden mx-auto mt-20">
           <Image
