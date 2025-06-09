@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: "Image version"
+        description: "Development"
         required: true
 #2
 env:
