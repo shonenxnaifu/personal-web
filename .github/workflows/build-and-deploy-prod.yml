@@ -1,4 +1,4 @@
-name: Build and Deploy Web shonen-dev to Development
+name: Build and Deploy Web shonen-dev to Production
 
 # 1
 # Controls when the workflow will run
