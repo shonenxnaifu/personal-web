@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-ibm",
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Software Developer & Tech Blog | Shonen Dev",
@@ -18,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} bg-gradient-to-br from-indigo-900 via-fuchsia-400 via-80% to-gray-400`}
+        className={`${ibmPlexMono.className} bg-gradient-to-br from-indigo-900 via-fuchsia-400 via-80% to-gray-400`}
       >
         {children}
       </body>
