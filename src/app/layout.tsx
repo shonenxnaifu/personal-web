@@ -22,11 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${ibmPlexMono.className} bg-gradient-to-br from-indigo-900 via-fuchsia-400 via-80% to-gray-400`}
-      >
-        {children}
-      </body>
+      <body className={`${ibmPlexMono.className}`}>{children}</body>
     </html>
   );
 }
