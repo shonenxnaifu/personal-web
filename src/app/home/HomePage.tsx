@@ -22,7 +22,7 @@ export default function HomePage() {
             <span className="text-xl font-bold dark:text-[#FFF5EE]">
               Welcome to,
             </span>
-            <span className="text-3xl text-[#9747FF] dark:text-[#FFF59F] font-bold">
+            <span className="text-3xl md:ml-1 text-[#9747FF] dark:text-[#FFF59F] font-bold">
               shonen-dev.xyz
             </span>
           </h1>
@@ -36,9 +36,9 @@ export default function HomePage() {
           <div className="flex gap-5 text-xl mt-5 dark:text-[#FFF5EE]">
             <a
               href="https://github.com/shonenxnaifu"
-              className="flex justify-between gap-1"
+              className="flex justify-between gap-1 items-center"
             >
-              <GithubIcon className="w-5" />
+              <GithubIcon className="max-w-5" />
               github
             </a>
             <a
@@ -46,15 +46,78 @@ export default function HomePage() {
               className="flex justify-between gap-1 items-center"
             >
               <picture className="rounded-full overflow-hidden">
-                <LinkedinIcon className="w-5" />
+                <LinkedinIcon className="max-w-5" />
               </picture>
               linkedin
             </a>
           </div>
         </div>
       </section>
-      <section>
-        <h1>tech stack</h1>
+      <section className="bg-black bg-section-pattern bg-repeat pt-5 pb-10 px-5">
+        <h1 className="text-4xl font-bold px-3 py-5 text-[#DFE0E2]">
+          Tech Stack.
+        </h1>
+        <div
+          className="grid grid-cols-2 md:grid-cols-[repeat(auto-fit,minmax(120px,1fr))] justify-items-center md:px-5 lg:px-7 gap-3 md:gap-5
+        "
+        >
+          <picture className="relative bg-white w-[120px] h-[120px] rounded-lg">
+            <Image
+              className="object-fill p-5"
+              src="/nextjs-icon.svg"
+              alt="Logo NextJS"
+              fill
+            />
+          </picture>
+          <picture className="relative bg-white w-[120px] h-[120px] rounded-lg">
+            <Image
+              className="object-fill p-5"
+              src="/react-icon.svg"
+              alt="Logo NextJS"
+              fill
+            />
+          </picture>
+          <picture className="relative bg-white w-[120px] h-[120px] rounded-lg">
+            <Image
+              className="object-fill p-5"
+              src="/tailwind-icon.svg"
+              alt="Logo NextJS"
+              fill
+            />
+          </picture>
+          <picture className="relative bg-white w-[120px] h-[120px] rounded-lg">
+            <Image
+              className="object-fill p-5"
+              src="/vue-icon.svg"
+              alt="Logo NextJS"
+              fill
+            />
+          </picture>
+          <picture className="relative bg-white w-[120px] h-[120px] rounded-lg">
+            <Image
+              className="object-fill p-5"
+              src="/typescript-icon.svg"
+              alt="Logo NextJS"
+              fill
+            />
+          </picture>
+          <picture className="relative bg-white w-[120px] h-[120px] rounded-lg">
+            <Image
+              className="object-fill p-5"
+              src="/python-icon.svg"
+              alt="Logo NextJS"
+              fill
+            />
+          </picture>
+          <picture className="relative bg-white w-[120px] h-[120px] rounded-lg">
+            <Image
+              className="object-fill p-5"
+              src="/docker-icon.svg"
+              alt="Logo NextJS"
+              fill
+            />
+          </picture>
+        </div>
       </section>
     </main>
   );
