@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function HomePage() {
   return (
-    <main className="dark:bg-black h-screen">
+    <main className="h-screen">
       <section className="flex flex-col md:flex-row md:h-2/3">
         <div className="bg-[#A8A6FF] dark:bg-black h-96 md:h-auto flex justify-center items-center border-b-4 border-black dark:border-[#9747FF] md:order-2 md:min-w-[33%] md:px-28">
           <picture className="relative inline-block max-h-56 max-w-56 md:min-h-60 md:min-w-60 lg:min-h-72 lg:min-w-72 overflow-hidden rounded-3xl">
@@ -53,15 +53,12 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <section className="bg-black bg-section-pattern bg-repeat pt-5 pb-10 px-5">
-        <h1 className="text-4xl font-bold px-3 py-5 text-[#DFE0E2]">
+      <section className="bg-section-pattern dark:bg-section-pattern-2 bg-black dark:bg-[#9747FF]  bg-repeat pt-5 pb-10 px-5">
+        <h1 className="text-4xl font-bold px-3 py-5 text-[#DFE0E2] dark:text-black">
           Tech Stack.
         </h1>
-        <div
-          className="grid grid-cols-2 md:grid-cols-[repeat(auto-fit,minmax(120px,1fr))] justify-items-center md:px-5 lg:px-7 gap-3 md:gap-5
-        "
-        >
-          <picture className="relative bg-white w-[120px] h-[120px] rounded-lg">
+        <div className="grid grid-cols-2 md:grid-cols-[repeat(auto-fit,minmax(120px,1fr))] justify-items-center md:px-5 lg:px-7 gap-3 md:gap-5">
+          <picture className="relative bg-white dark:bg-transparent w-[120px] h-[120px] rounded-lg dark:bg-gradient-to-br dark:from-transparent dark:to-black/50 dark:backdrop-blur-[1px]">
             <Image
               className="object-fill p-5"
               src="/nextjs-icon.svg"
@@ -69,7 +66,7 @@ export default function HomePage() {
               fill
             />
           </picture>
-          <picture className="relative bg-white w-[120px] h-[120px] rounded-lg">
+          <picture className="relative bg-white dark:bg-transparent w-[120px] h-[120px] rounded-lg dark:bg-gradient-to-br dark:from-transparent dark:to-black/50 dark:backdrop-blur-[1px]">
             <Image
               className="object-fill p-5"
               src="/react-icon.svg"
@@ -77,7 +74,7 @@ export default function HomePage() {
               fill
             />
           </picture>
-          <picture className="relative bg-white w-[120px] h-[120px] rounded-lg">
+          <picture className="relative bg-white dark:bg-transparent w-[120px] h-[120px] rounded-lg dark:bg-gradient-to-br dark:from-transparent dark:to-black/50 dark:backdrop-blur-[1px]">
             <Image
               className="object-fill p-5"
               src="/tailwind-icon.svg"
@@ -85,7 +82,7 @@ export default function HomePage() {
               fill
             />
           </picture>
-          <picture className="relative bg-white w-[120px] h-[120px] rounded-lg">
+          <picture className="relative bg-white dark:bg-transparent w-[120px] h-[120px] rounded-lg dark:bg-gradient-to-br dark:from-transparent dark:to-black/50 dark:backdrop-blur-[1px]">
             <Image
               className="object-fill p-5"
               src="/vue-icon.svg"
@@ -93,7 +90,7 @@ export default function HomePage() {
               fill
             />
           </picture>
-          <picture className="relative bg-white w-[120px] h-[120px] rounded-lg">
+          <picture className="relative bg-white dark:bg-transparent w-[120px] h-[120px] rounded-lg dark:bg-gradient-to-br dark:from-transparent dark:to-black/50 dark:backdrop-blur-[1px]">
             <Image
               className="object-fill p-5"
               src="/typescript-icon.svg"
@@ -101,7 +98,7 @@ export default function HomePage() {
               fill
             />
           </picture>
-          <picture className="relative bg-white w-[120px] h-[120px] rounded-lg">
+          <picture className="relative bg-white dark:bg-transparent w-[120px] h-[120px] rounded-lg dark:bg-gradient-to-br dark:from-transparent dark:to-black/50 dark:backdrop-blur-[1px]">
             <Image
               className="object-fill p-5"
               src="/python-icon.svg"
@@ -109,7 +106,7 @@ export default function HomePage() {
               fill
             />
           </picture>
-          <picture className="relative bg-white w-[120px] h-[120px] rounded-lg">
+          <picture className="relative bg-white dark:bg-transparent w-[120px] h-[120px] rounded-lg dark:bg-gradient-to-br dark:from-transparent dark:to-black/50 dark:backdrop-blur-[1px]">
             <Image
               className="object-fill p-5"
               src="/docker-icon.svg"

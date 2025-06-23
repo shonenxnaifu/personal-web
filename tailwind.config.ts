@@ -20,6 +20,7 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         "section-pattern": "url('/bg-pattern.png')",
+        "section-pattern-2": "url('/bg-pattern-2.png')",
       },
       keyframes: {
         fadeInOut: {
