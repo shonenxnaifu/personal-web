@@ -4,10 +4,10 @@ import Image from "next/image";
 
 export default function HomePage() {
   return (
-    <main className="h-screen">
+    <main>
       <section className="flex flex-col md:flex-row md:h-2/3">
-        <div className="bg-[#A8A6FF] dark:bg-black h-96 md:h-auto flex justify-center items-center border-b-4 border-black dark:border-[#9747FF] md:order-2 md:min-w-[33%] md:px-28">
-          <picture className="relative inline-block max-h-56 max-w-56 md:min-h-60 md:min-w-60 lg:min-h-72 lg:min-w-72 overflow-hidden rounded-3xl">
+        <div className="bg-[#A8A6FF] dark:bg-black h-96 md:h-auto flex justify-center items-center border-b-4 border-black dark:border-[#9747FF] md:order-2 md:min-w-[33%] lg:py-28">
+          <picture className="relative inline-block max-h-56 max-w-56 overflow-hidden rounded-3xl">
             <Image
               className="object-fill"
               src="/totoro_kawai.png"
@@ -53,7 +53,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <section className="bg-section-pattern dark:bg-section-pattern-2 bg-black dark:bg-[#9747FF]  bg-repeat pt-5 pb-10 px-5">
+      <section className="bg-section-pattern dark:bg-section-pattern-2 bg-black dark:bg-[#9747FF] bg-repeat pt-5 pb-10 px-5">
         <h1 className="text-4xl font-bold px-3 py-5 text-[#DFE0E2] dark:text-black">
           Tech Stack.
         </h1>
