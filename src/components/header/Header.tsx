@@ -4,8 +4,8 @@ import MoonIcon from "@/components/icons/MoonIcon";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import SunIcon from "../icons/SunIcon";
+import DownloadIcon from "../icons/DownloadIcon";
 
 enum MenuList {
   HOME = "/",
@@ -83,12 +83,7 @@ export default function Header() {
             <li className="p-1 my-auto">
               <button type="button" className="btn-primary px-3 flex gap-3">
                 My Resume
-                <Image
-                  src="/download-icon.svg"
-                  alt="download icon"
-                  width={16}
-                  height={16}
-                />
+                <DownloadIcon className="w-4" />
               </button>
             </li>
           </ul>
@@ -159,12 +154,7 @@ export default function Header() {
             <li className="py-2 mx-auto">
               <button type="button" className="btn-primary px-3 flex gap-3">
                 My Resume
-                <Image
-                  src="/download-icon.svg"
-                  alt="download icon"
-                  width={16}
-                  height={16}
-                />
+                <DownloadIcon className="w-4" />
               </button>
             </li>
           </ul>
