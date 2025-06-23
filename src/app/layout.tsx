@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header/Header";
+import Footer from "@/components/footer/Footer";
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
@@ -22,10 +23,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="!scroll-smooth">
       <body className={`${ibmPlexMono.className} bg-[#FFF5EE] text-[#161313]`}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
