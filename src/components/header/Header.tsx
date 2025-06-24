@@ -83,7 +83,7 @@ export default function Header() {
             <li className="p-1 my-auto">
               <button type="button" className="btn-primary px-3 flex gap-3">
                 My Resume
-                <DownloadIcon className="w-4" />
+                <DownloadIcon className="max-w-3" />
               </button>
             </li>
           </ul>
@@ -154,7 +154,7 @@ export default function Header() {
             <li className="py-2 mx-auto">
               <button type="button" className="btn-primary px-3 flex gap-3">
                 My Resume
-                <DownloadIcon className="w-4" />
+                <DownloadIcon className="max-w-3" />
               </button>
             </li>
           </ul>
