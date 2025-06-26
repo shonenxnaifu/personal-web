@@ -10,7 +10,7 @@ export default function MoonIcon({ className }: MoonIconProps) {
       width="42"
       height="42"
       viewBox="0 0 42 42"
-      fill="none"
+      fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
       className={`w-full h-auto ${className}`}
     >
