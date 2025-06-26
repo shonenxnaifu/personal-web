@@ -68,8 +68,6 @@ const toc = [
   },
 ];
 
-let parentNumber: number = 0;
-
 export default function BlogPage() {
   return (
     <main className="pb-5 min-h-screen mx-auto dark:bg-black">
@@ -91,49 +89,57 @@ export default function BlogPage() {
         >
           <h2 className="font-semibold text-lg">Table of Contents</h2>
           <ol className="list-none list-inside">
-            {toc.map((tocItem, index, array) => {
-              const slicedItems = array.slice(index + 1);
-              if (tocItem.level === "two") {
-                parentNumber += 1;
+            {(() => {
+              let parentNumber = 0;
+              return toc.map((tocItem, index, array) => {
+                const copySlicedItems = structuredClone(array);
+                const slicedItems = copySlicedItems.slice(index + 1);
+
                 const findNextIdx = slicedItems.findIndex(
                   (item) => item.level === "two",
                 );
-                const childs = slicedItems.slice(0, findNextIdx);
-                return (
-                  <li key={tocItem.text} className="mt-3">
-                    <a
-                      href={`#${tocItem.slug}`}
-                      data-level={tocItem.level}
-                      className="flex gap-2 hover:underline"
-                    >
-                      <span>{parentNumber}</span>
-                      <span>{tocItem.text}</span>
-                    </a>
-                    {childs.length > 0 &&
-                      childs.map((childItem, childIdx) => {
-                        return (
-                          <ol
-                            key={childItem.text}
-                            className="list-none list-inside pl-6 mt-1"
-                          >
-                            <li>
-                              <a
-                                href={`#${childItem.slug}`}
-                                data-level={childItem.level}
-                                className="flex gap-2 hover:underline"
-                              >
-                                <span>{`${parentNumber}.${childIdx + 1}.`}</span>
-                                <span>{childItem.text}</span>
-                              </a>
-                            </li>
-                          </ol>
-                        );
-                      })}
-                  </li>
-                );
-              }
-              return null;
-            })}
+
+                if (tocItem.level === "two") {
+                  parentNumber += 1;
+
+                  const childs = slicedItems.slice(0, findNextIdx);
+                  return (
+                    <li key={tocItem.text} className="mt-3">
+                      <a
+                        href={`#${tocItem.slug}`}
+                        data-level={tocItem.level}
+                        className="flex gap-2 hover:underline"
+                      >
+                        <span>{parentNumber}</span>
+                        <span>{tocItem.text}</span>
+                      </a>
+                      {childs.length > 0 &&
+                        childs.map((childItem, childIdx) => {
+                          return (
+                            <ol
+                              key={childItem.text}
+                              className="list-none list-inside pl-6 mt-1"
+                            >
+                              <li>
+                                <a
+                                  href={`#${childItem.slug}`}
+                                  data-level={childItem.level}
+                                  className="flex gap-2 hover:underline"
+                                >
+                                  <span>{`${parentNumber}.${childIdx + 1}.`}</span>
+                                  <span>{childItem.text}</span>
+                                </a>
+                              </li>
+                            </ol>
+                          );
+                        })}
+                    </li>
+                  );
+                }
+
+                return null;
+              });
+            })()}
           </ol>
         </nav>
         <div className="lg:flex-1 dark:text-[#FFF5EE]">

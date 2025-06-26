@@ -106,9 +106,9 @@ export default function Header() {
           onClick={toggleDarkMode}
         >
           {isDarkMode ? (
-            <SunIcon className="w-[28px] animate-[fadeInOut_0.3s_ease-in-out]" />
+            <SunIcon className="w-[24px] animate-[fadeInOut_0.3s_ease-in-out]" />
           ) : (
-            <MoonIcon className="w-[28px] animate-[fadeInOut_0.3s_ease-in-out]" />
+            <MoonIcon className="w-[24px] animate-[fadeInOut_0.3s_ease-in-out]" />
           )}
         </button>
       </div>
