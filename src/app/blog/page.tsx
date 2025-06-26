@@ -72,19 +72,21 @@ let parentNumber: number = 0;
 
 export default function BlogPage() {
   return (
-    <main className="mb-5 min-h-screen mx-auto">
+    <main className="pb-5 min-h-screen mx-auto dark:bg-black">
       <article className="flex flex-col lg:flex-row lg:flex-wrap lg:mx-5">
-        <header className="lg:w-full flex flex-col m-3 border-b border-black pb-5">
+        <header className="lg:w-full flex flex-col m-3 border-b border-black pb-5 dark:border-[#FFF5EE]">
           <figure className="relative h-[200px] md:h-[360px] mx-1 my-3 rounded-3xl overflow-hidden">
             <Image className="object-cover" src="/dummy2.png" alt="" fill />
           </figure>
-          <h1 className="text-3xl font-semibold mt-3">Blog Title</h1>
-          <span className="text-sm font-semibold font-[#2F393F] mt-1">
+          <h1 className="text-3xl font-semibold mt-3 dark:text-[#FFF59F]">
+            Blog Title
+          </h1>
+          <span className="text-sm font-semibold font-[#2F393F] mt-1 dark:text-[#75FBC0]">
             Posted on <time dateTime="2025-08-12">12/08/2025</time>
           </span>
         </header>
         <nav
-          className="lg:max-w-[320px] lg:order-2 lg:sticky lg:top-3 lg:self-start text-sm p-3 mt-5 mx-3 border border-black rounded-lg"
+          className="lg:max-w-[320px] lg:order-2 lg:sticky lg:top-3 lg:self-start text-sm p-3 mt-5 mx-3 border border-black rounded-lg dark:text-[#FFF5EE] dark:border-[#FFF5EE]"
           aria-label="Table of Contents"
         >
           <h2 className="font-semibold text-lg">Table of Contents</h2>
@@ -110,7 +112,10 @@ export default function BlogPage() {
                     {childs.length > 0 &&
                       childs.map((childItem, childIdx) => {
                         return (
-                          <ol className="list-none list-inside pl-6 mt-1">
+                          <ol
+                            key={childItem.text}
+                            className="list-none list-inside pl-6 mt-1"
+                          >
                             <li>
                               <a
                                 href={`#${childItem.slug}`}
@@ -131,7 +136,7 @@ export default function BlogPage() {
             })}
           </ol>
         </nav>
-        <div className="lg:flex-1">
+        <div className="lg:flex-1 dark:text-[#FFF5EE]">
           <section className="mt-5 px-3">
             <h2 className="font-semibold text-lg">Lorem Ipsum Dolor</h2>
             <p className="text-sm">
