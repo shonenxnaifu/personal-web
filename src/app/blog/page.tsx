@@ -79,9 +79,9 @@ export default function BlogPage() {
               className="object-cover"
               src="/dummy2.webp"
               alt=""
-              width={1080}
-              height={585}
+              fill
               priority
+              sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
             />
           </figure>
           <h1 className="text-3xl font-semibold mt-3 dark:text-[#FFF59F]">
