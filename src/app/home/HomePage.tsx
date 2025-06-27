@@ -19,10 +19,8 @@ export default function HomePage() {
           </picture>
         </div>
         <div className="px-3 md:px-16 py-5 border-b-4 border-black dark:border-[#9747FF] md:border-r-4 bg-[#FFF59F] dark:bg-black md:flex md:flex-col md:justify-center">
-          <h1 className="flex flex-col md:block">
-            <span className="text-xl font-bold dark:text-[#FFF5EE]">
-              Welcome to,
-            </span>
+          <h1 className="text-xl flex flex-col md:block">
+            <span className="font-bold dark:text-[#FFF5EE]">Welcome to,</span>
             <span className="text-3xl md:ml-1 text-[#9747FF] dark:text-[#FFF59F] font-bold">
               shonen-dev.xyz
             </span>

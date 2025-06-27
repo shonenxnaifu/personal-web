@@ -1,6 +1,7 @@
 import Image from "next/image";
+import Toc, { IToc } from "./components/Toc";
 
-const toc = [
+const toc: Array<IToc> = [
   {
     level: "two",
     text: "What to expect from here on out",
@@ -74,7 +75,14 @@ export default function BlogPage() {
       <article className="flex flex-col lg:flex-row lg:flex-wrap lg:mx-5">
         <header className="lg:w-full flex flex-col m-3 border-b border-black pb-5 dark:border-[#FFF5EE]">
           <figure className="relative h-[200px] md:h-[360px] mx-1 my-3 rounded-3xl overflow-hidden">
-            <Image className="object-cover" src="/dummy2.png" alt="" fill />
+            <Image
+              className="object-cover"
+              src="/dummy2.webp"
+              alt=""
+              width={1080}
+              height={585}
+              priority
+            />
           </figure>
           <h1 className="text-3xl font-semibold mt-3 dark:text-[#FFF59F]">
             Blog Title
@@ -83,65 +91,7 @@ export default function BlogPage() {
             Posted on <time dateTime="2025-08-12">12/08/2025</time>
           </span>
         </header>
-        <nav
-          className="lg:max-w-[320px] lg:order-2 lg:sticky lg:top-3 lg:self-start text-sm p-3 mt-5 mx-3 border border-black rounded-lg dark:text-[#FFF5EE] dark:border-[#FFF5EE]"
-          aria-label="Table of Contents"
-        >
-          <h2 className="font-semibold text-lg">Table of Contents</h2>
-          <ol className="list-none list-inside">
-            {(() => {
-              let parentNumber = 0;
-              return toc.map((tocItem, index, array) => {
-                const copySlicedItems = structuredClone(array);
-                const slicedItems = copySlicedItems.slice(index + 1);
-
-                const findNextIdx = slicedItems.findIndex(
-                  (item) => item.level === "two",
-                );
-
-                if (tocItem.level === "two") {
-                  parentNumber += 1;
-
-                  const childs = slicedItems.slice(0, findNextIdx);
-                  return (
-                    <li key={tocItem.text} className="mt-3">
-                      <a
-                        href={`#${tocItem.slug}`}
-                        data-level={tocItem.level}
-                        className="flex gap-2 hover:underline"
-                      >
-                        <span>{parentNumber}</span>
-                        <span>{tocItem.text}</span>
-                      </a>
-                      {childs.length > 0 &&
-                        childs.map((childItem, childIdx) => {
-                          return (
-                            <ol
-                              key={childItem.text}
-                              className="list-none list-inside pl-6 mt-1"
-                            >
-                              <li>
-                                <a
-                                  href={`#${childItem.slug}`}
-                                  data-level={childItem.level}
-                                  className="flex gap-2 hover:underline"
-                                >
-                                  <span>{`${parentNumber}.${childIdx + 1}.`}</span>
-                                  <span>{childItem.text}</span>
-                                </a>
-                              </li>
-                            </ol>
-                          );
-                        })}
-                    </li>
-                  );
-                }
-
-                return null;
-              });
-            })()}
-          </ol>
-        </nav>
+        <Toc dataToc={toc} />
         <div className="lg:flex-1 dark:text-[#FFF5EE]">
           <section className="mt-5 px-3">
             <h2 className="font-semibold text-lg">Lorem Ipsum Dolor</h2>
