@@ -13,7 +13,7 @@ interface BlogPageProps {
   params: PageParams;
 }
 
-export async function generateStaticsParams() {
+export async function generateStaticParams() {
   return allBlogs.map((blog) => {
     return {
       // eslint-disable-next-line no-underscore-dangle
