@@ -3,7 +3,7 @@ FROM node:current-alpine AS dependency
 WORKDIR /app
 COPY package.json .
 COPY package-lock.json .
-RUN npm ci
+RUN npm ci --legacy-peer-deps
 
 FROM node:current-alpine AS builder
 WORKDIR /app
