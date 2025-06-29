@@ -14,7 +14,7 @@ export default function Card({ title, date, tags, shortDesc }: CardProps) {
       <picture className="relative w-full h-64 opacity-90">
         <Image
           className="object-cover"
-          src="/dummy1.png"
+          src="/assets/images/dummy1.png"
           alt="dummy image"
           fill
         />

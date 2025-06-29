@@ -60,7 +60,7 @@ export default function HomePage() {
           <picture className="relative bg-white dark:bg-transparent w-[120px] h-[120px] rounded-lg dark:bg-gradient-to-br dark:from-transparent dark:to-black/50 dark:backdrop-blur-[1px]">
             <Image
               className="object-fill p-5"
-              src="/nextjs-icon.svg"
+              src="/assets/logos/nextjs-icon.svg"
               alt="Logo NextJS"
               fill
             />
@@ -68,7 +68,7 @@ export default function HomePage() {
           <picture className="relative bg-white dark:bg-transparent w-[120px] h-[120px] rounded-lg dark:bg-gradient-to-br dark:from-transparent dark:to-black/50 dark:backdrop-blur-[1px]">
             <Image
               className="object-fill p-5"
-              src="/react-icon.svg"
+              src="/assets/logos/react-icon.svg"
               alt="Logo NextJS"
               fill
             />
@@ -76,7 +76,7 @@ export default function HomePage() {
           <picture className="relative bg-white dark:bg-transparent w-[120px] h-[120px] rounded-lg dark:bg-gradient-to-br dark:from-transparent dark:to-black/50 dark:backdrop-blur-[1px]">
             <Image
               className="object-fill p-5"
-              src="/tailwind-icon.svg"
+              src="/assets/logos/tailwind-icon.svg"
               alt="Logo NextJS"
               fill
             />
@@ -84,7 +84,7 @@ export default function HomePage() {
           <picture className="relative bg-white dark:bg-transparent w-[120px] h-[120px] rounded-lg dark:bg-gradient-to-br dark:from-transparent dark:to-black/50 dark:backdrop-blur-[1px]">
             <Image
               className="object-fill p-5"
-              src="/vue-icon.svg"
+              src="/assets/logos/vue-icon.svg"
               alt="Logo NextJS"
               fill
             />
@@ -92,7 +92,7 @@ export default function HomePage() {
           <picture className="relative bg-white dark:bg-transparent w-[120px] h-[120px] rounded-lg dark:bg-gradient-to-br dark:from-transparent dark:to-black/50 dark:backdrop-blur-[1px]">
             <Image
               className="object-fill p-5"
-              src="/typescript-icon.svg"
+              src="/assets/logos/typescript-icon.svg"
               alt="Logo NextJS"
               fill
             />
@@ -100,7 +100,7 @@ export default function HomePage() {
           <picture className="relative bg-white dark:bg-transparent w-[120px] h-[120px] rounded-lg dark:bg-gradient-to-br dark:from-transparent dark:to-black/50 dark:backdrop-blur-[1px]">
             <Image
               className="object-fill p-5"
-              src="/python-icon.svg"
+              src="/assets/logos/python-icon.svg"
               alt="Logo NextJS"
               fill
             />
@@ -108,7 +108,7 @@ export default function HomePage() {
           <picture className="relative bg-white dark:bg-transparent w-[120px] h-[120px] rounded-lg dark:bg-gradient-to-br dark:from-transparent dark:to-black/50 dark:backdrop-blur-[1px]">
             <Image
               className="object-fill p-5"
-              src="/docker-icon.svg"
+              src="/assets/logos/docker-icon.svg"
               alt="Logo NextJS"
               fill
             />
