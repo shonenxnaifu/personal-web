@@ -8,7 +8,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 
 const Post = defineDocumentType(() => ({
   name: "Blog",
-  filePathPattern: "**/**/*.mdx",
+  filePathPattern: "**/*.mdx",
   contentType: "mdx",
   fields: {
     title: {
@@ -46,8 +46,10 @@ const Post = defineDocumentType(() => ({
   computedFields: {
     url: {
       type: "string",
-      // eslint-disable-next-line no-underscore-dangle
-      resolve: (post) => `/blogs/${post._raw.flattenedPath}`,
+      resolve: (post) => {
+        // eslint-disable-next-line no-underscore-dangle
+        return `/blog/${post._raw.flattenedPath}`;
+      },
     },
     readingTime: {
       type: "json",

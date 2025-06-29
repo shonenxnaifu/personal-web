@@ -14,7 +14,9 @@ export default function Toc({ dataToc }: TocProps) {
       className="lg:max-w-[320px] lg:order-2 lg:sticky lg:top-3 lg:self-start text-sm p-3 mt-5 mx-3 border border-black rounded-lg dark:text-[#FFF5EE] dark:border-[#FFF5EE]"
       aria-label="Table of Contents"
     >
-      <h2 className="font-semibold text-lg">Table of Contents</h2>
+      <h2 className="font-semibold text-lg dark:text-[#FFF59F]">
+        Table of Contents
+      </h2>
       <ol className="list-none list-inside">
         {(() => {
           let parentNumber = 0;

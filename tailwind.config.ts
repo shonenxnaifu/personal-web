@@ -1,4 +1,6 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { Config } from "tailwindcss";
+import typography from "@tailwindcss/typography";
 
 const config: Config = {
   darkMode: "selector",
@@ -19,8 +21,8 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-        "section-pattern": "url('/bg-pattern.png')",
-        "section-pattern-2": "url('/bg-pattern-2.png')",
+        "section-pattern": "url('/assets/images/bg-pattern.png')",
+        "section-pattern-2": "url('/assets/images/bg-pattern-2.png')",
       },
       keyframes: {
         fadeInOut: {
@@ -30,6 +32,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [typography],
 };
 export default config;
