@@ -1,5 +1,6 @@
 import Image from "next/image";
 import CalendarIcon from "@/components/icons/CalendarIcon";
+import Tag from "./Tag";
 
 interface CardProps {
   title: string;
@@ -20,18 +21,13 @@ export default function Card({ title, date, tags, shortDesc }: CardProps) {
         />
       </picture>
       <div className="px-3 py-5">
-        <h1 className="text-xl font-bold dark:text-[#FFF5EE]">{title}</h1>
+        <h3 className="text-xl font-bold dark:text-[#FFF5EE]">{title}</h3>
         <span className="flex text-sm gap-1 text-[#2F393F] font-semibold dark:text-[#FFF5EE]">
           <CalendarIcon className="max-w-3" /> {date}
         </span>
         <div className="flex gap-2 py-1">
           {tags.map((item) => (
-            <div
-              className="text-[10px] bg-[#75FBC0] inline-block rounded font-semibold p-[2px]"
-              key={item}
-            >
-              {item}
-            </div>
+            <Tag key={item} text={item} className="text-[10px]" />
           ))}
         </div>
         <p className="mt-3 line-clamp-3 dark:text-[#FFF5EE]">{shortDesc}</p>
