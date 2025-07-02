@@ -27,7 +27,7 @@ export default function Card({ title, date, tags, shortDesc }: CardProps) {
         </span>
         <div className="flex gap-2 py-1">
           {tags.map((item) => (
-            <Tag key={item} text={item} className="text-[10px]" />
+            <Tag key={item} text={item} className="text-[10px]" isActive />
           ))}
         </div>
         <p className="mt-3 line-clamp-3 dark:text-[#FFF5EE]">{shortDesc}</p>

@@ -1,7 +1,7 @@
 import CardNoImage from "@/components/shared/CardNoImage";
-import Tag from "@/components/shared/Tag";
 import { allBlogs } from "contentlayer/generated";
 import { slug } from "github-slugger";
+import SearchNavigation from "./components/SearchNavigation";
 
 interface PageSearchParams {
   t: string | string[] | undefined;
@@ -47,14 +47,11 @@ export default function BlogList({ searchParams }: BlogListProps) {
           Browse by Tags
         </h2>
 
-        <nav aria-label="Tags Filter">
-          <ul className="space-x-3 space-y-1">
-            {allTags.map((item) => (
-              <li className="inline-block" key={item}>
-                <Tag text={item} className="text-xs cursor-pointer" />
-              </li>
-            ))}
-          </ul>
+        <nav aria-label="Search Filter">
+          <SearchNavigation
+            tags={allTags}
+            selectedTag={searchParams.t?.toString() || ""}
+          />
         </nav>
       </section>
       <section className="py-5 px-3">
@@ -68,6 +65,7 @@ export default function BlogList({ searchParams }: BlogListProps) {
               date={item.publishedAt}
               tags={item.tags || []}
               shortDesc={item.description.substring(0, 100)}
+              url={item.url}
             />
           ))}
         </div>
