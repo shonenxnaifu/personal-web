@@ -45,7 +45,7 @@ export default function BlogPage({ params }: BlogPageProps) {
           <h1 className="text-3xl font-semibold mt-3 dark:text-[#FFF59F]">
             {blog.title}
           </h1>
-          <span className="text-sm font-semibold font-[#2F393F] mt-1 dark:text-[#75FBC0]">
+          <span className="text-sm font-semibold text-[#2F393F] mt-1 dark:text-[#75FBC0]">
             Posted on&nbsp;
             <time dateTime={format(parseISO(blog.publishedAt), "yyyy-MM-dd")}>
               {format(parseISO(blog.publishedAt), "dd/MM/yyyy")}

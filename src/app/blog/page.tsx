@@ -1,20 +1,45 @@
 import CardNoImage from "@/components/shared/CardNoImage";
 import Tag from "@/components/shared/Tag";
+import { allBlogs } from "contentlayer/generated";
+import { slug } from "github-slugger";
 
-const dummyTags = [
-  "webdev",
-  "database",
-  "datascience",
-  "devops",
-  "software-deveoplemnt",
-];
+interface PageSearchParams {
+  t: string | string[] | undefined;
+}
 
-export default function BlogList() {
+interface BlogListProps {
+  searchParams: PageSearchParams;
+}
+
+export default function BlogList({ searchParams }: BlogListProps) {
+  const allTags: Array<string> = ["all"];
+
+  const blogs = allBlogs.filter((item) => {
+    /**
+     * check every tags of each blog
+     */
+    return item.tags?.some((tag) => {
+      const slugified = slug(tag);
+      /**
+       * get all tags
+       */
+      if (!allTags.includes(slugified)) {
+        allTags.push(slugified);
+      }
+
+      if (searchParams.t === "all" || !searchParams.t) {
+        return true;
+      }
+
+      return slugified === searchParams.t;
+    });
+  });
+
   return (
     <main className="min-h-screen dark:bg-black">
       <header className="py-5 px-3">
         <h1 className="text-4xl font-bold dark:text-[#FFF59F]">
-          Browse all of Posts.
+          Browse all Posts.
         </h1>
       </header>
       <section className="py-5 px-3">
@@ -24,7 +49,7 @@ export default function BlogList() {
 
         <nav aria-label="Tags Filter">
           <ul className="space-x-3 space-y-1">
-            {dummyTags.map((item) => (
+            {allTags.map((item) => (
               <li className="inline-block" key={item}>
                 <Tag text={item} className="text-xs cursor-pointer" />
               </li>
@@ -35,16 +60,14 @@ export default function BlogList() {
       <section className="py-5 px-3">
         <h2 className="sr-only">List of Posts</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {[1, 2, 3, 4, 5, 6, 7].map((item) => (
+          {blogs.map((item) => (
             <CardNoImage
-              key={item}
-              title="Blog Title"
-              date="12/12/2025"
-              tags={["web", "devops", "machinelearning"]}
-              shortDesc="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit, atque
-            tempore. Odio illum nesciunt aspernatur illo, maxime consequatur
-            unde adipisci magnam, molestiae ratione iusto? Blanditiis
-            perspiciatis molestias ipsam distinctio omnis!"
+              // eslint-disable-next-line no-underscore-dangle
+              key={item.title}
+              title={item.title}
+              date={item.publishedAt}
+              tags={item.tags || []}
+              shortDesc={item.description.substring(0, 100)}
             />
           ))}
         </div>

@@ -22,7 +22,7 @@ export default function Card({ title, date, tags, shortDesc }: CardProps) {
       </picture>
       <div className="px-3 py-5">
         <h3 className="text-xl font-bold dark:text-[#FFF5EE]">{title}</h3>
-        <span className="flex text-sm gap-1 text-[#2F393F] font-semibold dark:text-[#FFF5EE]">
+        <span className="flex text-sm gap-1 text-[#2F393F] font-semibold dark:text-[#DFE0E2]">
           <CalendarIcon className="max-w-3" /> {date}
         </span>
         <div className="flex gap-2 py-1">

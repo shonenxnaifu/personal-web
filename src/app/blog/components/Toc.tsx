@@ -11,7 +11,7 @@ interface TocProps {
 export default function Toc({ dataToc }: TocProps) {
   return (
     <nav
-      className="lg:max-w-[320px] lg:order-2 lg:sticky lg:top-3 lg:self-start text-sm p-3 mt-5 mx-3 border border-black rounded-lg dark:text-[#FFF5EE] dark:border-[#FFF5EE]"
+      className="lg:max-w-[320px] xl:max-w-[480px] lg:flex-1 lg:order-2 lg:sticky lg:top-3 lg:self-start text-sm p-3 mt-5 mx-3 border border-black rounded-lg dark:text-[#FFF5EE] dark:border-[#FFF5EE]"
       aria-label="Table of Contents"
     >
       <h3 className="font-semibold text-lg dark:text-[#FFF59F]">
