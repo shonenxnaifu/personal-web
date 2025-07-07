@@ -1,9 +1,14 @@
 import GithubIcon from "@/components/icons/GithubIcon";
 import LinkedinIcon from "@/components/icons/LinkedinIcon";
 import Card from "@/components/shared/Card";
+import { allBlogs } from "contentlayer/generated";
 import Image from "next/image";
 
 export default function HomePage() {
+  const listFeaturedBlogs = allBlogs.filter((item) => {
+    return item.isFeatured;
+  });
+
   return (
     <main>
       <section className="flex flex-col md:flex-row md:h-2/3">
@@ -119,16 +124,15 @@ export default function HomePage() {
         <h1 className="text-4xl font-bold py-5 lg:px-10 xl:px-24 dark:text-[#FFF59F]">
           Featured Posts.
         </h1>
-        <div className="flex flex-col md:flex-row md:justify-center md:flex-wrap items-center pb-10 gap-7 md:gap-10 lg:gap-24">
-          {[1, 2, 3].map((item) => (
+        <div className="flex flex-col md:flex-row md:justify-center md:flex-wrap items-center pb-10 gap-7 md:gap-10 xl:gap-24">
+          {listFeaturedBlogs.map((item) => (
             <Card
-              key={item}
-              title="Blog Title"
-              date="12/08/2024"
-              tags={["nextjs", "react", "docker"]}
-              shortDesc="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quasi,
-          commodi magnam nisi sequi repellat ratione eos nam dolore. Enim
-          recusandae ea"
+              url={item.url}
+              key={item.title}
+              title={item.title}
+              date={item.publishedAt}
+              tags={item.tags || []}
+              shortDesc={item.description.substring(0, 100)}
             />
           ))}
         </div>

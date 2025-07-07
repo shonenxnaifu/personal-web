@@ -42,6 +42,10 @@ const Post = defineDocumentType(() => ({
       type: "list",
       of: { type: "string" },
     },
+    isFeatured: {
+      type: "boolean",
+      default: false,
+    },
   },
   computedFields: {
     url: {
