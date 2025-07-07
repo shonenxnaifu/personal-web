@@ -121,10 +121,10 @@ export default function HomePage() {
         </div>
       </section>
       <section className="border-t-4 border-black py-5 px-3 h-fit dark:bg-black dark:border-[#9747FF]">
-        <h1 className="text-4xl font-bold py-5 lg:px-10 xl:px-24 dark:text-[#FFF59F]">
+        <h1 className="text-4xl font-bold py-5 px-3 dark:text-[#FFF59F]">
           Featured Posts.
         </h1>
-        <div className="flex flex-col md:flex-row md:justify-center md:flex-wrap items-center pb-10 gap-7 md:gap-10 xl:gap-24">
+        <div className="grid grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-3 pb-10 gap-7">
           {listFeaturedBlogs.map((item) => (
             <Card
               url={item.url}
