@@ -1,6 +1,8 @@
 import GithubIcon from "@/components/icons/GithubIcon";
 import LinkedinIcon from "@/components/icons/LinkedinIcon";
 import Card from "@/components/shared/Card";
+import CardNoImage2 from "@/components/shared/CardNoImage2";
+import Slider from "@/components/shared/Slider";
 import { allBlogs } from "contentlayer/generated";
 import Image from "next/image";
 
@@ -118,6 +120,36 @@ export default function HomePage() {
               fill
             />
           </picture>
+        </div>
+      </section>
+      <section className="border-t-4 border-black py-5 px-3 h-fit dark:bg-black dark:border-[#9747FF]">
+        <h1 className="text-4xl font-bold py-5 px-3 dark:text-[#FFF59F]">
+          Latest Works.
+        </h1>
+        <div className="w-full pb-10 mx-auto md:w-3/4 xl:w-1/2">
+          <Slider>
+            <CardNoImage2
+              title={listFeaturedBlogs[0].title}
+              date={listFeaturedBlogs[0].publishedAt}
+              tags={listFeaturedBlogs[0].tags || []}
+              shortDesc={listFeaturedBlogs[0].description.substring(0, 100)}
+              url={listFeaturedBlogs[0].url}
+            />
+            <CardNoImage2
+              title={listFeaturedBlogs[0].title}
+              date={listFeaturedBlogs[0].publishedAt}
+              tags={listFeaturedBlogs[0].tags || []}
+              shortDesc={listFeaturedBlogs[0].description.substring(0, 100)}
+              url={listFeaturedBlogs[0].url}
+            />
+            <CardNoImage2
+              title={listFeaturedBlogs[0].title}
+              date={listFeaturedBlogs[0].publishedAt}
+              tags={listFeaturedBlogs[0].tags || []}
+              shortDesc={listFeaturedBlogs[0].description.substring(0, 100)}
+              url={listFeaturedBlogs[0].url}
+            />
+          </Slider>
         </div>
       </section>
       <section className="border-t-4 border-black py-5 px-3 h-fit dark:bg-black dark:border-[#9747FF]">
