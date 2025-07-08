@@ -1,9 +1,16 @@
 import GithubIcon from "@/components/icons/GithubIcon";
 import LinkedinIcon from "@/components/icons/LinkedinIcon";
 import Card from "@/components/shared/Card";
+import CardNoImage2 from "@/components/shared/CardNoImage2";
+import Slider from "@/components/shared/Slider";
+import { allBlogs } from "contentlayer/generated";
 import Image from "next/image";
 
 export default function HomePage() {
+  const listFeaturedBlogs = allBlogs.filter((item) => {
+    return item.isFeatured;
+  });
+
   return (
     <main>
       <section className="flex flex-col md:flex-row md:h-2/3">
@@ -116,19 +123,48 @@ export default function HomePage() {
         </div>
       </section>
       <section className="border-t-4 border-black py-5 px-3 h-fit dark:bg-black dark:border-[#9747FF]">
-        <h1 className="text-4xl font-bold py-5 lg:px-10 xl:px-24 dark:text-[#FFF59F]">
+        <h1 className="text-4xl font-bold py-5 px-3 dark:text-[#FFF59F]">
+          Latest Works.
+        </h1>
+        <div className="w-full pb-10 mx-auto md:w-3/4 xl:w-1/2">
+          <Slider>
+            <CardNoImage2
+              title={listFeaturedBlogs[0].title}
+              date={listFeaturedBlogs[0].publishedAt}
+              tags={listFeaturedBlogs[0].tags || []}
+              shortDesc={listFeaturedBlogs[0].description.substring(0, 100)}
+              url={listFeaturedBlogs[0].url}
+            />
+            <CardNoImage2
+              title={listFeaturedBlogs[0].title}
+              date={listFeaturedBlogs[0].publishedAt}
+              tags={listFeaturedBlogs[0].tags || []}
+              shortDesc={listFeaturedBlogs[0].description.substring(0, 100)}
+              url={listFeaturedBlogs[0].url}
+            />
+            <CardNoImage2
+              title={listFeaturedBlogs[0].title}
+              date={listFeaturedBlogs[0].publishedAt}
+              tags={listFeaturedBlogs[0].tags || []}
+              shortDesc={listFeaturedBlogs[0].description.substring(0, 100)}
+              url={listFeaturedBlogs[0].url}
+            />
+          </Slider>
+        </div>
+      </section>
+      <section className="border-t-4 border-black py-5 px-3 h-fit dark:bg-black dark:border-[#9747FF]">
+        <h1 className="text-4xl font-bold py-5 px-3 dark:text-[#FFF59F]">
           Featured Posts.
         </h1>
-        <div className="flex flex-col md:flex-row md:justify-center md:flex-wrap items-center pb-10 gap-7 md:gap-10 lg:gap-24">
-          {[1, 2, 3].map((item) => (
+        <div className="grid grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-3 pb-10 gap-7">
+          {listFeaturedBlogs.map((item) => (
             <Card
-              key={item}
-              title="Blog Title"
-              date="12/08/2024"
-              tags={["nextjs", "react", "docker"]}
-              shortDesc="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quasi,
-          commodi magnam nisi sequi repellat ratione eos nam dolore. Enim
-          recusandae ea"
+              url={item.url}
+              key={item.title}
+              title={item.title}
+              date={item.publishedAt}
+              tags={item.tags || []}
+              shortDesc={item.description.substring(0, 100)}
             />
           ))}
         </div>
