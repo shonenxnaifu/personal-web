@@ -1,5 +1,12 @@
+import DockerIcon from "@/components/icons/DockerIcon";
 import GithubIcon from "@/components/icons/GithubIcon";
 import LinkedinIcon from "@/components/icons/LinkedinIcon";
+import NextJsIcon from "@/components/icons/NextJsIcon";
+import PythonIcon from "@/components/icons/PythonIcon";
+import ReactJsIcon from "@/components/icons/ReactJsIcon";
+import TailwindIcon from "@/components/icons/TailwindIcon";
+import TypescriptIcon from "@/components/icons/Typescript";
+import VueJsIcon from "@/components/icons/VueJsIcon";
 import Card from "@/components/shared/Card";
 import CardNoImage2 from "@/components/shared/CardNoImage2";
 import Slider from "@/components/shared/Slider";
@@ -59,7 +66,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <section className="bg-section-pattern dark:bg-section-pattern-2 bg-black dark:bg-[#9747FF] bg-repeat pt-5 pb-10 px-5">
+      {/* <section className="bg-section-pattern dark:bg-section-pattern-2 bg-black dark:bg-[#9747FF] bg-repeat pt-5 pb-10 px-5">
         <h1 className="text-4xl font-bold px-3 py-5 text-[#DFE0E2] dark:text-black">
           Tech Stack.
         </h1>
@@ -121,37 +128,89 @@ export default function HomePage() {
             />
           </picture>
         </div>
-      </section>
-      <section className="border-t-4 border-black py-5 px-3 h-fit dark:bg-black dark:border-[#9747FF]">
-        <h1 className="text-4xl font-bold py-5 px-3 dark:text-[#FFF59F]">
-          Latest Works.
-        </h1>
-        <div className="w-full pb-10 mx-auto md:w-3/4 xl:w-1/2">
-          <Slider>
-            <CardNoImage2
-              title={listFeaturedBlogs[0].title}
-              date={listFeaturedBlogs[0].publishedAt}
-              tags={listFeaturedBlogs[0].tags || []}
-              shortDesc={listFeaturedBlogs[0].description.substring(0, 100)}
-              url={listFeaturedBlogs[0].url}
-            />
-            <CardNoImage2
-              title={listFeaturedBlogs[0].title}
-              date={listFeaturedBlogs[0].publishedAt}
-              tags={listFeaturedBlogs[0].tags || []}
-              shortDesc={listFeaturedBlogs[0].description.substring(0, 100)}
-              url={listFeaturedBlogs[0].url}
-            />
-            <CardNoImage2
-              title={listFeaturedBlogs[0].title}
-              date={listFeaturedBlogs[0].publishedAt}
-              tags={listFeaturedBlogs[0].tags || []}
-              shortDesc={listFeaturedBlogs[0].description.substring(0, 100)}
-              url={listFeaturedBlogs[0].url}
-            />
-          </Slider>
-        </div>
-      </section>
+      </section> */}
+      <div className="grid grid-cols-1 lg:grid-cols-2">
+        <section className="flex flex-col justify-center bg-section-pattern dark:bg-section-pattern-2 bg-black dark:bg-[#9747FF] bg-repeat pt-5 pb-10 px-3">
+          <h1 className="text-4xl font-bold px-3 py-5 text-[#DFE0E2] dark:text-black dark:text-shadow-neon-pink">
+            Tech Stack.
+          </h1>
+          <div className="flex flex-wrap px-3 md:px-5 lg:px-7 gap-3 md:gap-5 xl:w-3/4 xl:mx-auto">
+            <div className="flex items-center text-lg gap-1 bg-[#DFE0E2] bg-opacity-15 backdrop-blur-[1px] text-white border-2 border-white rounded-lg py-1 px-3 dark:border-[#9747FF] dark:bg-[#2F393F] dark:bg-opacity-35 shadow-neon-purple">
+              <span>
+                <NextJsIcon className="max-w-5" />
+              </span>
+              <span>NextJS</span>
+            </div>
+            <div className="flex items-center text-lg gap-1 bg-[#DFE0E2] bg-opacity-15 backdrop-blur-[1px] text-white border-2 border-white rounded-lg py-1 px-3 dark:border-[#9747FF] dark:bg-[#2F393F] dark:bg-opacity-35 shadow-neon-purple">
+              <span>
+                <ReactJsIcon className="max-w-5" />
+              </span>
+              <span>ReactJS</span>
+            </div>
+            <div className="flex items-center text-lg gap-1 bg-[#DFE0E2] bg-opacity-15 backdrop-blur-[1px] text-white border-2 border-white rounded-lg py-1 px-3 dark:border-[#9747FF] dark:bg-[#2F393F] dark:bg-opacity-35 shadow-neon-purple">
+              <span>
+                <TailwindIcon className="max-w-5" />
+              </span>
+              <span>Tailwind</span>
+            </div>
+            <div className="flex items-center text-lg gap-1 bg-[#DFE0E2] bg-opacity-15 backdrop-blur-[1px] text-white border-2 border-white rounded-lg py-1 px-3 dark:border-[#9747FF] dark:bg-[#2F393F] dark:bg-opacity-35 shadow-neon-purple">
+              <span>
+                <VueJsIcon className="max-w-5" />
+              </span>
+              <span>VueJS</span>
+            </div>
+            <div className="flex items-center text-lg gap-1 bg-[#DFE0E2] bg-opacity-15 backdrop-blur-[1px] text-white border-2 border-white rounded-lg py-1 px-3 dark:border-[#9747FF] dark:bg-[#2F393F] dark:bg-opacity-35 shadow-neon-purple">
+              <span>
+                <TypescriptIcon className="max-w-5" />
+              </span>
+              <span>Typescript</span>
+            </div>
+            <div className="flex items-center text-lg gap-1 bg-[#DFE0E2] bg-opacity-15 backdrop-blur-[1px] text-white border-2 border-white rounded-lg py-1 px-3 dark:border-[#9747FF] dark:bg-[#2F393F] dark:bg-opacity-35 shadow-neon-purple">
+              <span>
+                <PythonIcon className="max-w-5" />
+              </span>
+              <span>Python</span>
+            </div>
+            <div className="flex items-center text-lg gap-1 bg-[#DFE0E2] bg-opacity-15 backdrop-blur-[1px] text-white border-2 border-white rounded-lg py-1 px-3 dark:border-[#9747FF] dark:bg-[#2F393F] dark:bg-opacity-35 shadow-neon-purple">
+              <span>
+                <DockerIcon className="max-w-5" />
+              </span>
+              <span>Docker</span>
+            </div>
+          </div>
+        </section>
+        <section className="flex flex-col justify-center py-5 px-3 h-fit dark:bg-black">
+          <h1 className="text-4xl font-bold py-5 px-3 dark:text-[#FFF59F]">
+            Latest Works.
+          </h1>
+          <div className="w-full mx-auto xl:w-2/3">
+            <Slider>
+              <CardNoImage2
+                title={listFeaturedBlogs[0].title}
+                date={listFeaturedBlogs[0].publishedAt}
+                tags={listFeaturedBlogs[0].tags || []}
+                shortDesc={listFeaturedBlogs[0].description.substring(0, 100)}
+                url={listFeaturedBlogs[0].url}
+              />
+              <CardNoImage2
+                title={listFeaturedBlogs[0].title}
+                date={listFeaturedBlogs[0].publishedAt}
+                tags={listFeaturedBlogs[0].tags || []}
+                shortDesc={listFeaturedBlogs[0].description.substring(0, 100)}
+                url={listFeaturedBlogs[0].url}
+              />
+              <CardNoImage2
+                title={listFeaturedBlogs[0].title}
+                date={listFeaturedBlogs[0].publishedAt}
+                tags={listFeaturedBlogs[0].tags || []}
+                shortDesc={listFeaturedBlogs[0].description.substring(0, 100)}
+                url={listFeaturedBlogs[0].url}
+              />
+            </Slider>
+          </div>
+        </section>
+      </div>
+
       <section className="border-t-4 border-black py-5 px-3 h-fit dark:bg-black dark:border-[#9747FF]">
         <h1 className="text-4xl font-bold py-5 px-3 dark:text-[#FFF59F]">
           Featured Posts.

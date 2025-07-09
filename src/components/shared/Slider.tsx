@@ -52,7 +52,7 @@ export default function Slider({
       <div className="flex py-3 px-3 overflow-x-hidden">
         <ul
           aria-live="polite"
-          className="flex w-full md:w-3/4 transition-transform duration-700 ease-in-out gap-3"
+          className="flex w-full md:w-5/6 transition-transform duration-700 ease-in-out gap-3"
           style={{
             transform: `translateX(-${currentIndex * 100}%)`,
           }}
