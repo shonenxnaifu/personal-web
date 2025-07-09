@@ -7,3 +7,14 @@
     @apply p-2 text-sm font-semibold bg-[#FFA6F6] dark:bg-[#9747FF] text-[#161313] dark:text-[#FFA6F6] hover:bg-opacity-50 transition-all ease-in-out duration-200 border-2 border-black dark:border-[#FFA6F6] rounded-lg shadow-[2px_2px_0_0_rgba(0,0,0,1)] dark:shadow-[2px_2px_0_0_rgba(255,166,246,1)];
   }
 }
+
+@layer utilities {
+  .text-shadow-neon-pink {
+    text-shadow:
+      0 0 10px rgb(255, 255, 255, 0.5),
+      0 0 10px rgb(255, 255, 255, 0.3),
+      0 0 20px rgb(151, 71, 255),
+      0 0 30px rgb(151, 71, 255, 0.75),
+      0 0 50px rgb(151, 71, 255, 0.5);
+  }
+}

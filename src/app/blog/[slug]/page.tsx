@@ -22,6 +22,22 @@ export async function generateStaticParams() {
   });
 }
 
+export async function generateMetadata({ params }: BlogPageProps) {
+  // eslint-disable-next-line no-underscore-dangle
+  const blog = allBlogs.find((item) => item._raw.flattenedPath === params.slug);
+
+  console.log(blog?.image);
+
+  if (!blog) {
+    return undefined;
+  }
+
+  return {
+    title: "blog title",
+    description: "description",
+  };
+}
+
 export default function BlogPage({ params }: BlogPageProps) {
   // eslint-disable-next-line no-underscore-dangle
   const blog = allBlogs.find((item) => item._raw.flattenedPath === params.slug);
