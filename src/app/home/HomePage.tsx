@@ -19,10 +19,15 @@ export default function HomePage() {
   });
 
   return (
-    <main>
-      <section className="flex flex-col md:flex-row md:h-2/3">
-        <div className="bg-[#A8A6FF] dark:bg-black h-96 md:h-auto flex justify-center items-center border-b-4 border-black dark:border-[#9747FF] md:order-2 md:min-w-[33%] lg:py-28">
-          <picture className="relative inline-block max-h-56 max-w-56 overflow-hidden rounded-3xl">
+    <main className="flex-grow dark:bg-black">
+      <section className="flex flex-col md:flex-row md:h-2/3 xl:h-1/3 relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none hidden dark:block z-10">
+          <div className="absolute top-1/4 -left-3/4 md:-left-1/3 lg:left-1/2 w-[400px] h-[400px] rounded-full bg-[#9747FF] blur-[150px] mix-blend-overlay opacity-80" />
+          <div className="absolute top-1/2 -left-80 md:left-0 lg:left-1/4  w-[600px] h-[600px] rounded-full bg-[#FFA6F6] blur-[250px] opacity-50 mix-blend-overlay" />
+          <div className="absolute -bottom-1/2 -right-1/4 md:right-0 md:-bottom-full lg:-bottom-2/3 w-[550px] h-[350px] rounded-full bg-[#75FBC0] blur-[100px] opacity-60 mix-blend-overlay" />
+        </div>
+        <div className="bg-[#A8A6FF] dark:bg-black h-96 md:h-auto flex justify-center items-center border-b-4 border-black dark:border-[#9747FF] md:order-2 md:min-w-[33%] lg:py-28 bg-section-pattern-2 bg-blend-overlay dark:bg-section-pattern dark:bg-blend-normal">
+          <picture className="relative inline-block max-h-56 max-w-56 overflow-hidden rounded-3xl z-10 dark:mix-blend-screen backdrop-blur-[0.05rem] dark:backdrop-blur-[0.1rem]">
             <Image
               className="object-fill"
               src="/totoro_kawai.png"
@@ -33,20 +38,20 @@ export default function HomePage() {
           </picture>
         </div>
         <div className="px-3 md:px-16 py-5 border-b-4 border-black dark:border-[#9747FF] md:border-r-4 bg-[#FFF59F] dark:bg-black md:flex md:flex-col md:justify-center">
-          <h1 className="text-xl flex flex-col md:block">
+          <h1 className="text-xl flex flex-col md:block relative z-10">
             <span className="font-bold dark:text-[#FFF5EE]">Welcome to,</span>
             <span className="text-3xl md:ml-1 text-[#9747FF] dark:text-[#FFF59F] font-bold">
               shonen-dev.xyz
             </span>
           </h1>
-          <p className="text-sm mt-5 dark:text-[#FFF5EE]">
+          <p className="text-sm mt-5 dark:text-[#FFF5EE] relative z-10">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae
             felis vitae nisl lacinia convallis. Integer vel velit vehicula,
             pharetra turpis at, tincidunt urna. Donec ac sem sed ligula
             ultricies condimentum. Nam venenatis, nisl non suscipit viverra,
             felis justo ultricies dolor, nec dictum
           </p>
-          <div className="flex gap-5 text-xl mt-5 dark:text-[#FFF5EE]">
+          <div className="flex gap-5 text-xl mt-5 dark:text-[#FFF5EE] relative z-10">
             <a
               href="https://github.com/shonenxnaifu"
               className="flex justify-between gap-1 items-center"
@@ -66,69 +71,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      {/* <section className="bg-section-pattern dark:bg-section-pattern-2 bg-black dark:bg-[#9747FF] bg-repeat pt-5 pb-10 px-5">
-        <h1 className="text-4xl font-bold px-3 py-5 text-[#DFE0E2] dark:text-black">
-          Tech Stack.
-        </h1>
-        <div className="grid grid-cols-2 md:grid-cols-[repeat(auto-fit,minmax(120px,1fr))] justify-items-center md:px-5 lg:px-7 gap-3 md:gap-5">
-          <picture className="relative bg-white dark:bg-transparent w-[120px] h-[120px] rounded-lg dark:bg-gradient-to-br dark:from-transparent dark:to-black/50 dark:backdrop-blur-[1px]">
-            <Image
-              className="object-fill p-5"
-              src="/assets/logos/nextjs-icon.svg"
-              alt="Logo NextJS"
-              fill
-            />
-          </picture>
-          <picture className="relative bg-white dark:bg-transparent w-[120px] h-[120px] rounded-lg dark:bg-gradient-to-br dark:from-transparent dark:to-black/50 dark:backdrop-blur-[1px]">
-            <Image
-              className="object-fill p-5"
-              src="/assets/logos/react-icon.svg"
-              alt="Logo NextJS"
-              fill
-            />
-          </picture>
-          <picture className="relative bg-white dark:bg-transparent w-[120px] h-[120px] rounded-lg dark:bg-gradient-to-br dark:from-transparent dark:to-black/50 dark:backdrop-blur-[1px]">
-            <Image
-              className="object-fill p-5"
-              src="/assets/logos/tailwind-icon.svg"
-              alt="Logo NextJS"
-              fill
-            />
-          </picture>
-          <picture className="relative bg-white dark:bg-transparent w-[120px] h-[120px] rounded-lg dark:bg-gradient-to-br dark:from-transparent dark:to-black/50 dark:backdrop-blur-[1px]">
-            <Image
-              className="object-fill p-5"
-              src="/assets/logos/vue-icon.svg"
-              alt="Logo NextJS"
-              fill
-            />
-          </picture>
-          <picture className="relative bg-white dark:bg-transparent w-[120px] h-[120px] rounded-lg dark:bg-gradient-to-br dark:from-transparent dark:to-black/50 dark:backdrop-blur-[1px]">
-            <Image
-              className="object-fill p-5"
-              src="/assets/logos/typescript-icon.svg"
-              alt="Logo NextJS"
-              fill
-            />
-          </picture>
-          <picture className="relative bg-white dark:bg-transparent w-[120px] h-[120px] rounded-lg dark:bg-gradient-to-br dark:from-transparent dark:to-black/50 dark:backdrop-blur-[1px]">
-            <Image
-              className="object-fill p-5"
-              src="/assets/logos/python-icon.svg"
-              alt="Logo NextJS"
-              fill
-            />
-          </picture>
-          <picture className="relative bg-white dark:bg-transparent w-[120px] h-[120px] rounded-lg dark:bg-gradient-to-br dark:from-transparent dark:to-black/50 dark:backdrop-blur-[1px]">
-            <Image
-              className="object-fill p-5"
-              src="/assets/logos/docker-icon.svg"
-              alt="Logo NextJS"
-              fill
-            />
-          </picture>
-        </div>
-      </section> */}
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <section className="flex flex-col justify-center bg-section-pattern dark:bg-section-pattern-2 bg-black dark:bg-[#9747FF] bg-repeat pt-5 pb-10 px-3">
           <h1 className="text-4xl font-bold px-3 py-5 text-[#DFE0E2] dark:text-black dark:text-shadow-neon-pink">
@@ -211,7 +153,7 @@ export default function HomePage() {
         </section>
       </div>
 
-      <section className="border-t-4 border-black py-5 px-3 h-fit dark:bg-black dark:border-[#9747FF]">
+      <section className="border-t-4 border-black py-5 px-3 dark:bg-black dark:border-[#9747FF]">
         <h1 className="text-4xl font-bold py-5 px-3 dark:text-[#FFF59F]">
           Featured Posts.
         </h1>
