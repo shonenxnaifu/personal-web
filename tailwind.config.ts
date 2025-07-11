@@ -42,9 +42,9 @@ const config: Config = {
         },
       },
       animation: {
-        "blob-1": "blob-anim-1 25s ease-in-out infinite",
-        "blob-2": "blob-anim-2 30s ease-in-out infinite",
-        "blob-3": "blob-anim-3 35s ease-in-out infinite",
+        "blob-1": "blob-anim-1 13s ease-in-out infinite",
+        "blob-2": "blob-anim-2 5s ease-in-out infinite",
+        "blob-3": "blob-anim-3 10s ease-in-out infinite",
       },
     },
   },
