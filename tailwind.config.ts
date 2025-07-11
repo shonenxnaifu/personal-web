@@ -17,6 +17,11 @@ const config: Config = {
       xl: "1440px",
     },
     extend: {
+      borderRadius: {
+        "blob-1": "50% 80% 50% 100%",
+        "blob-2": "100% 40% 80% 50%",
+        "blob-3": "30% 100% 70% 80%",
+      },
       boxShadow: {
         "neon-purple":
           "inset 0 0 10px 0 rgb(151,71,255), 0 0 10px 0 rgb(151,71,255, 0.75), 0 0 20px 0 rgb(151,71,255, 0.5)",
@@ -35,6 +40,11 @@ const config: Config = {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
+      },
+      animation: {
+        "blob-1": "blob-anim-1 25s ease-in-out infinite",
+        "blob-2": "blob-anim-2 30s ease-in-out infinite",
+        "blob-3": "blob-anim-3 35s ease-in-out infinite",
       },
     },
   },

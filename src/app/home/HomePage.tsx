@@ -22,11 +22,13 @@ export default function HomePage() {
     <main className="flex-grow dark:bg-black">
       <section className="flex flex-col md:flex-row md:h-2/3 xl:h-1/3 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none hidden dark:block z-10">
-          <div className="absolute top-1/4 -left-3/4 md:-left-1/3 lg:left-1/2 w-[400px] h-[400px] rounded-full bg-[#9747FF] blur-[150px] mix-blend-overlay opacity-80" />
-          <div className="absolute top-1/2 -left-80 md:left-0 lg:left-1/4  w-[600px] h-[600px] rounded-full bg-[#FFA6F6] blur-[250px] opacity-50 mix-blend-overlay" />
-          <div className="absolute -bottom-1/2 -right-1/4 md:right-0 md:-bottom-full lg:-bottom-2/3 w-[550px] h-[350px] rounded-full bg-[#75FBC0] blur-[100px] opacity-60 mix-blend-overlay" />
+          <div className="absolute top-1/4 -left-2/3 md:-left-1/2 lg:left-1/2 w-[400px] h-[400px] rounded-blob-1 blur-[150px] bg-[#9747FF] mix-blend-overlay opacity-80 animate-blob-1" />
+
+          <div className="absolute top-1/2 -left-1/2 md:left-0 md:top-3/4 lg:left-1/4  w-[600px] h-[600px] rounded-blob-1 bg-[#FFA6F6] blur-[250px] opacity-50 mix-blend-overlay animate-blob-2" />
+
+          <div className="absolute -bottom-1/2 -right-full md:right-1/4 md:top-full lg:-bottom-2/3 lg:right-1/2 w-[550px] h-[350px] rounded-blob-3 bg-[#75FBC0] blur-[100px] md:blur-xl lg:blur-[100px] opacity-60 mix-blend-overlay animate-blob-3" />
         </div>
-        <div className="bg-[#A8A6FF] dark:bg-black h-96 md:h-auto flex justify-center items-center border-b-4 border-black dark:border-[#9747FF] md:order-2 md:min-w-[33%] lg:py-28 bg-section-pattern-2 bg-blend-overlay dark:bg-section-pattern dark:bg-blend-normal">
+        <div className="bg-[#A8A6FF] dark:bg-black h-96 md:h-auto flex justify-center items-center border-b-4 border-black dark:border-[#9747FF] md:border-none md:order-2 md:min-w-[33%] lg:py-28 bg-section-pattern-2 bg-blend-overlay dark:bg-section-pattern dark:bg-blend-normal">
           <picture className="relative inline-block max-h-56 max-w-56 overflow-hidden rounded-3xl z-10 dark:mix-blend-screen backdrop-blur-[0.05rem] dark:backdrop-blur-[0.1rem]">
             <Image
               className="object-fill"
@@ -37,7 +39,7 @@ export default function HomePage() {
             />
           </picture>
         </div>
-        <div className="px-3 md:px-16 py-5 border-b-4 border-black dark:border-[#9747FF] md:border-r-4 bg-[#FFF59F] dark:bg-black md:flex md:flex-col md:justify-center">
+        <div className="px-3 md:px-16 py-5  md:border-r-4 border-black dark:border-[#9747FF] bg-[#FFF59F] dark:bg-black md:flex md:flex-col md:justify-center">
           <h1 className="text-xl flex flex-col md:block relative z-10">
             <span className="font-bold dark:text-[#FFF5EE]">Welcome to,</span>
             <span className="text-3xl md:ml-1 text-[#9747FF] dark:text-[#FFF59F] font-bold">
@@ -71,7 +73,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <div className="grid grid-cols-1 lg:grid-cols-2">
+      <div className="grid grid-cols-1 lg:grid-cols-2 border-y-4 border-black dark:border-[#9747FF]">
         <section className="flex flex-col justify-center bg-section-pattern dark:bg-section-pattern-2 bg-black dark:bg-[#9747FF] bg-repeat pt-5 pb-10 px-3">
           <h1 className="text-4xl font-bold px-3 py-5 text-[#DFE0E2] dark:text-black dark:text-shadow-neon-pink">
             Tech Stack.
@@ -153,7 +155,7 @@ export default function HomePage() {
         </section>
       </div>
 
-      <section className="border-t-4 border-black py-5 px-3 dark:bg-black dark:border-[#9747FF]">
+      <section className=" py-5 px-3">
         <h1 className="text-4xl font-bold py-5 px-3 dark:text-[#FFF59F]">
           Featured Posts.
         </h1>
