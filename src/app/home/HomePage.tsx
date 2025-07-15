@@ -24,7 +24,7 @@ export default function HomePage() {
         <div className="absolute inset-0 pointer-events-none hidden dark:block z-10">
           <div className="absolute top-1/4 -left-2/3 md:-left-1/2 lg:left-1/2 w-[400px] h-[400px] rounded-blob-1 blur-[150px] bg-[#9747FF] mix-blend-overlay opacity-80 animate-blob-1" />
 
-          <div className="absolute top-1/2 -left-1/2 md:left-0 md:top-3/4 lg:left-1/4  w-[600px] h-[600px] rounded-blob-1 bg-[#FFA6F6] blur-[250px] opacity-50 mix-blend-overlay animate-blob-2" />
+          <div className="absolute top-1/2 -left-1/2 md:left-0 md:top-3/4 lg:left-1/4 w-[600px] h-[600px] rounded-blob-2 bg-[#FFA6F6] blur-[250px] opacity-50 mix-blend-overlay animate-blob-2" />
 
           <div className="absolute -bottom-1/2 -right-full md:right-1/4 md:top-full lg:-bottom-2/3 lg:right-1/2 w-[550px] h-[350px] rounded-blob-3 bg-[#75FBC0] blur-[100px] md:blur-xl lg:blur-[100px] opacity-60 mix-blend-overlay animate-blob-3" />
         </div>
