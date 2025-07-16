@@ -1,7 +1,7 @@
 "use client";
 
-import { format, parseISO } from "date-fns";
 import Link from "next/link";
+import fromUTCTimestamp from "@/utils/dateFormater";
 import CalendarIcon from "../icons/CalendarIcon";
 import Tag from "./Tag";
 
@@ -30,8 +30,8 @@ export default function CardNoImage({
         </Link>
         <span className="flex text-sm gap-1 text-[#2F393F] font-semibold dark:text-[#DFE0E2] ">
           <CalendarIcon className="max-w-3" />
-          <time dateTime={format(parseISO(date), "yyyy-MM-dd")}>
-            {format(parseISO(date), "dd/MM/yyyy")}
+          <time dateTime={fromUTCTimestamp(date, "dd/mm/yyyy")}>
+            {fromUTCTimestamp(date, "dd/mm/yyyy")}
           </time>
         </span>
         <ul className="space-x-2">

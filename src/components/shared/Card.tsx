@@ -1,7 +1,7 @@
 import Image from "next/image";
 import CalendarIcon from "@/components/icons/CalendarIcon";
 import Link from "next/link";
-import { format, parseISO } from "date-fns";
+import fromUTCTimestamp from "@/utils/dateFormater";
 import Tag from "./Tag";
 
 interface CardProps {
@@ -31,8 +31,8 @@ export default function Card({ title, date, tags, shortDesc, url }: CardProps) {
         </Link>
         <span className="flex px-3 pt-1 text-sm gap-1 text-[#2F393F] font-semibold dark:text-[#DFE0E2]">
           <CalendarIcon className="max-w-3" />
-          <time dateTime={format(parseISO(date), "yyyy-MM-dd")}>
-            {format(parseISO(date), "dd/MM/yyyy")}
+          <time dateTime={fromUTCTimestamp(date, "dd/mm/yyyy")}>
+            {fromUTCTimestamp(date, "dd/mm/yyyy")}
           </time>
         </span>
         <ul className="space-x-2 px-3 pt-1">
