@@ -2,7 +2,7 @@ import Image from "next/image";
 import Toc from "@/app/blog/components/Toc";
 import { allBlogs } from "contentlayer/generated";
 import { notFound } from "next/navigation";
-import { format, parseISO } from "date-fns";
+import fromUTCTimestamp from "@/utils/dateFormater";
 import RenderMdx from "../components/RenderMdx";
 
 interface PageParams {
@@ -63,8 +63,8 @@ export default function BlogPage({ params }: BlogPageProps) {
           </h1>
           <span className="text-sm font-semibold text-[#2F393F] mt-1 dark:text-[#75FBC0]">
             Posted on&nbsp;
-            <time dateTime={format(parseISO(blog.publishedAt), "yyyy-MM-dd")}>
-              {format(parseISO(blog.publishedAt), "dd/MM/yyyy")}
+            <time dateTime={fromUTCTimestamp(blog.publishedAt, "dd/mm/yyyy")}>
+              {fromUTCTimestamp(blog.publishedAt, "dd/mm/yyyy")}
             </time>
           </span>
         </header>
