@@ -12,9 +12,31 @@ import CardNoImage2 from "@/components/shared/CardNoImage2";
 import Slider from "@/components/shared/Slider";
 import { allBlogs } from "contentlayer/generated";
 import Image from "next/image";
+import { slug } from "github-slugger";
 
 export default function HomePage() {
-  const listFeaturedBlogs = allBlogs.filter((item) => {
+  const mappedBlogs = allBlogs.map((item) => {
+    const imgFilePath = item.image?.filePath;
+    const changedImgFilePath = imgFilePath?.replace(
+      /^(images)(\/)/,
+      "/assets/blog$2",
+    );
+
+    const sluggifiedTags = item.tags?.map((tag) => {
+      return slug(tag);
+    });
+
+    return {
+      ...item,
+      image: {
+        ...item.image,
+        filePath: changedImgFilePath,
+      },
+      tags: sluggifiedTags,
+    };
+  });
+
+  const listFeaturedBlogs = mappedBlogs.filter((item) => {
     return item.isFeatured;
   });
 
@@ -168,6 +190,7 @@ export default function HomePage() {
               date={item.publishedAt}
               tags={item.tags || []}
               shortDesc={item.description.substring(0, 100)}
+              urlImage={item.image.filePath}
             />
           ))}
         </div>
