@@ -35,6 +35,27 @@ export default function BlogList({ searchParams }: BlogListProps) {
     });
   });
 
+  const mappedBlogs = blogs.map((item) => {
+    const imgFilePath = item.image?.filePath;
+    const changedImgFilePath = imgFilePath?.replace(
+      /^(images)(\/)/,
+      "/assets/blog$2",
+    );
+
+    const sluggifiedTags = item.tags?.map((tag) => {
+      return slug(tag);
+    });
+
+    return {
+      ...item,
+      image: {
+        ...item.image,
+        filePath: changedImgFilePath,
+      },
+      tags: sluggifiedTags,
+    };
+  });
+
   return (
     <main className="min-h-screen dark:bg-black">
       <header className="py-5 px-3">
@@ -57,7 +78,7 @@ export default function BlogList({ searchParams }: BlogListProps) {
       <section className="py-5 px-3">
         <h2 className="sr-only">List of Posts</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {blogs.map((item) => (
+          {mappedBlogs.map((item) => (
             <CardNoImage
               // eslint-disable-next-line no-underscore-dangle
               key={item.title}

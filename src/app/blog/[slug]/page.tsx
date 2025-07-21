@@ -3,6 +3,7 @@ import Toc from "@/app/blog/components/Toc";
 import { allBlogs } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 import fromUTCTimestamp from "@/utils/dateFormater";
+import { slug } from "github-slugger";
 import RenderMdx from "../components/RenderMdx";
 
 interface PageParams {
@@ -44,33 +45,56 @@ export default function BlogPage({ params }: BlogPageProps) {
 
   if (!blog) notFound();
 
+  const imgFilePath = blog.image?.filePath;
+  const changedImgFilePath = imgFilePath?.replace(
+    /^(images)(\/)/,
+    "/assets/blog$2",
+  );
+
+  const sluggifiedTags = blog.tags?.map((tag) => {
+    return slug(tag);
+  });
+
+  const mappedBlog = {
+    ...blog,
+    image: {
+      ...blog.image,
+      filePath: changedImgFilePath,
+    },
+    tags: sluggifiedTags,
+  };
+
   return (
     <main className="pb-5 min-h-screen mx-auto dark:bg-black">
       <article className="flex flex-col lg:flex-row lg:flex-wrap lg:mx-5">
         <header className="lg:w-full flex flex-col m-3 border-b border-black pb-5 dark:border-[#FFF5EE]">
           <figure className="relative h-[200px] md:h-[360px] mx-1 my-3 rounded-3xl overflow-hidden">
-            <Image
-              className="object-cover"
-              src="/assets/images/dummy2.webp"
-              alt=""
-              fill
-              priority
-              sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-            />
+            {mappedBlog.image && (
+              <Image
+                className="object-cover"
+                src={mappedBlog.image.filePath ?? "/assets/images/default.webp"}
+                alt=""
+                fill
+                priority
+                sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+              />
+            )}
           </figure>
           <h1 className="text-3xl font-semibold mt-3 dark:text-[#FFF59F]">
-            {blog.title}
+            {mappedBlog.title}
           </h1>
           <span className="text-sm font-semibold text-[#2F393F] mt-1 dark:text-[#75FBC0]">
             Posted on&nbsp;
-            <time dateTime={fromUTCTimestamp(blog.publishedAt, "dd/mm/yyyy")}>
-              {fromUTCTimestamp(blog.publishedAt, "dd/mm/yyyy")}
+            <time
+              dateTime={fromUTCTimestamp(mappedBlog.publishedAt, "dd/mm/yyyy")}
+            >
+              {fromUTCTimestamp(mappedBlog.publishedAt, "dd/mm/yyyy")}
             </time>
           </span>
         </header>
-        <Toc dataToc={blog.toc} />
+        <Toc dataToc={mappedBlog.toc} />
         <div className="lg:flex-1 dark:text-[#FFF5EE]">
-          <RenderMdx blog={blog} />
+          <RenderMdx blog={mappedBlog} />
         </div>
       </article>
     </main>

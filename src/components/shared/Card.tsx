@@ -10,16 +10,24 @@ interface CardProps {
   tags: Array<string>;
   shortDesc: string;
   url: string;
+  urlImage?: string;
 }
 
-export default function Card({ title, date, tags, shortDesc, url }: CardProps) {
+export default function Card({
+  title,
+  date,
+  tags,
+  shortDesc,
+  url,
+  urlImage = "/assets/images/dummy1.png",
+}: CardProps) {
   return (
     <article className="flex flex-col min-w-72 md:max-w-80 lg:max-w-96 bg-white mx-3 mr-5 border-4 border-black rounded-lg shadow-[7px_7px_0_0_rgba(0,0,0,1)] overflow-hidden dark:border-[#FFF5EE] dark:shadow-[7px_7px_0_0_rgba(255,245,238,1)] dark:bg-[#2F393F] relative">
       <header className="flex flex-col">
         <picture className="relative w-full h-64 opacity-90">
           <Image
             className="object-cover"
-            src="/assets/images/dummy1.png"
+            src={urlImage}
             alt="dummy image"
             fill
           />
