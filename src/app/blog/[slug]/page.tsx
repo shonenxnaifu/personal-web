@@ -4,6 +4,8 @@ import { allBlogs } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 import fromUTCTimestamp from "@/utils/dateFormater";
 import { slug } from "github-slugger";
+import siteMetaData from "@/utils/siteMetaData";
+import { headers } from "next/headers";
 import RenderMdx from "../components/RenderMdx";
 
 interface PageParams {
@@ -27,15 +29,51 @@ export async function generateMetadata({ params }: BlogPageProps) {
   // eslint-disable-next-line no-underscore-dangle
   const blog = allBlogs.find((item) => item._raw.flattenedPath === params.slug);
 
-  console.log(blog?.image);
+  const headerAttrs = headers();
+  const hostUrl = headerAttrs.get("host");
 
   if (!blog) {
     return undefined;
   }
 
+  let imgList: Array<string> = [];
+
+  if (blog.image) {
+    const imgFilePath = blog.image?.filePath;
+    const changedImgFilePath = imgFilePath?.replace(
+      /^(images)(\/)/,
+      "/assets/blog$2",
+    );
+    imgList = [hostUrl + changedImgFilePath];
+  }
+
+  const ogImages = imgList.map((image) => {
+    return {
+      url: image,
+    };
+  });
+
   return {
-    title: "blog title",
-    description: "description",
+    title: blog.title,
+    description: blog.description,
+    openGraph: {
+      title: blog.title,
+      description: blog.description,
+      url: siteMetaData.siteUrl + blog.url,
+      siteName: siteMetaData.title,
+      locale: "en_US",
+      type: "website",
+      publishedAt: new Date(blog.publishedAt).toISOString(),
+      modifiedAt: new Date(blog.publishedAt).toISOString(),
+      images: ogImages,
+      authors: blog.author,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: blog.title,
+      description: blog.description,
+      images: ogImages,
+    },
   };
 }
 
@@ -45,11 +83,15 @@ export default function BlogPage({ params }: BlogPageProps) {
 
   if (!blog) notFound();
 
-  const imgFilePath = blog.image?.filePath;
-  const changedImgFilePath = imgFilePath?.replace(
-    /^(images)(\/)/,
-    "/assets/blog$2",
-  );
+  let changedImgFilePath = "";
+
+  if (blog.image) {
+    const imgFilePath = blog.image?.filePath;
+    changedImgFilePath = imgFilePath?.replace(
+      /^(images)(\/)/,
+      "/assets/blog$2",
+    );
+  }
 
   const sluggifiedTags = blog.tags?.map((tag) => {
     return slug(tag);
