@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "target": "es2020",
     "lib": [
       "dom",
       "dom.iterable",
@@ -23,7 +24,10 @@
     ],
     "paths": {
       "@/*": [
-        "./src/*"
+        "./src/*",
+      ],
+      "contentlayer/generated": [
+        "./.contentlayer/generated"
       ]
     }
   },
@@ -33,7 +37,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "postcss.config.js",
-    "next.config.mjs"
+    "next.config.mjs",
+    ".contentlayer/generated"
   ],
   "exclude": [
     "node_modules"
