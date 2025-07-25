@@ -54,11 +54,11 @@ jobs:
       - name: Deploy to Digital Ocean droplet via SSH action
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST }}
+          host: ${{ secrets.HOST_KAZUHA }}
           username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSHKEY }}
+          key: ${{ secrets.SSHKEY_KAZUHA }}
           port: ${{ secrets.PORT }}
-          passphrase: ${{ secrets.PASSPHRASE }}
+          passphrase: ${{ secrets.PASSPHRASE_KAZUHA }}
           envs: IMAGE_NAME,REGISTRY,CONTAINER_NAME,{{ secrets.DIGITALOCEAN_ACCESS_TOKEN }},GITHUB_SHA
           script: |
             # Pull registry
