@@ -58,6 +58,7 @@ export default function HomePage() {
               alt="Logo shonen-dev.xyz"
               width={480}
               height={480}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </picture>
         </div>
