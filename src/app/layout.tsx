@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/header/Header";
-import Footer from "@/components/footer/Footer";
+// import Header from "@/components/header/Header";
+// import Footer from "@/components/footer/Footer";
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
@@ -27,9 +27,9 @@ export default function RootLayout({
       <body
         className={`${ibmPlexMono.className} bg-[#FFF5EE] text-[#161313] min-h-screen flex flex-col`}
       >
-        <Header />
+        {/* <Header /> */}
         {children}
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );
