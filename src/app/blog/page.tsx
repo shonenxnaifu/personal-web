@@ -36,11 +36,11 @@ export default function BlogList({ searchParams }: BlogListProps) {
   });
 
   const mappedBlogs = blogs.map((item) => {
-    const imgFilePath = item.image?.filePath;
-    const changedImgFilePath = imgFilePath?.replace(
-      /^(images)(\/)/,
-      "/assets/blog$2",
-    );
+    // const imgFilePath = item.image?.filePath;
+    // const changedImgFilePath = imgFilePath?.replace(
+    //   /^(images)(\/)/,
+    //   "/assets/blog$2",
+    // );
 
     const sluggifiedTags = item.tags?.map((tag) => {
       return slug(tag);
@@ -49,8 +49,8 @@ export default function BlogList({ searchParams }: BlogListProps) {
     return {
       ...item,
       image: {
-        ...item.image,
-        filePath: changedImgFilePath,
+        // ...item.image,
+        filePath: item.image,
       },
       tags: sluggifiedTags,
     };
