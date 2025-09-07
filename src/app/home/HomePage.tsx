@@ -16,12 +16,6 @@ import { slug } from "github-slugger";
 
 export default function HomePage() {
   const mappedBlogs = allBlogs.map((item) => {
-    const imgFilePath = item.image?.filePath;
-    const changedImgFilePath = imgFilePath?.replace(
-      /^(images)(\/)/,
-      "/assets/blog$2",
-    );
-
     const sluggifiedTags = item.tags?.map((tag) => {
       return slug(tag);
     });
@@ -29,8 +23,7 @@ export default function HomePage() {
     return {
       ...item,
       image: {
-        ...item.image,
-        filePath: changedImgFilePath,
+        filePath: item.image,
       },
       tags: sluggifiedTags,
     };
@@ -54,10 +47,11 @@ export default function HomePage() {
           <picture className="relative inline-block max-h-56 max-w-56 overflow-hidden rounded-3xl z-10 dark:mix-blend-screen backdrop-blur-[0.05rem] dark:backdrop-blur-[0.1rem]">
             <Image
               className="object-fill"
-              src="/totoro_kawai.png"
+              src="https://res.cloudinary.com/dbegkzvdt/image/upload/v1757214522/totoro_kawai_l9iw7u.png"
               alt="Logo shonen-dev.xyz"
               width={480}
               height={480}
+              sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
             />
           </picture>
         </div>
