@@ -7,7 +7,8 @@ const siteMetaData = {
   language: "en-us",
   theme: "light",
   siteUrl: "https://shonen-dev.xyz",
-  siteLogo: "/totoro_kawai.png",
+  siteLogo:
+    "https://res.cloudinary.com/dbegkzvdt/image/upload/v1757214522/totoro_kawai_l9iw7u.png",
   socialBanner: "/social-banner.png", // social banner will be add soon
   email: "pawitrawarda@gmail.com",
   github: "https://github.com/shonenxnaifu",

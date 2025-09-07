@@ -22,7 +22,7 @@ export default function CommingSoon() {
         <picture className="h-40 w-40 relative block rounded-full overflow-hidden mx-auto mt-20">
           <Image
             className="object-contain"
-            src="/totoro_kawai.png"
+            src="https://res.cloudinary.com/dbegkzvdt/image/upload/v1757214522/totoro_kawai_l9iw7u.png"
             alt="Logo shonen-dev.xyz"
             layout="fill"
             sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
