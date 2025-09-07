@@ -4,6 +4,15 @@ import { withContentlayer } from "next-contentlayer";
 
 const nextConfig = {
   output: "standalone",
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "/dbegkzvdt/image/upload/**",
+      },
+    ],
+  },
 };
 
 // export default nextConfig;

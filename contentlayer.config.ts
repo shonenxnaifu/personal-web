@@ -28,7 +28,7 @@ const Post = defineDocumentType(() => ({
       required: true,
     },
     image: {
-      type: "image",
+      type: "string",
     },
     isPublished: {
       type: "boolean",

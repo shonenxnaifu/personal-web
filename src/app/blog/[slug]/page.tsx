@@ -5,7 +5,6 @@ import { notFound } from "next/navigation";
 import fromUTCTimestamp from "@/utils/dateFormater";
 import { slug } from "github-slugger";
 import siteMetaData from "@/utils/siteMetaData";
-import { headers } from "next/headers";
 import RenderMdx from "../components/RenderMdx";
 
 interface PageParams {
@@ -29,9 +28,6 @@ export async function generateMetadata({ params }: BlogPageProps) {
   // eslint-disable-next-line no-underscore-dangle
   const blog = allBlogs.find((item) => item._raw.flattenedPath === params.slug);
 
-  const headerAttrs = headers();
-  const hostUrl = headerAttrs.get("host");
-
   if (!blog) {
     return undefined;
   }
@@ -39,12 +35,7 @@ export async function generateMetadata({ params }: BlogPageProps) {
   let imgList: Array<string> = [];
 
   if (blog.image) {
-    const imgFilePath = blog.image?.filePath;
-    const changedImgFilePath = imgFilePath?.replace(
-      /^(images)(\/)/,
-      "/assets/blog$2",
-    );
-    imgList = [hostUrl + changedImgFilePath];
+    imgList = [blog.image];
   }
 
   const ogImages = imgList.map((image) => {
@@ -83,16 +74,6 @@ export default function BlogPage({ params }: BlogPageProps) {
 
   if (!blog) notFound();
 
-  let changedImgFilePath = "";
-
-  if (blog.image) {
-    const imgFilePath = blog.image?.filePath;
-    changedImgFilePath = imgFilePath?.replace(
-      /^(images)(\/)/,
-      "/assets/blog$2",
-    );
-  }
-
   const sluggifiedTags = blog.tags?.map((tag) => {
     return slug(tag);
   });
@@ -100,8 +81,7 @@ export default function BlogPage({ params }: BlogPageProps) {
   const mappedBlog = {
     ...blog,
     image: {
-      ...blog.image,
-      filePath: changedImgFilePath,
+      filePath: blog.image,
     },
     tags: sluggifiedTags,
   };
