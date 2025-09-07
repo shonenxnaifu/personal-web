@@ -30,6 +30,7 @@ export default function Card({
             src={urlImage}
             alt="dummy image"
             fill
+            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
           />
         </picture>
         <Link href={url}>
