@@ -25,6 +25,7 @@ export default function CommingSoon() {
             src="/totoro_kawai.png"
             alt="Logo shonen-dev.xyz"
             layout="fill"
+            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
           />
         </picture>
         <p className="text-center text-xl text-white">
