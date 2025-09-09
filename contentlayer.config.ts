@@ -1,4 +1,4 @@
-import { defineDocumentType, makeSource } from "contentlayer/source-files";
+import { defineDocumentType, makeSource } from "contentlayer2/source-files";
 import readingTime from "reading-time";
 import GithubSlugger from "github-slugger";
 import remarkGfm from "remark-gfm";
