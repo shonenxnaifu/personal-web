@@ -1,17 +1,17 @@
-FROM node:current-alpine AS dependency
+FROM oven/bun:canary-slim AS dependency
 
 WORKDIR /app
 COPY package.json .
 COPY bun.lock .
 RUN bun install
 
-FROM node:current-alpine AS builder
+FROM oven/bun:canary-slim AS builder
 WORKDIR /app
 COPY . .
 COPY --from=dependency /app/node_modules ./node_modules
 RUN bun run build
 
-FROM node:current-alpine AS runner
+FROM oven/bun:canary-slim AS runner
 WORKDIR /app
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
