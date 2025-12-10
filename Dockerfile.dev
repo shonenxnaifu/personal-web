@@ -3,15 +3,15 @@ FROM oven/bun:canary-slim AS dependency
 WORKDIR /app
 COPY package.json .
 COPY bun.lock .
-ENV NODE_ENV=development
+ENV NODE_ENV=production
 RUN bun install --frozen-lockfile
 
 FROM oven/bun:canary-slim AS builder
 WORKDIR /app
 COPY . .
 COPY --from=dependency /app/node_modules ./node_modules
-ENV NODE_ENV=development
-RUN bun run build:dev
+ENV NODE_ENV=production
+RUN bun run build
 
 FROM oven/bun:canary-slim AS runner
 WORKDIR /app
