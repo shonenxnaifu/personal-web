@@ -1,0 +1,17 @@
+services:
+  personal-web-dev:
+    image: pawitrawarda/docker_shonen_dev:latest
+    container_name: docker_shonen_dev_ctr
+    ports:
+      - "8093:3000"
+    restart: unless-stopped
+    mem_limit: 75m
+    memswap_limit: 75m
+  personal-web-prod:
+    image: pawitrawarda/docker_shonen_prod:latest
+    container_name: docker_shonen_dev_prod_ctr
+    ports:
+      - "8092:3000"
+    restart: unless-stopped
+    mem_limit: 75m
+    memswap_limit: 75m
