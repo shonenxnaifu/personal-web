@@ -58,11 +58,11 @@ jobs:
       - name: Create directory on server
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST }}
+          host: ${{ secrets.HOST_KAZUHA }}
           username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSHKEY }}
+          key: ${{ secrets.SSHKEY_KAZUHA }}
           port: ${{ secrets.PORT }}
-          passphrase: ${{ secrets.PASSPHRASE }}
+          passphrase: ${{ secrets.PASSPHRASE_KAZUHA }}
           script: |
             # Create directory if doesn't exist
             sudo mkdir -p /opt/apps-container/personal-web
@@ -70,22 +70,22 @@ jobs:
       - name: Copy docker-compose.yml to server
         uses: appleboy/scp-action@v1
         with:
-          host: ${{ secrets.HOST }}
+          host: ${{ secrets.HOST_KAZUHA }}
           username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSHKEY }}
+          key: ${{ secrets.SSHKEY_KAZUHA }}
           port: ${{ secrets.PORT }}
-          passphrase: ${{ secrets.PASSPHRASE }}
+          passphrase: ${{ secrets.PASSPHRASE_KAZUHA }}
           source: "./docker-compose.yml"
           target: "/opt/apps-container/personal-web/"
 
       - name: Deploy using Docker Compose
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST }}
+          host: ${{ secrets.HOST_KAZUHA }}
           username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSHKEY }}
+          key: ${{ secrets.SSHKEY_KAZUHA }}
           port: ${{ secrets.PORT }}
-          passphrase: ${{ secrets.PASSPHRASE }}
+          passphrase: ${{ secrets.PASSPHRASE_KAZUHA }}
           envs: IMAGE_NAME, CONTAINER_NAME
           script: |
             # Navigate to the directory and deploy
