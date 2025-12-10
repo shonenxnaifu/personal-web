@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "bun --bun run next dev",
-    "build": "bun --bun run next build",
-    "build:dev": "NODE_ENV=production bun --bun run next build",
-    "start": "bun --bun run next start",
-    "lint": "bun --bun run eslint .",
+    "dev": "next dev",
+    "build": "next build",
+    "build:dev": "NODE_ENV=production next build",
+    "start": "next start",
+    "lint": "eslint .",
     "prepare": "if [ \"$NODE_ENV\" != \"production\" ] && [ \"$NODE_ENV\" != \"development\" ]; then husky install; fi"
   },
   "dependencies": {

@@ -2,8 +2,8 @@ FROM node:current-alpine AS dependency
 
 WORKDIR /app
 COPY package.json .
-COPY bun.lock .
-RUN npm ci -legacy-peer-deps
+COPY package-lock.json .
+RUN npm install --legacy-peer-deps
 
 FROM node:current-alpine AS builder
 WORKDIR /app
