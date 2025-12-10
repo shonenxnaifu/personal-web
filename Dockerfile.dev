@@ -11,7 +11,7 @@ WORKDIR /app
 COPY . .
 COPY --from=dependency /app/node_modules ./node_modules
 ENV NODE_ENV=development
-RUN bun run build
+RUN bun run build:dev
 
 FROM oven/bun:canary-distroless AS runner
 WORKDIR /app
