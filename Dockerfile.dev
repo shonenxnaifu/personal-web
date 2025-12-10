@@ -13,9 +13,9 @@ COPY --from=dependency /app/node_modules ./node_modules
 ENV NODE_ENV=development
 RUN bun run build:dev
 
-FROM oven/bun:canary-distroless AS runner
+FROM oven/bun:canary-slim AS runner
 WORKDIR /app
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
-CMD ["server.js"]
+CMD ["bun", "run", "server.js"]
