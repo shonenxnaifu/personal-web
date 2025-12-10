@@ -1,21 +1,19 @@
-FROM oven/bun:canary-slim AS dependency
+FROM node:current-alpine AS dependency
 
 WORKDIR /app
 COPY package.json .
 COPY bun.lock .
-ENV NODE_ENV=production
-RUN bun install --frozen-lockfile
+RUN npm ci -legacy-peer-deps
 
-FROM oven/bun:canary-slim AS builder
+FROM node:current-alpine AS builder
 WORKDIR /app
 COPY . .
 COPY --from=dependency /app/node_modules ./node_modules
-ENV NODE_ENV=production
-RUN bun run build
+RUN npm run build
 
-FROM oven/bun:canary-slim AS runner
+FROM node:current-alpine AS runner
 WORKDIR /app
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
-CMD ["bun", "run", "server.js"]
+CMD ["node", "server.js"]
