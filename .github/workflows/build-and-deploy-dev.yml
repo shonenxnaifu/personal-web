@@ -43,6 +43,7 @@ jobs:
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           context: .
+          file: ./Dockerfile.dev
           push: true
           tags: pawitrawarda/docker_shonen_dev:latest
           labels: latest
@@ -51,21 +52,56 @@ jobs:
     runs-on: ubuntu-latest
     needs: build_and_push
     steps:
-      - name: Deploy to Digital Ocean droplet via SSH action
+      - name: Checkout the repo
+        uses: actions/checkout@v4
+
+      - name: Create directory on server
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST_KAZUHA }}
+          host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSHKEY_KAZUHA }}
+          key: ${{ secrets.SSHKEY }}
           port: ${{ secrets.PORT }}
-          passphrase: ${{ secrets.PASSPHRASE_KAZUHA }}
-          envs: IMAGE_NAME,REGISTRY,CONTAINER_NAME,{{ secrets.DIGITALOCEAN_ACCESS_TOKEN }},GITHUB_SHA
+          passphrase: ${{ secrets.PASSPHRASE }}
           script: |
-            # Pull registry
-            docker pull pawitrawarda/$(echo $IMAGE_NAME):latest
-            # Stop running container
-            docker stop $(echo $CONTAINER_NAME)
-            # Remove old container
-            docker rm $(echo $CONTAINER_NAME)
-            # Run a new container from a new image
-            docker run -d -p 8093:3000 --name $(echo $CONTAINER_NAME) --memory=75m --memory-swap=75m --restart=unless-stopped pawitrawarda/$(echo $IMAGE_NAME):latest
+            # Create directory if doesn't exist
+            sudo mkdir -p /opt/apps-container/personal-web
+
+      - name: Copy docker-compose.yml to server
+        uses: appleboy/scp-action@v1
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSHKEY }}
+          port: ${{ secrets.PORT }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          source: "./docker-compose.yml"
+          target: "/opt/apps-container/personal-web/"
+
+      - name: Deploy using Docker Compose
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSHKEY }}
+          port: ${{ secrets.PORT }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          envs: IMAGE_NAME, CONTAINER_NAME
+          script: |
+            # Navigate to the directory and deploy
+            cd /opt/apps-container/personal-web
+
+            # Pull latest image
+            docker compose pull personal-web-dev
+
+            # Stop and remove existing container
+            docker compose down --remove-orphans personal-web-dev
+
+            # Start services
+            docker compose up -d --force-recreate personal-web-dev
+
+            # Check status of the containers
+            docker compose ps
+
+            # Remove unused images
+            docker image prune -f

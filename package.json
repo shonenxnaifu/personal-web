@@ -7,7 +7,7 @@
     "build": "bun --bun run next build",
     "start": "bun --bun run next start",
     "lint": "bun --bun run eslint .",
-    "prepare": "husky install"
+    "prepare": "if [ -z \"$NODE_ENV\" ] || [ \"$NODE_ENV\" != \"production\" ] || [ \"$NODE_ENV\" != \"development\" ]; then husky install; fi"
   },
   "dependencies": {
     "contentlayer2": "0.5.8",
