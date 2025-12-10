@@ -4,7 +4,7 @@ services:
     container_name: docker_shonen_dev_ctr
     ports:
       - "8093:3000"
-    restart: unless-stopped
+    # restart: unless-stopped
     # mem_limit: 128m
     # memswap_limit: 256m
   personal-web-prod:
