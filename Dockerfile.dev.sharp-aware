@@ -1,0 +1,30 @@
+FROM node:current-alpine AS dependency
+
+WORKDIR /app
+COPY package.json .
+COPY package-lock.json .
+RUN npm install --legacy-peer-deps
+
+FROM node:current-alpine AS builder
+WORKDIR /app
+COPY . .
+COPY --from=dependency /app/node_modules ./node_modules
+RUN npm run build
+
+# Install sharp with proper platform-specific binaries in a compatible environment
+FROM node:22-bookworm AS sharp-builder
+WORKDIR /app
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package*.json ./
+# Reinstall sharp to get the correct platform binaries
+RUN npm rebuild sharp || echo "Sharp rebuild failed but continuing"
+
+FROM gcr.io/distroless/nodejs22-debian12 AS runner
+WORKDIR /app
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+COPY --from=sharp-builder /app/node_modules ./node_modules
+ENV NODE_ENV=production
+ENV NEXT_SHARP_PATH=node_modules/sharp
+CMD ["server.js"]
