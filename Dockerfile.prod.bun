@@ -1,0 +1,24 @@
+FROM oven/bun:latest AS dependency
+
+WORKDIR /app
+COPY package.json .
+COPY bun.lock .
+RUN bun install --frozen-lockfile
+
+FROM oven/bun:latest AS builder
+WORKDIR /app
+COPY . .
+COPY --from=dependency /app/node_modules ./node_modules
+ENV NODE_ENV=production
+RUN bun run build
+
+FROM oven/bun:latest AS runner
+WORKDIR /app
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+ENV NODE_ENV=production
+EXPOSE 3000
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD ["bun", "run", "healthcheck.mjs"]
+CMD ["bun", "server.js"]

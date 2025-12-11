@@ -42,7 +42,7 @@ jobs:
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           context: .
-          file: ./Dockerfile.dev
+          file: ./Dockerfile.dev.bun
           push: true
           tags: pawitrawarda/docker_shonen_dev:latest
           labels: latest
@@ -91,13 +91,13 @@ jobs:
             cd /opt/apps-container/personal-web
 
             # Pull latest image
-            docker compose pull
+            docker compose pull personal-web-dev
 
             # Stop and remove existing container
-            docker compose down --remove-orphans
+            docker compose down --remove-orphans personal-web-dev
 
             # Start services
-            docker compose up -d --force-recreate
+            docker compose up -d --force-recreate personal-web-dev
 
             # Check status of the containers
             docker compose ps
