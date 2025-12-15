@@ -16,7 +16,6 @@ on:
 #2
 env:
   IMAGE_NAME: "docker_shonen_dev"
-  CONTAINER_NAME: "docker_shonen_dev_ctr"
 
 #3
 jobs:
@@ -36,7 +35,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
-          images: pawitrawarda/docker_shonen_dev
+          images: pawitrawarda/${{ env.IMAGE_NAME }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
@@ -44,7 +43,7 @@ jobs:
           context: .
           file: ./Dockerfile.dev
           push: true
-          tags: pawitrawarda/docker_shonen_dev:latest
+          tags: pawitrawarda/${{ env.IMAGE_NAME }}:latest
           labels: latest
 
   deploy:
@@ -85,7 +84,6 @@ jobs:
           key: ${{ secrets.SSHKEY_KAZUHA }}
           port: ${{ secrets.PORT }}
           passphrase: ${{ secrets.PASSPHRASE_KAZUHA }}
-          envs: IMAGE_NAME, CONTAINER_NAME
           script: |
             # Navigate to the directory and deploy
             cd /opt/apps-container/personal-web
