@@ -13,16 +13,23 @@ jobs:
     name: Linting
     runs-on: ubuntu-latest
     steps:
-      - name: Install NodeJS
-        uses: actions/setup-node@v2
+      # - name: Install NodeJS
+      #   uses: actions/setup-node@v2
+      #   with:
+      #    node-version: ${{ env.NODE_VERSION }}
+      
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          node-version: ${{ env.NODE_VERSION }}
-
+          bun-version: latest
+      
       - name: Code Checkout
         uses: actions/checkout@v2
 
       - name: Install Dependencies
-        run: npm ci --legacy-peer-deps
+        run: bun install --frozen-lockfile
+        # run: npm install --legacy-peer-deps
 
       - name: Code Linting
-        run: npm run lint
+        run: bun --bun run lint
+        # run: npm run lint
