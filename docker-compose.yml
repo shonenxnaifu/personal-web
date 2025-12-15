@@ -9,9 +9,9 @@ services:
     memswap_limit: 256m
   personal-web-prod:
     image: pawitrawarda/docker_shonen_prod:latest
-    container_name: docker_shonen_dev_prod_ctr
+    container_name: docker_shonen_prod_ctr
     ports:
       - "8092:3000"
     restart: unless-stopped
-    mem_limit: 75m
-    memswap_limit: 75m
+    mem_limit: 128m
+    memswap_limit: 256m
