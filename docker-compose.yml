@@ -3,7 +3,7 @@ services:
     image: pawitrawarda/docker_shonen_dev:latest
     container_name: docker_shonen_dev_ctr
     ports:
-      - "8093:3000"
+      - "127.0.0.1:8093:3000"
     restart: unless-stopped
     mem_limit: 128m
     memswap_limit: 256m
@@ -11,7 +11,7 @@ services:
     image: pawitrawarda/docker_shonen_prod:latest
     container_name: docker_shonen_prod_ctr
     ports:
-      - "8092:3000"
+      - "127.0.0.1:8092:3000"
     restart: unless-stopped
     mem_limit: 128m
     memswap_limit: 256m
