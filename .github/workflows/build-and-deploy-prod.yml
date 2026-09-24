@@ -13,6 +13,8 @@ on:
       version:
         description: "Production"
         required: true
+        type: string
+
 #2
 env:
   IMAGE_NAME: "docker_shonen_prod"
