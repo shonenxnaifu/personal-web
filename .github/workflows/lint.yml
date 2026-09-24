@@ -28,7 +28,8 @@ jobs:
       
 
       - name: Install Dependencies
-        run: bun install --frozen-lockfile
+        # run: bun install --frozen-lockfile
+        run: bun install
         # run: npm install --legacy-peer-deps
 
       - name: Code Linting
