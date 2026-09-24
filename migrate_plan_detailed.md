@@ -1,170 +1,14 @@
-# Migration Plan: Next.js to TanStack Router
+# Detailed Migration Guide: Next.js to TanStack Router
 
 ## Overview
 
-This document outlines the plan to migrate the current Next.js application to use TanStack Router instead of Next.js's built-in routing system. The goal is to replace only the routing functionality while keeping other libraries and components intact. This document provides detailed configuration and implementation steps for the migration. The migration involves significant architectural changes affecting the build system, routing structure, data fetching, and component patterns.
+This document provides detailed configuration and implementation steps for migrating from Next.js to TanStack Router. The migration involves significant architectural changes affecting the build system, routing structure, data fetching, and component patterns.
 
-## Current Stack Analysis
+## Phase 1: Setup and Configuration (Days 1-2)
 
-- **Framework**: Next.js 14 with App Router
-- **Routing**: File-based routing using `/src/app` directory structure
-- **Current Routes**:
-  - Homepage: `/` (src/app/page.tsx)
-  - Blog: `/blog` (src/app/blog/page.tsx)
-  - Blog Posts: `/blog/[slug]` (src/app/blog/[slug]/page.tsx)
-- **Navigation**: Using Next.js `Link` and `usePathname` for navigation
-- **Data Fetching**: Server components with contentlayer for blog content
+### 1.1 Dependency Management
 
-## Migration Complexity Level: HIGH
-
-This migration involves a significant architectural change that affects:
-- Project structure and file naming conventions
-- Routing system and navigation patterns
-- Data fetching methods
-- Build system (from Next.js to Vite)
-
-## What Needs to be Replaced/Adjusted
-
-### 1. Project Dependencies and Build System
-
-**Changes Required:**
-- Remove Next.js dependencies (`next`)
-- Install TanStack Router dependencies (`@tanstack/react-router`, `@tanstack/start`, etc.)
-- Replace Next.js build scripts with Vite-based scripts
-- Update configuration files (remove `next.config.mjs`, add `vite.config.ts`)
-
-**Files Affected:**
-- `package.json` - update dependencies and scripts
-- `next.config.mjs` - remove
-- New `vite.config.ts` - add
-
-### 2. Route Structure and File Naming
-
-**Changes Required:**
-- Convert Next.js App Router structure to TanStack Router conventions
-- Change `layout.tsx` to `__root.tsx`
-- Change `page.tsx` to `index.tsx`
-- Change dynamic routes from `[slug]` format to `$slug` format
-
-**Files Affected:**
-- `src/app/layout.tsx` → `src/app/__root.tsx`
-- `src/app/page.tsx` → `src/app/index.tsx`
-- `src/app/blog/page.tsx` → `src/app/blog/index.tsx`
-- `src/app/blog/[slug]/page.tsx` → `src/app/blog/$slug.tsx`
-
-### 3. Component Structure
-
-**Changes Required:**
-- Replace Next.js component export with TanStack Router Route definitions
-- Use `createFileRoute` and `createRootRoute` for route configuration
-- Update component structure to use Outlet for nested content
-
-**Code Changes:**
-- Replace `export default function ComponentName() {}` with TanStack Route definitions
-- Add route configurations using `createFileRoute`/`createRootRoute`
-
-### 4. Navigation and Linking
-
-**Changes Required:**
-- Replace `next/link` imports with `@tanstack/react-router` imports
-- Change `Link href="/path"` to `Link to="/path"`
-- Update navigation components (Header, Footer, etc.)
-
-**Code Changes:**
-```tsx
-// Before
-import Link from "next/link"
-<Link href="/blog">Blog</Link>
-
-// After
-import { Link } from "@tanstack/react-router"
-<Link to="/blog">Blog</Link>
-```
-
-### 5. Path Hooks and Navigation
-
-**Changes Required:**
-- Replace `usePathname` with TanStack Router hooks
-- Use `Route.useParams()` for dynamic route parameters
-- Update navigation state management
-
-**Code Changes:**
-```tsx
-// Before
-import { usePathname } from "next/navigation"
-const pathName = usePathname()
-
-// After
-import { useLocation } from "@tanstack/react-router"
-const { pathname } = useLocation()
-```
-
-### 6. Data Fetching
-
-**Changes Required:**
-- Replace server component data fetching with TanStack Router loaders
-- Use `loader` property in route definitions
-- Adapt contentlayer integration to work with TanStack loaders
-
-**Code Changes:**
-```tsx
-// Before
-export default async function BlogList({ searchParams }) {
-  const blogs = allBlogs.filter(/* filter logic */)
-  return <div>{/* render blogs */}</div>
-}
-
-// After
-export const Route = createFileRoute('/blog')({
-  component: BlogList,
-  loader: async ({ context }) => {
-    // fetch data logic here
-    return { blogs: /* filter logic */ }
-  }
-})
-
-function BlogList() {
-  const { blogs } = Route.useLoaderData()
-  return <div>{/* render blogs */}</div>
-}
-```
-
-### 7. Static Path Generation
-
-**Changes Required:**
-- Replace `generateStaticParams` with TanStack Router's static data generation
-- Adjust blog post slug generation for dynamic routes
-
-### 8. Metadata Generation
-
-**Changes Required:**
-- Replace `generateMetadata` with TanStack Router's meta functionality
-- Update SEO metadata handling
-
-### 9. Image Component
-
-**Changes Required:**
-- Consider replacing `next/image` with alternative image optimization
-- Options: `@unpic/react`, standard `img` tags, or other image optimization libraries
-
-### 10. Server Functions (if any)
-
-**Changes Required:**
-- Replace `'use server'` functions with TanStack's server functions
-- If using server actions, adapt to TanStack's server function approach
-
-## Step-by-Step Migration Process
-
-### Phase 1: Setup and Configuration (Days 1-2)
-1. Install TanStack Router dependencies
-2. Create Vite configuration file
-3. Update package.json scripts
-4. Set up basic routing structure
-5. Test basic setup with a simple route
-
-#### 1.1 Dependency Management
-
-##### Step 1: Install TanStack Router Dependencies
+#### Step 1: Install TanStack Router Dependencies
 ```bash
 # Install core TanStack Router packages
 npm install @tanstack/react-router
@@ -176,12 +20,12 @@ npm install @tanstack/start
 npm install -D @tanstack/router-generator @tanstack/router-cli
 ```
 
-##### Step 2: Remove Next.js Dependencies
+#### Step 2: Remove Next.js Dependencies
 ```bash
 npm uninstall next
 ```
 
-##### Step 3: Update Package.json Scripts
+#### Step 3: Update Package.json Scripts
 Before:
 ```json
 {
@@ -207,7 +51,7 @@ After:
 }
 ```
 
-#### 1.2 Vite Configuration
+### 1.2 Vite Configuration
 
 Create `vite.config.ts` in the project root:
 
@@ -237,7 +81,7 @@ Install required Vite plugins:
 npm install -D @vitejs/plugin-react vite-tsconfig-paths
 ```
 
-#### 1.3 TypeScript Configuration
+### 1.3 TypeScript Configuration
 
 Update `tsconfig.json` to support Vite aliases:
 
@@ -275,7 +119,7 @@ Update `tsconfig.json` to support Vite aliases:
 }
 ```
 
-#### 1.4 Contentlayer Configuration for TanStack
+### 1.4 Contentlayer Configuration for TanStack
 
 Update `contentlayer.config.ts` to work with Vite:
 
@@ -335,17 +179,12 @@ export default makeSource({
 })
 ```
 
-### Phase 2: Core Route Migration (Days 3-5)
-1. Migrate root layout to __root.tsx
-2. Migrate homepage
-3. Migrate blog listing page
-4. Migrate blog post page with dynamic routes
-5. Update navigation components (Header, Footer)
+## Phase 2: Route Structure and File Migration (Days 3-5)
 
-#### 2.1 Root Route Migration
+### 2.1 Root Route Migration
 
-##### Step 1: Create Root Route
-Convert `src/app/layout.tsx` to `src/app/__root.tsx`:
+#### Step 1: Create Root Route
+Convert `src/app/layout.tsx` to `src/routes/__root.tsx`:
 
 Before (`layout.tsx`):
 ```tsx
@@ -388,9 +227,9 @@ export const Route = createRootRoute({
 })
 ```
 
-#### 2.2 Home Route Migration
+### 2.2 Home Route Migration
 
-Convert `src/app/page.tsx` to `src/app/index.tsx`:
+Convert `src/app/page.tsx` to `src/routes/index.tsx`:
 
 Before:
 ```tsx
@@ -398,7 +237,7 @@ import { getHomePageData } from '@/lib/data-fetching'
 
 export default async function HomePage() {
   const data = await getHomePageData()
-
+  
   return (
     <div>
       <h1>Welcome to My Site</h1>
@@ -416,7 +255,7 @@ export const Route = createFileRoute('/')({
   component: HomePage,
   loader: async () => {
     // Data fetching logic here
-    return {
+    return { 
       // Return data for the component
     }
   }
@@ -424,7 +263,7 @@ export const Route = createFileRoute('/')({
 
 function HomePage() {
   const data = Route.useLoaderData()
-
+  
   return (
     <div>
       <h1>Welcome to My Site</h1>
@@ -434,27 +273,27 @@ function HomePage() {
 }
 ```
 
-#### 2.3 Blog Routes Migration
+### 2.3 Blog Routes Migration
 
-##### Step 1: Blog Index Route
-Convert `src/app/blog/page.tsx` to `src/app/blog.index.tsx`:
+#### Step 1: Blog Index Route
+Convert `src/app/blog/page.tsx` to `src/routes/blog.index.tsx`:
 
 Before:
 ```tsx
 import { allBlogs } from 'contentlayer/generated'
 
-export default function BlogIndexPage({
-  searchParams
-}: {
-  searchParams: { q?: string }
+export default function BlogIndexPage({ 
+  searchParams 
+}: { 
+  searchParams: { q?: string } 
 }) {
   const searchQuery = searchParams.q || ''
   const filteredBlogs = allBlogs
-    .filter(blog =>
+    .filter(blog => 
       blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       blog.description?.toLowerCase().includes(searchQuery.toLowerCase())
     )
-
+    
   return (
     <div>
       {/* Blog listing content */}
@@ -473,18 +312,18 @@ export const Route = createFileRoute('/blog')({
   loader: async ({ search }) => {
     const searchQuery = search.q || ''
     const filteredBlogs = allBlogs
-      .filter(blog =>
+      .filter(blog => 
         blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         blog.description?.toLowerCase().includes(searchQuery.toLowerCase())
       )
-
+    
     return { filteredBlogs, searchQuery }
   }
 })
 
 function BlogIndexPage() {
   const { filteredBlogs, searchQuery } = Route.useLoaderData()
-
+  
   return (
     <div>
       {/* Blog listing content using filteredBlogs */}
@@ -493,20 +332,20 @@ function BlogIndexPage() {
 }
 ```
 
-##### Step 2: Dynamic Blog Post Route
-Convert `src/app/blog/[slug]/page.tsx` to `src/app/blog/$slug.tsx`:
+#### Step 2: Dynamic Blog Post Route
+Convert `src/app/blog/[slug]/page.tsx` to `src/routes/blog.$slug.tsx`:
 
 Before:
 ```tsx
 import { allBlogs } from 'contentlayer/generated'
 
-export default function BlogPostPage({
-  params
-}: {
-  params: { slug: string }
+export default function BlogPostPage({ 
+  params 
+}: { 
+  params: { slug: string } 
 }) {
   const blog = allBlogs.find(b => b._raw.flattenedPath === params.slug)
-
+  
   if (!blog) {
     return <div>Blog post not found</div>
   }
@@ -535,7 +374,7 @@ export const Route = createFileRoute('/blog/$slug')({
   component: BlogPostPage,
   loader: async ({ params }) => {
     const blog = allBlogs.find(b => b._raw.flattenedPath === params.slug)
-
+    
     if (!blog) {
       throw new Error('Blog post not found')
     }
@@ -550,7 +389,7 @@ export const Route = createFileRoute('/blog/$slug')({
 
 function BlogPostPage() {
   const { blog } = Route.useLoaderData()
-
+  
   return (
     <article>
       <h1>{blog.title}</h1>
@@ -560,14 +399,9 @@ function BlogPostPage() {
 }
 ```
 
-### Phase 3: Data Handling and Features (Days 6-8)
-1. Replace server component data fetching with loaders
-2. Update contentlayer integration
-3. Fix dynamic route parameter handling
-4. Update metadata generation
-5. Test blog search and filtering functionality
+## Phase 3: Navigation and Component Updates (Days 6-8)
 
-#### 3.1 Navigation Components Update
+### 3.1 Navigation Components Update
 
 Update `Header.tsx`:
 
@@ -578,7 +412,7 @@ import { usePathname } from 'next/navigation'
 
 export function Header() {
   const pathname = usePathname()
-
+  
   return (
     <header>
       <nav>
@@ -600,19 +434,19 @@ import { Link, useMatchRoute } from '@tanstack/react-router'
 
 export function Header() {
   const matchRoute = useMatchRoute()
-
+  
   return (
     <header>
       <nav>
-        <Link
-          to="/"
+        <Link 
+          to="/" 
           activeProps={{ className: 'active' }}
           className={({ isActive }) => isActive ? 'active' : ''}
         >
           Home
         </Link>
-        <Link
-          to="/blog"
+        <Link 
+          to="/blog" 
           activeProps={{ className: 'active' }}
           className={({ isActive }) => isActive ? 'active' : ''}
         >
@@ -624,7 +458,7 @@ export function Header() {
 }
 ```
 
-#### 3.2 Data Fetching Integration
+### 3.2 Data Fetching Integration
 
 Update contentlayer integration for client-side fetching:
 
@@ -637,20 +471,20 @@ export const contentClient = {
   getBlogBySlug: (slug: string) => {
     return allBlogs.find(blog => blog._raw.flattenedPath === slug)
   },
-
+  
   getAllBlogs: () => {
     return allBlogs
   },
-
+  
   getPublishedBlogs: () => {
     return allBlogs.filter(blog => blog.published !== false)
   },
-
+  
   searchBlogs: (query: string) => {
     if (!query) return contentClient.getPublishedBlogs()
-
+    
     const lowerQuery = query.toLowerCase()
-    return allBlogs.filter(blog =>
+    return allBlogs.filter(blog => 
       blog.published !== false &&
       (blog.title.toLowerCase().includes(lowerQuery) ||
        blog.description?.toLowerCase().includes(lowerQuery))
@@ -659,7 +493,7 @@ export const contentClient = {
 }
 ```
 
-#### 3.3 Metadata Generation
+### 3.3 Metadata Generation
 
 Create `src/lib/metadata.ts` for metadata handling:
 
@@ -701,13 +535,9 @@ export const Route = createFileRoute('/blog/$slug')({
 })
 ```
 
-### Phase 4: Testing and Optimization (Days 9-10)
-1. Thorough testing of all routes and navigation
-2. SEO and accessibility testing
-3. Performance optimization
-4. Bug fixes and refinements
+## Phase 4: Advanced Configuration and Optimizations (Day 9-10)
 
-#### 4.1 Route Preloading Strategy
+### 4.1 Route Preloading Strategy
 
 Configure route preloading in `src/main.tsx`:
 
@@ -718,7 +548,7 @@ import {
   createRouter,
   RouterProvider,
 } from '@tanstack/react-router'
-import { routeTree } from '@/app/routeTree.gen'
+import { routeTree } from './routeTree.gen'
 
 // Set up a Router instance
 const router = createRouter({
@@ -747,7 +577,7 @@ if (!rootElement.innerHTML) {
 }
 ```
 
-#### 4.2 Performance Optimizations
+### 4.2 Performance Optimizations
 
 Create `src/components/LazyComponent.tsx`:
 
@@ -759,12 +589,12 @@ interface LazyComponentProps {
   fallback?: React.ReactNode
 }
 
-export const LazyComponent = ({
-  componentPath,
-  fallback = <div>Loading...</div>
+export const LazyComponent = ({ 
+  componentPath, 
+  fallback = <div>Loading...</div> 
 }: LazyComponentProps) => {
   const Lazy = lazy(() => import(componentPath))
-
+  
   return (
     <Suspense fallback={fallback}>
       <Lazy />
@@ -773,7 +603,7 @@ export const LazyComponent = ({
 }
 ```
 
-#### 4.3 Error Boundaries
+### 4.3 Error Boundaries
 
 Create `src/components/ErrorBoundary.tsx`:
 
@@ -834,7 +664,7 @@ export const Route = createRootRoute({
 })
 ```
 
-#### 4.4 Development Configuration
+### 4.4 Development Configuration
 
 Create `vite-env.d.ts`:
 
@@ -914,20 +744,6 @@ npm install -D vite-plugin-content-layer
 - [ ] Metadata generates correctly
 - [ ] Production build works
 
-## Risks and Mitigation
-
-### High Risk Areas:
-1. **Contentlayer Integration** - May need special handling for static site generation
-2. **Blog Post Rendering** - MDX components and content rendering
-3. **Search Functionality** - URL parameters and filtering
-4. **SEO Metadata** - OpenGraph and Twitter meta tags
-
-### Mitigation Strategies:
-1. Perform incremental migration with parallel routing during transition
-2. Maintain backward compatibility where possible during migration
-3. Thorough testing at each phase
-4. Have a rollback plan with version control
-
 ## Rollback Plan
 
 If any phase causes critical issues:
@@ -937,31 +753,17 @@ If any phase causes critical issues:
 3. **Feature Flag Approach**: Use environment variables to conditionally load old/new routing
 4. **Gradual Cutover**: Run both systems in parallel during transition period
 
-## Timeline
+## Post-Migration Validation
 
-**Estimated Duration:** 10-14 days
-- **Phase 1:** 2 days
-- **Phase 2:** 3 days
-- **Phase 3:** 3 days
-- **Phase 4:** 2-4 days (including testing and bug fixes)
+### Build Verification
+```bash
+# Test development build
+npm run dev
 
-## Success Criteria
+# Test production build
+npm run build
+npm run preview
+```
 
-- All existing routes work as expected
-- Navigation works properly across the site
-- Blog content renders correctly
-- SEO metadata is preserved
-- Search and filtering functionality works
-- No broken links or navigation issues
-- All existing features remain functional
-- Performance is maintained or improved
-
-## Post-Migration Tasks
-
-- Update deployment configuration
-- Verify build process works correctly
-- Test in production environment
-- Document any new processes or conventions
-- Update any documentation or README files
-- Build verification: Test development build with `npm run dev` and production build with `npm run build && npm run preview`
-- Deployment configuration: Update your deployment pipeline to use Vite build commands and ensure compatibility with your hosting platform
+### Deployment Configuration
+Update your deployment pipeline to use Vite build commands and ensure compatibility with your hosting platform.

@@ -18,16 +18,18 @@ jobs:
       #   with:
       #    node-version: ${{ env.NODE_VERSION }}
       
+      - name: Code Checkout
+        uses: actions/checkout@v4
+
       - name: Install Bun
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
       
-      - name: Code Checkout
-        uses: actions/checkout@v2
 
       - name: Install Dependencies
-        run: bun install --frozen-lockfile
+        # run: bun install --frozen-lockfile
+        run: bun install
         # run: npm install --legacy-peer-deps
 
       - name: Code Linting
