@@ -43,11 +43,23 @@ export default function HomePage() {
 
           <div className="absolute -bottom-1/2 -right-full md:right-1/4 md:top-full lg:-bottom-2/3 lg:right-1/2 w-[550px] h-[350px] rounded-blob-3 bg-[#75FBC0] blur-[100px] md:blur-xl lg:blur-[100px] opacity-60 mix-blend-overlay animate-blob-3" />
         </div>
-        <div className="bg-[#A8A6FF] dark:bg-black h-96 md:h-auto flex justify-center items-center border-b-4 border-black dark:border-[#9747FF] md:border-none md:order-2 md:min-w-[33%] lg:py-28 bg-section-pattern-2 bg-blend-overlay dark:bg-section-pattern dark:bg-blend-normal">
+        {/* <div className="bg-[#A8A6FF] dark:bg-black h-96 md:h-auto flex justify-center items-center border-b-4 border-black dark:border-[#9747FF] md:border-none md:order-2 md:min-w-[33%] lg:py-28 bg-section-pattern-2 bg-blend-overlay dark:bg-section-pattern dark:bg-blend-normal"> */}
+        {/*   <picture className="relative inline-block max-h-56 max-w-56 overflow-hidden rounded-3xl z-10 dark:mix-blend-screen backdrop-blur-[0.05rem] dark:backdrop-blur-[0.1rem]"> */}
+        {/*     <Image */}
+        {/*       className="object-fill" */}
+        {/*       src="https://res.cloudinary.com/dbegkzvdt/image/upload/v1791877819/totoro_ready_dwlhpa.svg" */}
+        {/*       alt="Logo shonen-dev.xyz" */}
+        {/*       width={480} */}
+        {/*       height={480} */}
+        {/*       sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" */}
+        {/*     /> */}
+        {/*   </picture> */}
+        {/* </div> */}
+        <div className="bg-[#EAEAEA] dark:bg-black h-96 md:h-auto flex justify-center items-center border-b-4 border-black dark:border-[#9747FF] md:border-none md:order-2 md:min-w-[33%] lg:py-28  bg-blend-overlay dark:bg-section-pattern dark:bg-blend-normal">
           <picture className="relative inline-block max-h-56 max-w-56 overflow-hidden rounded-3xl z-10 dark:mix-blend-screen backdrop-blur-[0.05rem] dark:backdrop-blur-[0.1rem]">
             <Image
               className="object-fill"
-              src="https://res.cloudinary.com/dbegkzvdt/image/upload/v1757214522/totoro_kawai_l9iw7u.png"
+              src="https://res.cloudinary.com/dbegkzvdt/image/upload/v1791877819/totoro_ready_dwlhpa.svg"
               alt="Logo shonen-dev.xyz"
               width={480}
               height={480}
@@ -55,7 +67,7 @@ export default function HomePage() {
             />
           </picture>
         </div>
-        <div className="px-3 md:px-16 py-5  md:border-r-4 border-black dark:border-[#9747FF] bg-[#FFF59F] dark:bg-black md:flex md:flex-col md:justify-center">
+        <div className="px-3 md:px-16 py-5  md:border-r-4 border-black dark:border-[#9747FF] bg-[#EAEAEA] dark:bg-black md:flex md:flex-col md:justify-center">
           <h1 className="text-xl flex flex-col md:block relative z-10">
             <span className="font-bold dark:text-[#FFF5EE]">Welcome to,</span>
             <span className="text-3xl md:ml-1 text-[#9747FF] dark:text-[#FFF59F] font-bold">
