@@ -28,7 +28,7 @@ export default function CardNoImage2({
     >
       <header className="flex flex-col">
         <Link href={url}>
-          <h3 className="text-xl font-bold text-black dark:text-[#FFF5EE] transition-all ease-in-out duration-200 hover:text-[#9747FF]">
+          <h3 className="text-xl font-bold text-black dark:text-[#FFF5EE] transition-all ease-in-out duration-200 hover:text-[#00388A]">
             {title}
           </h3>
         </Link>

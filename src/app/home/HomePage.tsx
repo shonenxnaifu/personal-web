@@ -55,7 +55,7 @@ export default function HomePage() {
         {/*     /> */}
         {/*   </picture> */}
         {/* </div> */}
-        <div className="bg-[#EAEAEA] dark:bg-black h-96 md:h-auto flex justify-center items-center border-b-4 border-black dark:border-[#9747FF] md:border-none md:order-2 md:min-w-[33%] lg:py-28  bg-blend-overlay dark:bg-section-pattern dark:bg-blend-normal">
+        <div className="bg-[#EAEAEA] dark:bg-black h-96 md:h-auto flex justify-center items-center border-b border-[#c6c7c1] dark:border-[#9747FF] md:border-none md:order-2 md:min-w-[33%] lg:py-28  bg-blend-overlay dark:bg-section-pattern dark:bg-blend-normal">
           <picture className="relative inline-block max-h-56 max-w-56 overflow-hidden rounded-3xl z-10 dark:mix-blend-screen backdrop-blur-[0.05rem] dark:backdrop-blur-[0.1rem]">
             <Image
               className="object-fill"
@@ -67,10 +67,10 @@ export default function HomePage() {
             />
           </picture>
         </div>
-        <div className="px-3 md:px-16 py-5  md:border-r-4 border-black dark:border-[#9747FF] bg-[#EAEAEA] dark:bg-black md:flex md:flex-col md:justify-center">
+        <div className="px-3 md:px-16 py-5  md:border-r border-[#c6c7c1] dark:border-[#9747FF] bg-[#EAEAEA] dark:bg-black md:flex md:flex-col md:justify-center">
           <h1 className="text-xl flex flex-col md:block relative z-10">
             <span className="font-bold dark:text-[#FFF5EE]">Welcome to,</span>
-            <span className="text-3xl md:ml-1 text-[#9747FF] dark:text-[#FFF59F] font-bold">
+            <span className="text-3xl md:ml-1 text-[#00388A] dark:text-[#FFF59F] font-bold">
               shonen-dev.xyz
             </span>
           </h1>
@@ -101,8 +101,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <div className="grid grid-cols-1 lg:grid-cols-2 border-y-4 border-black dark:border-[#9747FF]">
-        <section className="flex flex-col justify-center bg-section-pattern dark:bg-section-pattern-2 bg-black dark:bg-[#9747FF] bg-repeat pt-5 pb-10 px-3">
+      <div className="grid grid-cols-1 lg:grid-cols-2 border-y border-[#c6c7c1] dark:border-[#9747FF]">
+        <section className="flex flex-col justify-center bg-section-pattern dark:bg-section-pattern-2 bg-[#232322] dark:bg-[#9747FF] bg-repeat pt-5 pb-10 px-3">
           <h1 className="text-4xl font-bold px-3 py-5 text-[#DFE0E2] dark:text-black dark:text-shadow-neon-pink">
             Tech Stack.
           </h1>

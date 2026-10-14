@@ -57,8 +57,8 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="w-full flex justify-between items-center border-b-4 border-black dark:border-[#9747FF] dark:bg-black">
-      <div className="flex justify-between w-full min-h-16 py-3 px-3 border-r-4 border-black dark:border-[#9747FF]">
+    <header className="w-full flex justify-between items-center border-b border-[#c6c7c1] dark:border-[#9747FF] dark:bg-black">
+      <div className="flex justify-between w-full min-h-16 py-3 px-3 border-r border-[#c6c7c1] dark:border-[#9747FF]">
         <div className="text-2xl my-auto dark:text-[#FFF5EE]">
           <Link href="/">
             shonen<span className="text-sm">dev.</span>
