@@ -17,6 +17,23 @@ const config: Config = {
       xl: "1440px",
     },
     extend: {
+      colors: {
+        primary: "#0D0D0C",
+        onPrimary: "#FFFFFF",
+        primaryContainer: "#232322",
+        onPrimaryContainer: "#8B8A88",
+        tertiary: "#00388A",
+        onTertiary: "#FFFFFF",
+        tertiaryContainer: "#134EB2",
+        onTertiaryContainer: "#B5C7FF",
+        secondary: "#5F5E5D",
+        onSecondary: "#FFFFFF",
+        secondaryContainer: "#E5E2E0",
+        onSecondaryContainer: "#656463",
+        outline: "#767873",
+        outlineVariant: "#C6C7C1",
+        neutral: "#EAEAEA"
+      },
       borderRadius: {
         "blob-1": "50% 80% 50% 100%",
         "blob-2": "100% 40% 80% 50%",
@@ -34,6 +51,16 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         "section-pattern": "url('/assets/images/bg-pattern.png')",
         "section-pattern-2": "url('/assets/images/bg-pattern-2.png')",
+        "circuit-light": `
+          linear-gradient(135deg, transparent 0%, transparent 20%, #232322 40%, #232322 60%, transparent 80%, transparent 100%),
+          repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(75, 85, 99, 0.08) 19px, rgba(75, 85, 99, 0.08) 20px, transparent 20px, transparent 39px, rgba(75, 85, 99, 0.08) 39px, rgba(75, 85, 99, 0.08) 40px),
+          repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(75, 85, 99, 0.08) 19px, rgba(75, 85, 99, 0.08) 20px, transparent 20px, transparent 39px, rgba(75, 85, 99, 0.08) 39px, rgba(75, 85, 99, 0.08) 40px),
+          radial-gradient(circle at 20px 20px, rgba(55, 65, 81, 0.12) 2px, transparent 2px),
+          radial-gradient(circle at 40px 40px, rgba(55, 65, 81, 0.12) 2px, transparent 2px)
+        `,
+      },
+      backgroundSize: {
+        "circuit-size": "auto, 40px 40px, 40px 40px, 40px 40px, 40px 40px",
       },
       keyframes: {
         fadeInOut: {
@@ -48,6 +75,8 @@ const config: Config = {
       },
     },
   },
-  plugins: [typography],
+  plugins: [
+    typography,
+  ],
 };
 export default config;

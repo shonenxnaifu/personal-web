@@ -55,7 +55,7 @@ export default function HomePage() {
         {/*     /> */}
         {/*   </picture> */}
         {/* </div> */}
-        <div className="bg-[#EAEAEA] dark:bg-black h-96 md:h-auto flex justify-center items-center border-b border-[#c6c7c1] dark:border-[#9747FF] md:border-none md:order-2 md:min-w-[33%] lg:py-28  bg-blend-overlay dark:bg-section-pattern dark:bg-blend-normal">
+        <div className="bg-neutral dark:bg-black h-96 md:h-auto flex justify-center items-center border-b border-outlineVariant dark:border-[#9747FF] md:border-none md:order-2 md:min-w-[33%] lg:py-28  bg-blend-overlay dark:bg-section-pattern dark:bg-blend-normal">
           <picture className="relative inline-block max-h-56 max-w-56 overflow-hidden rounded-3xl z-10 dark:mix-blend-screen backdrop-blur-[0.05rem] dark:backdrop-blur-[0.1rem]">
             <Image
               className="object-fill"
@@ -67,21 +67,21 @@ export default function HomePage() {
             />
           </picture>
         </div>
-        <div className="px-3 md:px-16 py-5  md:border-r border-[#c6c7c1] dark:border-[#9747FF] bg-[#EAEAEA] dark:bg-black md:flex md:flex-col md:justify-center">
+        <div className="px-3 md:px-16 py-5  md:border-r border-outlineVariant dark:border-[#9747FF] bg-neutral dark:bg-black md:flex md:flex-col md:justify-center">
           <h1 className="text-xl flex flex-col md:block relative z-10">
-            <span className="font-bold dark:text-[#FFF5EE]">Welcome to,</span>
-            <span className="text-3xl md:ml-1 text-[#00388A] dark:text-[#FFF59F] font-bold">
+            <span className="font-bold dark:text-[#FFF5EE] text-primary">Welcome to,</span>
+            <span className="text-3xl md:ml-1 text-tertiary dark:text-[#FFF59F] font-bold">
               shonen-dev.xyz
             </span>
           </h1>
-          <p className="text-sm mt-5 dark:text-[#FFF5EE] relative z-10">
+          <p className="text-sm mt-5 dark:text-[#FFF5EE] text-primary relative z-10">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae
             felis vitae nisl lacinia convallis. Integer vel velit vehicula,
             pharetra turpis at, tincidunt urna. Donec ac sem sed ligula
             ultricies condimentum. Nam venenatis, nisl non suscipit viverra,
             felis justo ultricies dolor, nec dictum
           </p>
-          <div className="flex gap-5 text-xl mt-5 dark:text-[#FFF5EE] relative z-10">
+          <div className="flex gap-5 text-xl mt-5 dark:text-[#FFF5EE] text-primary relative z-10">
             <a
               href="https://github.com/shonenxnaifu"
               className="flex justify-between gap-1 items-center"
@@ -101,49 +101,49 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <div className="grid grid-cols-1 lg:grid-cols-2 border-y border-[#c6c7c1] dark:border-[#9747FF]">
-        <section className="flex flex-col justify-center bg-section-pattern dark:bg-section-pattern-2 bg-[#232322] dark:bg-[#9747FF] bg-repeat pt-5 pb-10 px-3">
-          <h1 className="text-4xl font-bold px-3 py-5 text-[#DFE0E2] dark:text-black dark:text-shadow-neon-pink">
+      <div className="grid grid-cols-1 lg:grid-cols-2 border-y border-outlineVariant dark:border-[#9747FF]">
+        <section className="flex flex-col justify-center bg-circuit-light bg-circuit-size dark:bg-section-pattern-2 bg-primaryContainer dark:bg-[#9747FF] bg-repeat pt-5 pb-10 px-3">
+          <h1 className="text-4xl font-bold px-3 py-5 text-onPrimaryContainer dark:text-black dark:text-shadow-neon-pink">
             Tech Stack.
           </h1>
           <div className="flex flex-wrap px-3 md:px-5 lg:px-7 gap-3 md:gap-5 xl:w-3/4 xl:mx-auto">
-            <div className="flex items-center text-lg gap-1 bg-[#DFE0E2] bg-opacity-15 backdrop-blur-[1px] text-white border-2 border-white rounded-lg py-1 px-3 dark:border-[#9747FF] dark:bg-[#2F393F] dark:bg-opacity-35 shadow-neon-purple">
+            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-[#9747FF] dark:bg-[#2F393F] dark:bg-opacity-35">
               <span>
                 <NextJsIcon className="max-w-5" />
               </span>
               <span>NextJS</span>
             </div>
-            <div className="flex items-center text-lg gap-1 bg-[#DFE0E2] bg-opacity-15 backdrop-blur-[1px] text-white border-2 border-white rounded-lg py-1 px-3 dark:border-[#9747FF] dark:bg-[#2F393F] dark:bg-opacity-35 shadow-neon-purple">
+            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-[#9747FF] dark:bg-[#2F393F] dark:bg-opacity-35">
               <span>
                 <ReactJsIcon className="max-w-5" />
               </span>
               <span>ReactJS</span>
             </div>
-            <div className="flex items-center text-lg gap-1 bg-[#DFE0E2] bg-opacity-15 backdrop-blur-[1px] text-white border-2 border-white rounded-lg py-1 px-3 dark:border-[#9747FF] dark:bg-[#2F393F] dark:bg-opacity-35 shadow-neon-purple">
+            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-[#9747FF] dark:bg-[#2F393F] dark:bg-opacity-35">
               <span>
                 <TailwindIcon className="max-w-5" />
               </span>
               <span>Tailwind</span>
             </div>
-            <div className="flex items-center text-lg gap-1 bg-[#DFE0E2] bg-opacity-15 backdrop-blur-[1px] text-white border-2 border-white rounded-lg py-1 px-3 dark:border-[#9747FF] dark:bg-[#2F393F] dark:bg-opacity-35 shadow-neon-purple">
+            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-[#9747FF] dark:bg-[#2F393F] dark:bg-opacity-35">
               <span>
                 <VueJsIcon className="max-w-5" />
               </span>
               <span>VueJS</span>
             </div>
-            <div className="flex items-center text-lg gap-1 bg-[#DFE0E2] bg-opacity-15 backdrop-blur-[1px] text-white border-2 border-white rounded-lg py-1 px-3 dark:border-[#9747FF] dark:bg-[#2F393F] dark:bg-opacity-35 shadow-neon-purple">
+            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-[#9747FF] dark:bg-[#2F393F] dark:bg-opacity-35">
               <span>
                 <TypescriptIcon className="max-w-5" />
               </span>
               <span>Typescript</span>
             </div>
-            <div className="flex items-center text-lg gap-1 bg-[#DFE0E2] bg-opacity-15 backdrop-blur-[1px] text-white border-2 border-white rounded-lg py-1 px-3 dark:border-[#9747FF] dark:bg-[#2F393F] dark:bg-opacity-35 shadow-neon-purple">
+            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-[#9747FF] dark:bg-[#2F393F] dark:bg-opacity-35">
               <span>
                 <PythonIcon className="max-w-5" />
               </span>
               <span>Python</span>
             </div>
-            <div className="flex items-center text-lg gap-1 bg-[#DFE0E2] bg-opacity-15 backdrop-blur-[1px] text-white border-2 border-white rounded-lg py-1 px-3 dark:border-[#9747FF] dark:bg-[#2F393F] dark:bg-opacity-35 shadow-neon-purple">
+            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-[#9747FF] dark:bg-[#2F393F] dark:bg-opacity-35">
               <span>
                 <DockerIcon className="max-w-5" />
               </span>
