@@ -152,7 +152,7 @@ export default function HomePage() {
           </div>
         </section>
         <section className="flex flex-col justify-center py-5 px-3 h-fit dark:bg-black">
-          <h1 className="text-4xl font-bold py-5 px-3 dark:text-[#FFF59F]">
+          <h1 className="text-4xl font-bold py-5 px-3 text-primary dark:text-[#FFF59F]">
             Latest Works.
           </h1>
           <div className="w-full mx-auto xl:w-2/3">
@@ -184,7 +184,7 @@ export default function HomePage() {
       </div>
 
       <section className=" py-5 px-3">
-        <h1 className="text-4xl font-bold py-5 px-3 dark:text-[#FFF59F]">
+        <h1 className="text-4xl font-bold py-5 px-3 text-primary dark:text-[#FFF59F]">
           Featured Posts.
         </h1>
         <div className="grid grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-3 pb-10 gap-7">

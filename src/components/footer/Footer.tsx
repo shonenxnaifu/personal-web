@@ -4,7 +4,7 @@ import LinkedinIcon from "../icons/LinkedinIcon";
 
 export default function Footer() {
   return (
-    <footer className="flex flex-col dark:bg-black border-t border-[#c6c7c1] dark:border-[#9747FF] lg:flex-row lg:justify-between py-5 lg:pt-20 px-3 gap-3 lg:h-44">
+    <footer className="flex flex-col dark:bg-black border-t border-outlineVariant text-primary dark:border-[#9747FF] lg:flex-row lg:justify-between py-5 lg:pt-20 px-3 gap-3 lg:h-44">
       <div className="flex justify-center gap-3 order-3 lg:-order-none dark:text-[#FFF5EE]">
         <a
           href="https://github.com/shonenxnaifu"

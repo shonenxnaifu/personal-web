@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="!scroll-smooth">
       <body
-        className={`${ibmPlexMono.className} bg-[#EAEAEA] text-[#161313] min-h-screen flex flex-col`}
+        className={`${ibmPlexMono.className} bg-neutral text-primary min-h-screen flex flex-col`}
       >
         <Header />
         {children}
