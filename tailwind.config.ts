@@ -32,7 +32,11 @@ const config: Config = {
         onSecondaryContainer: "#656463",
         outline: "#767873",
         outlineVariant: "#C6C7C1",
-        neutral: "#EAEAEA"
+        neutral: "#EAEAEA",
+        tertiaryVariant: "#7ABA3A",
+        onTertiaryVariant: "#254600",
+        tertiaryVariant2: "#3A6A00",
+        onTertiaryVariant2: "#FFFFFF",
       },
       borderRadius: {
         "blob-1": "50% 80% 50% 100%",
