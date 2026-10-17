@@ -22,7 +22,7 @@ export default function Card({
   urlImage = "/assets/images/dummy1.png",
 }: CardProps) {
   return (
-    <article className="flex flex-col min-w-72 md:max-w-80 lg:max-w-96 bg-[#ffffff] mx-3 mr-5 border-4 border-primary rounded-lg shadow-[7px_7px_0_0_rgba(0,0,0,1)] overflow-hidden dark:border-[#FFF5EE] dark:shadow-[7px_7px_0_0_rgba(255,245,238,1)] dark:bg-[#2F393F] relative">
+    <article className="flex flex-col min-w-72 md:max-w-80 lg:max-w-96 bg-[#FFFFFF] mx-3 mr-5 border-4 border-primary rounded-lg shadow-[7px_7px_0_0_rgba(0,0,0,1)] overflow-hidden dark:border-darkOutline dark:shadow-[7px_7px_0_0_#76777e] dark:bg-darkPrimaryContainer relative">
       <header className="flex flex-col">
         <picture className="relative w-full h-64 opacity-90">
           <Image
@@ -34,11 +34,11 @@ export default function Card({
           />
         </picture>
         <Link href={url}>
-          <h3 className="text-xl font-bold px-3 pt-1 dark:text-[#FFF5EE] transition-all ease-in-out duration-200 hover:text-tertiary">
+          <h3 className="text-xl font-bold px-3 pt-1 text-primary dark:text-darkOnPrimaryContainer transition-all ease-in-out duration-200 hover:text-tertiary">
             {title}
           </h3>
         </Link>
-        <span className="flex px-3 pt-1 text-sm gap-1 text-secondary font-semibold dark:text-[#DFE0E2]">
+        <span className="flex px-3 pt-1 text-sm gap-1 text-secondary font-semibold dark:text-darkSecondary">
           <CalendarIcon className="max-w-3" />
           <time dateTime={fromUTCTimestamp(date, "dd/mm/yyyy")}>
             {fromUTCTimestamp(date, "dd/mm/yyyy")}
@@ -52,7 +52,7 @@ export default function Card({
           ))}
         </ul>
       </header>
-      <p className="mt-3 px-3 py-1 line-clamp-3 dark:text-[#FFF5EE] text-sm">
+      <p className="mt-3 px-3 py-1 line-clamp-3 text-primary dark:text-darkOnPrimaryContainer text-sm">
         {shortDesc}
       </p>
     </article>

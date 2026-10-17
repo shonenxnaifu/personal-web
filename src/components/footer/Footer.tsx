@@ -4,8 +4,8 @@ import LinkedinIcon from "../icons/LinkedinIcon";
 
 export default function Footer() {
   return (
-    <footer className="flex flex-col dark:bg-black border-t border-outlineVariant text-primary dark:border-[#9747FF] lg:flex-row lg:justify-between py-5 lg:pt-20 px-3 gap-3 lg:h-44">
-      <div className="flex justify-center gap-3 order-3 lg:-order-none dark:text-[#FFF5EE]">
+    <footer className="flex flex-col dark:bg-darkNeutral border-t border-outlineVariant text-primary dark:border-darkOutlineVariant lg:flex-row lg:justify-between py-5 lg:pt-20 px-3 gap-3 lg:h-44">
+      <div className="flex justify-center gap-3 order-3 lg:-order-none text-primary dark:text-darkPrimary">
         <a
           href="https://github.com/shonenxnaifu"
           className="flex justify-between items-center gap-1"
@@ -23,10 +23,10 @@ export default function Footer() {
           linkedin
         </a>
       </div>
-      <div className="my-auto text-center text-sm font-semibold dark:text-[#FFF5EE]">
+      <div className="my-auto text-center text-sm font-semibold text-primary dark:text-darkPrimary">
         <p>Designed and Built By Pawitra Warda</p>
       </div>
-      <div className="text-2xl my-auto dark:text-[#FFF5EE] text-center">
+      <div className="text-2xl my-auto text-primary dark:text-darkPrimary text-center">
         <Link href="/">
           shonen<span className="text-sm">dev.</span>
         </Link>

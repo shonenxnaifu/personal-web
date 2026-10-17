@@ -21,14 +21,14 @@ export default function CardNoImage({
   url,
 }: CardProps) {
   return (
-    <article className="flex flex-col bg-[#FFFFFF] border-4 border-primary rounded-lg px-3 py-1 mr-3 shadow-[7px_7px_0_0_rgba(0,0,0,1)] dark:border-[#FFF5EE] dark:shadow-[7px_7px_0_0_rgba(255,245,238,1)] dark:bg-[#2F393F]">
+    <article className="flex flex-col bg-[#FFFFFF] border-4 border-primary rounded-lg px-3 py-1 mr-3 shadow-[7px_7px_0_0_rgba(0,0,0,1)] dark:border-darkOutline dark:shadow-[7px_7px_0_0_#76777e] dark:bg-darkPrimaryContainer">
       <header className="flex flex-col">
         <Link href={url}>
-          <h3 className="text-xl font-bold text-black dark:text-[#FFF5EE] transition-all ease-in-out duration-200 hover:text-tertiary">
+          <h3 className="text-xl font-bold text-primary dark:text-darkOnPrimaryContainer transition-all ease-in-out duration-200 hover:text-tertiary">
             {title}
           </h3>
         </Link>
-        <span className="flex text-sm gap-1 text-secondary font-semibold dark:text-[#DFE0E2] ">
+        <span className="flex text-sm gap-1 text-secondary font-semibold dark:text-darkSecondary">
           <CalendarIcon className="max-w-3" />
           <time dateTime={fromUTCTimestamp(date, "dd/mm/yyyy")}>
             {fromUTCTimestamp(date, "dd/mm/yyyy")}
@@ -42,7 +42,7 @@ export default function CardNoImage({
           ))}
         </ul>
       </header>
-      <p className="mt-3 line-clamp-2 dark:text-[#FFF5EE] text-sm">
+      <p className="mt-3 line-clamp-2 text-primary dark:text-darkOnPrimaryContainer text-sm">
         {shortDesc}
       </p>
     </article>

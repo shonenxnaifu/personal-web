@@ -50,8 +50,9 @@ const config: Config = {
         darkSecondaryContainer: "#dcdfee",
         darkOnSecondaryContainer: "#5f626f",
         darkOutline: "#76777e",
-        darkOutlineVariant: "#c6c6ce",
-        darkNeutral: "222436",
+        // darkOutlineVariant: "#c6c6ce",
+        darkOutlineVariant: "#c3e88d",
+        darkNeutral: "#15161e",
         darkTertiaryVariant: "#305cac",
         darkOnTertiaryVariant: "#ffffff",
         darkTertiaryVariant2: "#82aaff",
@@ -83,7 +84,7 @@ const config: Config = {
           radial-gradient(circle at 40px 40px, rgba(55, 65, 81, 0.12) 2px, transparent 2px)
         `,
         "circuit-dark": `
-          linear-gradient(135deg, transparent 0%, transparent 20%, #EAEAEA 40%, #EAEAEA 60%, transparent 80%, transparent 100%),
+          linear-gradient(135deg, transparent 0%, transparent 20%, #c8d3f5 40%, #c8d3f5 60%, transparent 80%, transparent 100%),
           repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(75, 85, 99, 0.08) 19px, rgba(75, 85, 99, 0.08) 20px, transparent 20px, transparent 39px, rgba(75, 85, 99, 0.08) 39px, rgba(75, 85, 99, 0.08) 40px),
           repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(75, 85, 99, 0.08) 19px, rgba(75, 85, 99, 0.08) 20px, transparent 20px, transparent 39px, rgba(75, 85, 99, 0.08) 39px, rgba(75, 85, 99, 0.08) 40px),
           radial-gradient(circle at 20px 20px, rgba(55, 65, 81, 0.12) 2px, transparent 2px),

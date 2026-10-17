@@ -57,23 +57,23 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="w-full flex justify-between items-center border-b border-outlineVariant dark:border-neutral dark:bg-primary">
-      <div className="flex justify-between w-full min-h-16 py-3 px-3 border-r border-outlineVariant dark:border-neutral">
-        <div className="text-2xl my-auto text-primary dark:text-[#FFF5EE]">
+    <header className="w-full flex justify-between items-center border-b border-outlineVariant dark:border-darkOutlineVariant dark:bg-darkNeutral">
+      <div className="flex justify-between w-full min-h-16 py-3 px-3 border-r border-outlineVariant dark:border-darkOutlineVariant">
+        <div className="text-2xl my-auto text-primary dark:text-darkPrimary">
           <Link href="/">
             shonen<span className="text-sm">dev.</span>
           </Link>
         </div>
 
-        <nav className="hidden md:flex justify-center text-center text-base mr-3 dark:text-[#FFF5EE] text-primary">
+        <nav className="hidden md:flex justify-center text-center text-base mr-3 dark:text-darkPrimary text-primary">
           <ul className="flex gap-16">
             <li
-              className={`p-1 my-auto ${activeMenu === MenuList.HOME ? "bg-primary dark:bg-onPrimary text-onPrimary dark:text-primary" : "bg-none text-inherit"}`}
+              className={`p-1 my-auto ${activeMenu === MenuList.HOME ? "bg-primary dark:bg-darkOnPrimary text-onPrimary dark:text-darkPrimary" : "bg-none text-inherit"}`}
             >
               <Link href="/">Home</Link>
             </li>
             <li
-              className={`p-1 my-auto ${activeMenu === MenuList.BLOG ? "bg-primary dark:bg-onPrimary text-onPrimary dark:text-primary" : "bg-none text-inherit"}`}
+              className={`p-1 my-auto ${activeMenu === MenuList.BLOG ? "bg-primary dark:bg-darkOnPrimary text-onPrimary dark:text-darkPrimary" : "bg-none text-inherit"}`}
             >
               <Link href="/blog">Blog</Link>
             </li>

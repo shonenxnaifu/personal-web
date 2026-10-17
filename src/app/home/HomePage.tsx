@@ -35,7 +35,7 @@ export default function HomePage() {
   });
 
   return (
-    <main className="flex-grow dark:bg-primary">
+    <main className="flex-grow dark:bg-darkNeutral">
       <section className="flex flex-col md:flex-row md:h-2/3 xl:h-1/3 relative overflow-hidden">
         {/* <div className="absolute inset-0 pointer-events-none hidden dark:block z-10"> */}
         {/*   <div className="absolute top-1/4 -left-2/3 md:-left-1/2 lg:left-1/2 w-[400px] h-[400px] rounded-blob-1 blur-[150px] bg-[#9747FF] mix-blend-overlay opacity-80 animate-blob-1" /> */}
@@ -44,7 +44,7 @@ export default function HomePage() {
         {/**/}
         {/*   <div className="absolute -bottom-1/2 -right-full md:right-1/4 md:top-full lg:-bottom-2/3 lg:right-1/2 w-[550px] h-[350px] rounded-blob-3 bg-[#75FBC0] blur-[100px] md:blur-xl lg:blur-[100px] opacity-60 mix-blend-overlay animate-blob-3" /> */}
         {/* </div> */}
-        <div className="bg-neutral dark:bg-primary h-96 md:h-auto flex justify-center items-center border-b border-outlineVariant dark:border-neutral md:border-none md:order-2 md:min-w-[33%] lg:py-28">
+        <div className="bg-neutral dark:bg-darkNeutral h-96 md:h-auto flex justify-center items-center border-b border-outlineVariant dark:border-darkOutlineVariant md:border-none md:order-2 md:min-w-[33%] lg:py-28">
           <picture className="relative inline-block max-h-56 max-w-56 overflow-hidden rounded-3xl z-10">
             {/* <Image */}
             {/*   className="object-fill" */}
@@ -53,33 +53,24 @@ export default function HomePage() {
             {/*   width={480} */}
             {/*   height={480} */}
             {/*   sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" */}
-            {/* /> */}
-            {/* <Image */}
-            {/*   className="object-fill" */}
-            {/*   src="/assets/logos/totoro_ready_dwlhpa.svg" */}
-            {/*   alt="Logo shonen-dev.xyz" */}
-            {/*   width={480} */}
-            {/*   height={480} */}
-            {/*   sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" */}
-            {/* /> */}
-            <LogoIcon className="text-primary" />
+            <LogoIcon className="text-primary dark:text-darkPrimary" />
           </picture>
         </div>
-        <div className="px-3 md:px-16 py-5  md:border-r border-outlineVariant dark:border-neutral bg-neutral dark:bg-primary md:flex md:flex-col md:justify-center">
+        <div className="px-3 md:px-16 py-5  md:border-r border-outlineVariant dark:border-darkOutlineVariant bg-neutral dark:bg-darkNeutral md:flex md:flex-col md:justify-center">
           <h1 className="text-xl flex flex-col md:block relative z-10">
-            <span className="font-bold dark:text-onPrimary text-primary">Welcome to,</span>
-            <span className="text-3xl md:ml-1 text-tertiary dark:text-onTertiary font-bold">
+            <span className="font-bold dark:text-darkPrimary text-primary">Welcome to,</span>
+            <span className="text-3xl md:ml-1 text-tertiary dark:text-darkTertiaryContainer font-bold">
               shonen-dev.xyz
             </span>
           </h1>
-          <p className="text-sm mt-5 dark:text-onPrimary text-primary relative z-10">
+          <p className="text-sm mt-5 dark:text-darkPrimary text-primary relative z-10">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae
             felis vitae nisl lacinia convallis. Integer vel velit vehicula,
             pharetra turpis at, tincidunt urna. Donec ac sem sed ligula
             ultricies condimentum. Nam venenatis, nisl non suscipit viverra,
             felis justo ultricies dolor, nec dictum
           </p>
-          <div className="flex gap-5 text-xl mt-5 dark:text-onPrimary text-primary relative z-10">
+          <div className="flex gap-5 text-xl mt-5 dark:text-darkPrimary text-primary relative z-10">
             <a
               href="https://github.com/shonenxnaifu"
               className="flex justify-between gap-1 items-center"
@@ -99,49 +90,49 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <div className="grid grid-cols-1 lg:grid-cols-2 border-y border-outlineVariant dark:border-neutral">
-        <section className="flex flex-col justify-center bg-circuit-light dark:bg-circuit-dark bg-circuit-size bg-primaryContainer dark:bg-neutral pt-5 pb-10 px-3">
-          <h1 className="text-4xl font-bold px-3 py-5 text-onPrimaryContainer dark:text-primary">
+      <div className="grid grid-cols-1 lg:grid-cols-2 border-y border-outlineVariant dark:border-darkOutlineVariant">
+        <section className="flex flex-col justify-center bg-circuit-light dark:bg-circuit-dark bg-circuit-size bg-primaryContainer dark:bg-darkPrimaryContainer pt-5 pb-10 px-3">
+          <h1 className="text-4xl font-bold px-3 py-5 text-onPrimaryContainer dark:text-darkPrimary">
             Tech Stack.
           </h1>
           <div className="flex flex-wrap px-3 md:px-5 lg:px-7 gap-3 md:gap-5 xl:w-3/4 xl:mx-auto">
-            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-[#9747FF] dark:bg-[#2F393F] dark:bg-opacity-35">
+            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer dark:text-darkOnPrimaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-darkOnPrimaryContainer">
               <span>
                 <NextJsIcon className="max-w-5" />
               </span>
               <span>NextJS</span>
             </div>
-            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-[#9747FF] dark:bg-[#2F393F] dark:bg-opacity-35">
+            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer dark:text-darkOnPrimaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-darkOnPrimaryContainer">
               <span>
                 <ReactJsIcon className="max-w-5" />
               </span>
               <span>ReactJS</span>
             </div>
-            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-[#9747FF] dark:bg-[#2F393F] dark:bg-opacity-35">
+            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer dark:text-darkOnPrimaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-darkOnPrimaryContainer">
               <span>
                 <TailwindIcon className="max-w-5" />
               </span>
               <span>Tailwind</span>
             </div>
-            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-[#9747FF] dark:bg-[#2F393F] dark:bg-opacity-35">
+            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer dark:text-darkOnPrimaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-darkOnPrimaryContainer">
               <span>
                 <VueJsIcon className="max-w-5" />
               </span>
               <span>VueJS</span>
             </div>
-            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-[#9747FF] dark:bg-[#2F393F] dark:bg-opacity-35">
+            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer dark:text-darkOnPrimaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-darkOnPrimaryContainer">
               <span>
                 <TypescriptIcon className="max-w-5" />
               </span>
               <span>Typescript</span>
             </div>
-            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-[#9747FF] dark:bg-[#2F393F] dark:bg-opacity-35">
+            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer dark:text-darkOnPrimaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-darkOnPrimaryContainer">
               <span>
                 <PythonIcon className="max-w-5" />
               </span>
               <span>Python</span>
             </div>
-            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-[#9747FF] dark:bg-[#2F393F] dark:bg-opacity-35">
+            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer dark:text-darkOnPrimaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-darkOnPrimaryContainer">
               <span>
                 <DockerIcon className="max-w-5" />
               </span>
@@ -149,8 +140,8 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-        <section className="flex flex-col justify-center py-5 px-3 h-fit dark:bg-primary">
-          <h1 className="text-4xl font-bold py-5 px-3 text-primary dark:text-onPrimary">
+        <section className="flex flex-col justify-center py-5 px-3 h-fit dark:bg-darkNeutral">
+          <h1 className="text-4xl font-bold py-5 px-3 text-primary dark:text-darkPrimary">
             Latest Works.
           </h1>
           <div className="w-full mx-auto xl:w-2/3">
@@ -182,7 +173,7 @@ export default function HomePage() {
       </div>
 
       <section className=" py-5 px-3">
-        <h1 className="text-4xl font-bold py-5 px-3 text-primary dark:text-[#FFF59F]">
+        <h1 className="text-4xl font-bold py-5 px-3 text-primary dark:text-darkPrimary">
           Featured Posts.
         </h1>
         <div className="grid grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-3 pb-10 gap-7">
