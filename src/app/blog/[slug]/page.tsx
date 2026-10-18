@@ -102,7 +102,7 @@ export default function BlogPage({ params }: BlogPageProps) {
               />
             )}
           </figure>
-          <h1 className="text-3xl font-semibold mt-3 text-primary dark:text-darkPrimary">
+          <h1 className="text-3xl font-semibold mt-3 text-primary dark:text-darkOnNeutralVariant">
             {mappedBlog.title}
           </h1>
           <span className="text-sm font-semibold text-secondary mt-1 dark:text-darkSecondary">
@@ -115,7 +115,7 @@ export default function BlogPage({ params }: BlogPageProps) {
           </span>
         </header>
         <Toc dataToc={mappedBlog.toc} />
-        <div className="lg:flex-1 text-primary dark:text-darkPrimary">
+        <div className="lg:flex-1 text-primary dark:text-darkOnNeutral">
           <RenderMdx blog={mappedBlog} />
         </div>
       </article>

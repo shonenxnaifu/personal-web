@@ -11,10 +11,10 @@ interface TocProps {
 export default function Toc({ dataToc }: TocProps) {
   return (
     <nav
-      className="lg:max-w-[320px] xl:max-w-[480px] lg:flex-1 lg:order-2 lg:sticky lg:top-3 lg:self-start text-sm p-3 mt-5 mx-3 border text-primary border-outlineVariant rounded-lg dark:text-darkPrimary dark:border-darkOutline"
+      className="lg:max-w-[320px] xl:max-w-[480px] lg:flex-1 lg:order-2 lg:sticky lg:top-3 lg:self-start text-sm p-3 mt-5 mx-3 border text-primary border-outlineVariant rounded-lg dark:text-darkOnNeutral dark:border-darkOutline"
       aria-label="Table of Contents"
     >
-      <h3 className="font-semibold text-lg dark:text-darkPrimary">
+      <h3 className="font-semibold text-lg dark:text-darkOnNeutralVariant">
         Table of Contents
       </h3>
       <ol className="list-none list-inside">

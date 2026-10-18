@@ -59,13 +59,13 @@ export default function Header() {
   return (
     <header className="w-full flex justify-between items-center border-b border-outlineVariant dark:border-darkOutlineVariant dark:bg-darkNeutral">
       <div className="flex justify-between w-full min-h-16 py-3 px-3 border-r border-outlineVariant dark:border-darkOutlineVariant">
-        <div className="text-2xl my-auto text-primary dark:text-darkPrimary">
+        <div className="text-2xl my-auto text-primary dark:text-darkOnNeutral">
           <Link href="/">
             shonen<span className="text-sm">dev.</span>
           </Link>
         </div>
 
-        <nav className="hidden md:flex justify-center text-center text-base mr-3 dark:text-darkPrimary text-primary">
+        <nav className="hidden md:flex justify-center text-center text-base mr-3 dark:text-darkOnNeutral text-primary">
           <ul className="flex gap-16">
             <li
               className={`p-1 my-auto ${activeMenu === MenuList.HOME ? "bg-primary dark:bg-darkOnPrimary text-onPrimary dark:text-darkPrimary" : "bg-none text-inherit"}`}

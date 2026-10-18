@@ -53,24 +53,24 @@ export default function HomePage() {
             {/*   width={480} */}
             {/*   height={480} */}
             {/*   sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" */}
-            <LogoIcon className="text-primary dark:text-darkPrimary" />
+            <LogoIcon className="text-primary dark:text-darkOnNeutral" />
           </picture>
         </div>
         <div className="px-3 md:px-16 py-5  md:border-r border-outlineVariant dark:border-darkOutlineVariant bg-neutral dark:bg-darkNeutral md:flex md:flex-col md:justify-center">
           <h1 className="text-xl flex flex-col md:block relative z-10">
-            <span className="font-bold dark:text-darkPrimary text-primary">Welcome to,</span>
+            <span className="font-bold dark:text-darkOnNeutral text-primary">Welcome to,</span>
             <span className="text-3xl md:ml-1 text-tertiary dark:text-darkTertiaryContainer font-bold">
               shonen-dev.xyz
             </span>
           </h1>
-          <p className="text-sm mt-5 dark:text-darkPrimary text-primary relative z-10">
+          <p className="text-sm mt-5 dark:text-darkOnNeutral text-primary relative z-10">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae
             felis vitae nisl lacinia convallis. Integer vel velit vehicula,
             pharetra turpis at, tincidunt urna. Donec ac sem sed ligula
             ultricies condimentum. Nam venenatis, nisl non suscipit viverra,
             felis justo ultricies dolor, nec dictum
           </p>
-          <div className="flex gap-5 text-xl mt-5 dark:text-darkPrimary text-primary relative z-10">
+          <div className="flex gap-5 text-xl mt-5 dark:text-darkOnNeutral text-primary relative z-10">
             <a
               href="https://github.com/shonenxnaifu"
               className="flex justify-between gap-1 items-center"
@@ -91,48 +91,48 @@ export default function HomePage() {
         </div>
       </section>
       <div className="grid grid-cols-1 lg:grid-cols-2 border-y border-outlineVariant dark:border-darkOutlineVariant">
-        <section className="flex flex-col justify-center bg-circuit-light dark:bg-circuit-dark bg-circuit-size bg-primaryContainer dark:bg-darkPrimaryContainer pt-5 pb-10 px-3">
-          <h1 className="text-4xl font-bold px-3 py-5 text-onPrimaryContainer dark:text-darkPrimary">
+        <section className="flex flex-col justify-center bg-circuit-light dark:bg-circuit-dark bg-circuit-size bg-primaryContainer dark:bg-darkTertiaryContainer pt-5 pb-10 px-3">
+          <h1 className="text-4xl font-bold px-3 py-5 text-onPrimaryContainer dark:text-darkOnTertiaryContainer">
             Tech Stack.
           </h1>
           <div className="flex flex-wrap px-3 md:px-5 lg:px-7 gap-3 md:gap-5 xl:w-3/4 xl:mx-auto">
-            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer dark:text-darkOnPrimaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-darkOnPrimaryContainer">
+            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer dark:text-darkOnTertiaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-darkOnTertiaryContainer">
               <span>
                 <NextJsIcon className="max-w-5" />
               </span>
               <span>NextJS</span>
             </div>
-            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer dark:text-darkOnPrimaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-darkOnPrimaryContainer">
+            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer dark:text-darkOnTertiaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-darkOnTertiaryContainer">
               <span>
                 <ReactJsIcon className="max-w-5" />
               </span>
               <span>ReactJS</span>
             </div>
-            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer dark:text-darkOnPrimaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-darkOnPrimaryContainer">
+            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer dark:text-darkOnTertiaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-darkOnTertiaryContainer">
               <span>
                 <TailwindIcon className="max-w-5" />
               </span>
               <span>Tailwind</span>
             </div>
-            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer dark:text-darkOnPrimaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-darkOnPrimaryContainer">
+            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer dark:text-darkOnTertiaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-darkOnTertiaryContainer">
               <span>
                 <VueJsIcon className="max-w-5" />
               </span>
               <span>VueJS</span>
             </div>
-            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer dark:text-darkOnPrimaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-darkOnPrimaryContainer">
+            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer dark:text-darkOnTertiaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-darkOnTertiaryContainer">
               <span>
                 <TypescriptIcon className="max-w-5" />
               </span>
               <span>Typescript</span>
             </div>
-            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer dark:text-darkOnPrimaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-darkOnPrimaryContainer">
+            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer dark:text-darkOnTertiaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-darkOnTertiaryContainer">
               <span>
                 <PythonIcon className="max-w-5" />
               </span>
               <span>Python</span>
             </div>
-            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer dark:text-darkOnPrimaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-darkOnPrimaryContainer">
+            <div className="flex items-center text-lg gap-1 bg-transparent text-onPrimaryContainer dark:text-darkOnTertiaryContainer border-2 border-onPrimaryContainer rounded-lg py-1 px-3 dark:border-darkOnTertiaryContainer">
               <span>
                 <DockerIcon className="max-w-5" />
               </span>
@@ -141,7 +141,7 @@ export default function HomePage() {
           </div>
         </section>
         <section className="flex flex-col justify-center py-5 px-3 h-fit dark:bg-darkNeutral">
-          <h1 className="text-4xl font-bold py-5 px-3 text-primary dark:text-darkPrimary">
+          <h1 className="text-4xl font-bold py-5 px-3 text-primary dark:text-darkOnNeutralVariant">
             Latest Works.
           </h1>
           <div className="w-full mx-auto xl:w-2/3">
@@ -173,7 +173,7 @@ export default function HomePage() {
       </div>
 
       <section className=" py-5 px-3">
-        <h1 className="text-4xl font-bold py-5 px-3 text-primary dark:text-darkPrimary">
+        <h1 className="text-4xl font-bold py-5 px-3 text-primary dark:text-darkOnNeutralVariant">
           Featured Posts.
         </h1>
         <div className="grid grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-3 pb-10 gap-7">
