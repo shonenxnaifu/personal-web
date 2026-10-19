@@ -68,16 +68,16 @@ export default function Header() {
         <nav className="hidden md:flex justify-center text-center text-base mr-3 dark:text-darkOnNeutral text-primary">
           <ul className="flex gap-16">
             <li
-              className={`p-1 my-auto ${activeMenu === MenuList.HOME ? "bg-primary dark:bg-darkOnPrimary text-onPrimary dark:text-darkPrimary rounded-lg" : "bg-none text-inherit hover:text-darkOnPrimary transition-all ease-in-out duration-200"}`}
+              className={`p-1 my-auto ${activeMenu === MenuList.HOME ? "bg-primary dark:bg-darkOnPrimary text-onPrimary dark:text-darkPrimary rounded-lg" : "bg-none text-inherit hover:text-tertiaryContainer dark:hover:text-darkOnPrimary transition-all ease-in-out duration-200"}`}
             >
               <Link href="/">Home</Link>
             </li>
             <li
-              className={`p-1 my-auto ${activeMenu === MenuList.BLOG ? "bg-primary dark:bg-darkOnPrimary text-onPrimary dark:text-darkPrimary rounded-lg" : "bg-none text-inherit hover:text-darkOnPrimary transition-all ease-in-out duration-200"}`}
+              className={`p-1 my-auto ${activeMenu === MenuList.BLOG ? "bg-primary dark:bg-darkOnPrimary text-onPrimary dark:text-darkPrimary rounded-lg" : "bg-none text-inherit hover:text-tertiaryContainer dark:hover:text-darkOnPrimary transition-all ease-in-out duration-200"}`}
             >
               <Link href="/blog">Blog</Link>
             </li>
-            <li className="p-1 my-auto hover:text-darkOnPrimary transition-all ease-in-out duration-200">
+            <li className="p-1 my-auto hover:text-tertiaryContainer dark:hover:text-darkOnPrimary transition-all ease-in-out duration-200">
               <button type="button">Contact Me</button>
             </li>
             <li className="p-1 my-auto">

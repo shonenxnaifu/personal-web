@@ -140,11 +140,11 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-        <section className="flex flex-col justify-center py-5 px-3 h-fit dark:bg-darkNeutral">
-          <h1 className="text-4xl font-bold py-5 px-3 text-primary dark:text-darkOnNeutralVariant">
-            Latest Works.
+        <section className="flex flex-col justify-center h-fit dark:bg-darkNeutral">
+          <h1 className="text-4xl font-bold text-primary dark:text-darkOnNeutralVariant border-b border-outlineVariant dark:border-darkOutlineVariant">
+            <span className="inline-block px-5 py-3">Latest Works.</span>
           </h1>
-          <div className="w-full mx-auto xl:w-2/3">
+          <div className="w-full mx-auto xl:w-2/3 pt-8">
             <Slider>
               <CardNoImage2
                 title={listFeaturedBlogs[0].title}
@@ -172,11 +172,11 @@ export default function HomePage() {
         </section>
       </div>
 
-      <section className=" py-5 px-3">
-        <h1 className="text-4xl font-bold py-5 px-3 text-primary dark:text-darkOnNeutralVariant">
-          Featured Posts.
+      <section className="">
+        <h1 className="text-4xl font-bold text-primary dark:text-darkOnNeutralVariant border-b border-outlineVariant dark:border-darkOutlineVariant">
+          <span className="px-5 py-3 inline-block">Featured Posts.</span>
         </h1>
-        <div className="grid grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-3 pb-10 gap-7">
+        <div className="grid grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-3 pt-8 pb-10 gap-7">
           {listFeaturedBlogs.map((item) => (
             <Card
               url={item.url}
