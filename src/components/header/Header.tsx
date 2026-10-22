@@ -57,27 +57,27 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="w-full flex justify-between items-center border-b-4 border-black dark:border-[#9747FF] dark:bg-black">
-      <div className="flex justify-between w-full min-h-16 py-3 px-3 border-r-4 border-black dark:border-[#9747FF]">
-        <div className="text-2xl my-auto dark:text-[#FFF5EE]">
+    <header className="w-full flex justify-between items-center border-b border-outlineVariant dark:border-darkOutlineVariant dark:bg-darkNeutral">
+      <div className="flex justify-between w-full min-h-16 py-3 px-3 border-r border-outlineVariant dark:border-darkOutlineVariant">
+        <div className="text-2xl my-auto text-primary dark:text-darkOnNeutral">
           <Link href="/">
             shonen<span className="text-sm">dev.</span>
           </Link>
         </div>
 
-        <nav className="hidden md:flex justify-center text-center text-base mr-3 dark:text-[#FFF5EE]">
+        <nav className="hidden md:flex justify-center text-center text-base mr-3 dark:text-darkOnNeutral text-primary">
           <ul className="flex gap-16">
             <li
-              className={`p-1 my-auto ${activeMenu === MenuList.HOME ? "bg-[#161313] dark:bg-[#9747FF] text-[#FFF5EE]" : "bg-none text-inherit"}`}
+              className={`p-1 my-auto ${activeMenu === MenuList.HOME ? "bg-primary dark:bg-darkOnPrimary text-onPrimary dark:text-darkPrimary rounded-lg" : "bg-none text-inherit hover:text-tertiaryContainer dark:hover:text-darkOnPrimary transition-all ease-in-out duration-200"}`}
             >
               <Link href="/">Home</Link>
             </li>
             <li
-              className={`p-1 my-auto ${activeMenu === MenuList.BLOG ? "bg-[#161313] dark:bg-[#9747FF] text-[#FFF5EE]" : "bg-none text-inherit"}`}
+              className={`p-1 my-auto ${activeMenu === MenuList.BLOG ? "bg-primary dark:bg-darkOnPrimary text-onPrimary dark:text-darkPrimary rounded-lg" : "bg-none text-inherit hover:text-tertiaryContainer dark:hover:text-darkOnPrimary transition-all ease-in-out duration-200"}`}
             >
               <Link href="/blog">Blog</Link>
             </li>
-            <li className="p-1 my-auto">
+            <li className="p-1 my-auto hover:text-tertiaryContainer dark:hover:text-darkOnPrimary transition-all ease-in-out duration-200">
               <button type="button">Contact Me</button>
             </li>
             <li className="p-1 my-auto">
@@ -115,7 +115,7 @@ export default function Header() {
 
       {/* Full Screen Menu (mobile only) */}
       <div
-        className={`bg-[#FFF5EE] z-40 h-screen fixed inset-0 transition-all duration-200 delay-0 ease-in-out ${isOpenMenu ? "translate-x-0" : "translate-x-full delay-75"}`}
+        className={`bg-neutral z-40 h-screen fixed inset-0 transition-all duration-200 delay-0 ease-in-out ${isOpenMenu ? "translate-x-0" : "translate-x-full delay-75"}`}
       >
         <button
           type="button"
@@ -123,14 +123,14 @@ export default function Header() {
           aria-label="Close Menu"
           className="absolute right-0 -top-1 translate-y-7 mr-5 w-7 h-7"
         >
-          <div className="bg-red-300 w-full">
+          <div className="w-full">
             <span
-              className={`absolute w-full h-1 bg-[#161313] transition-all ease-in-out duration-300 ${isOpenMenu ? "rotate-45 delay-150" : "rotate-0 delay-0"} top-1/2 -translate-y-1/2 -translate-x-1/2`}
+              className={`absolute w-full h-1 bg-primary transition-all ease-in-out duration-300 ${isOpenMenu ? "rotate-45 delay-150" : "rotate-0 delay-0"} top-1/2 -translate-y-1/2 -translate-x-1/2`}
             >
               &nbsp;
             </span>
             <span
-              className={`absolute w-full h-1 bg-[#161313] transition-all ease-in-out duration-300 ${isOpenMenu ? "-rotate-45 delay-150" : "rotate-0 delay-0"}  top-1/2 -translate-y-1/2 -translate-x-1/2`}
+              className={`absolute w-full h-1 bg-primary transition-all ease-in-out duration-300 ${isOpenMenu ? "-rotate-45 delay-150" : "rotate-0 delay-0"}  top-1/2 -translate-y-1/2 -translate-x-1/2`}
             >
               &nbsp;
             </span>
@@ -139,12 +139,12 @@ export default function Header() {
         <nav className="flex justify-center text-center text-2xl mt-16">
           <ul className="flex flex-col gap-5">
             <li
-              className={`py-2 ${activeMenu === MenuList.HOME ? "bg-[#161313] text-white" : "bg-none text-inherit"}`}
+              className={`py-2 ${activeMenu === MenuList.HOME ? "bg-primary text-onPrimary" : "bg-none text-inherit"}`}
             >
               <Link href="/">Home</Link>
             </li>
             <li
-              className={`py-2 ${activeMenu === MenuList.BLOG ? "bg-[#161313] text-white" : "bg-none text-inherit"}`}
+              className={`py-2 ${activeMenu === MenuList.BLOG ? "bg-primary text-onPrimary" : "bg-none text-inherit"}`}
             >
               <Link href="/blog">Blog</Link>
             </li>

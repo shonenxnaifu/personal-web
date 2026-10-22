@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: BlogPageProps) {
   const blog = allBlogs.find((item) => item._raw.flattenedPath === params.slug);
 
   if (!blog) {
-    return undefined;
+    return notFound();
   }
 
   let imgList: Array<string> = [];
@@ -53,9 +53,9 @@ export async function generateMetadata({ params }: BlogPageProps) {
       url: siteMetaData.siteUrl + blog.url,
       siteName: siteMetaData.title,
       locale: "en_US",
-      type: "website",
-      publishedAt: new Date(blog.publishedAt).toISOString(),
-      modifiedAt: new Date(blog.publishedAt).toISOString(),
+      type: "article",
+      publishedTime: new Date(blog.publishedAt).toISOString(),
+      modifiedTime: new Date(blog.publishedAt).toISOString(),
       images: ogImages,
       authors: blog.author,
     },
@@ -87,9 +87,9 @@ export default function BlogPage({ params }: BlogPageProps) {
   };
 
   return (
-    <main className="pb-5 min-h-screen mx-auto dark:bg-black">
+    <main className="pb-5 min-h-screen mx-auto dark:bg-darkNeutral">
       <article className="flex flex-col lg:flex-row lg:flex-wrap lg:mx-5">
-        <header className="lg:w-full flex flex-col m-3 border-b border-black pb-5 dark:border-[#FFF5EE]">
+        <header className="lg:w-full flex flex-col m-3 border-b border-outlineVariant pb-5 dark:border-darkOutline">
           <figure className="relative h-[200px] md:h-[360px] mx-1 my-3 rounded-3xl overflow-hidden">
             {mappedBlog.image && (
               <Image
@@ -102,10 +102,10 @@ export default function BlogPage({ params }: BlogPageProps) {
               />
             )}
           </figure>
-          <h1 className="text-3xl font-semibold mt-3 dark:text-[#FFF59F]">
+          <h1 className="text-3xl font-semibold mt-3 text-primary dark:text-darkOnNeutralVariant">
             {mappedBlog.title}
           </h1>
-          <span className="text-sm font-semibold text-[#2F393F] mt-1 dark:text-[#75FBC0]">
+          <span className="text-sm font-semibold text-secondary mt-1 dark:text-darkSecondary">
             Posted on&nbsp;
             <time
               dateTime={fromUTCTimestamp(mappedBlog.publishedAt, "dd/mm/yyyy")}
@@ -115,7 +115,7 @@ export default function BlogPage({ params }: BlogPageProps) {
           </span>
         </header>
         <Toc dataToc={mappedBlog.toc} />
-        <div className="lg:flex-1 dark:text-[#FFF5EE]">
+        <div className="lg:flex-1 text-primary dark:text-darkOnNeutral">
           <RenderMdx blog={mappedBlog} />
         </div>
       </article>
