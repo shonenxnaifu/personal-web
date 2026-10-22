@@ -12,7 +12,6 @@ import CardNoImage2 from "@/components/shared/CardNoImage2";
 import Slider from "@/components/shared/Slider";
 import LogoIcon from "@/components/icons/LogoIcon";
 import { allBlogs } from "contentlayer/generated";
-import Image from "next/image";
 import { slug } from "github-slugger";
 
 export default function HomePage() {
@@ -58,7 +57,9 @@ export default function HomePage() {
         </div>
         <div className="px-3 md:px-16 py-5  md:border-r border-outlineVariant dark:border-darkOutlineVariant bg-neutral dark:bg-darkNeutral md:flex md:flex-col md:justify-center">
           <h1 className="text-xl flex flex-col md:block relative z-10">
-            <span className="font-bold dark:text-darkOnNeutral text-primary">Welcome to,</span>
+            <span className="font-bold dark:text-darkOnNeutral text-primary">
+              Welcome to,
+            </span>
             <span className="text-3xl md:ml-1 text-tertiary dark:text-darkTertiaryContainer font-bold">
               shonen-dev.xyz
             </span>

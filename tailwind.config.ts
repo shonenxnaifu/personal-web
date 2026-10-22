@@ -59,7 +59,6 @@ const config: Config = {
         darkOnTertiaryVariant: "#ffffff",
         darkTertiaryVariant2: "#82aaff",
         darkOnTertiaryVariant2: "#003c88",
-
       },
       borderRadius: {
         "blob-1": "50% 80% 50% 100%",
@@ -109,8 +108,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [
-    typography,
-  ],
+  plugins: [typography],
 };
 export default config;
