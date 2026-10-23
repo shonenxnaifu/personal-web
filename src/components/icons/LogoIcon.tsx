@@ -76,13 +76,13 @@ export default function NextJsIcon({ className = "" }: NextJsIconProps) {
             <path d={HAT_PATH_D} />
             <motion.path
               d={LEFT_EAR_PATH_D}
-              style={{ transformBox: "fill-box", transformOrigin: "50% 100%" }}
+              style={{ originX: 0.5, originY: 1 }}
               animate={leftEarSwing}
               transition={EAR_SWING_TRANSITION}
             />
             <motion.path
               d={RIGHT_EAR_PATH_D}
-              style={{ transformBox: "fill-box", transformOrigin: "50% 100%" }}
+              style={{ originX: 0.5, originY: 1 }}
               animate={rightEarSwing}
               transition={EAR_SWING_TRANSITION}
             />
