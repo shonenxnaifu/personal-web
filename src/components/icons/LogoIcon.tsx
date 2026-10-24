@@ -63,7 +63,7 @@ export default function NextJsIcon({ className = "" }: NextJsIconProps) {
   const eyeY = useSpring(eyeTargetY, { stiffness: 120, damping: 14 });
 
   useEffect(() => {
-    if (prefersReducedMotion) return;
+    if (prefersReducedMotion) return undefined;
 
     const handlePointerMove = (event: PointerEvent) => {
       const svg = svgRef.current;
@@ -83,7 +83,9 @@ export default function NextJsIcon({ className = "" }: NextJsIconProps) {
     };
 
     window.addEventListener("pointermove", handlePointerMove);
-    return () => window.removeEventListener("pointermove", handlePointerMove);
+    return () => {
+      window.removeEventListener("pointermove", handlePointerMove);
+    };
   }, [eyeTargetX, eyeTargetY, prefersReducedMotion]);
 
   const leftEarSwing = prefersReducedMotion
