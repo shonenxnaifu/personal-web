@@ -1,7 +1,12 @@
 "use client";
 
-import { SVGProps } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { useEffect, useRef, SVGProps } from "react";
+import {
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+} from "motion/react";
 
 interface NextJsIconProps extends SVGProps<SVGSVGElement> {
   className?: string;
@@ -45,8 +50,43 @@ const SMILE_TRANSITION = {
   ease: "easeInOut",
 } as const;
 
+const MAX_EYE_SHIFT_X = 9;
+const MAX_EYE_SHIFT_Y = 9;
+
 export default function NextJsIcon({ className = "" }: NextJsIconProps) {
   const prefersReducedMotion = useReducedMotion();
+  const svgRef = useRef<SVGSVGElement>(null);
+
+  const eyeTargetX = useMotionValue(0);
+  const eyeTargetY = useMotionValue(0);
+  const eyeX = useSpring(eyeTargetX, { stiffness: 120, damping: 14 });
+  const eyeY = useSpring(eyeTargetY, { stiffness: 120, damping: 14 });
+
+  useEffect(() => {
+    if (prefersReducedMotion) return undefined;
+
+    const handlePointerMove = (event: PointerEvent) => {
+      const svg = svgRef.current;
+      if (!svg) return;
+
+      const rect = svg.getBoundingClientRect();
+      if (rect.width === 0 || rect.height === 0) return;
+
+      const dx = event.clientX - (rect.left + rect.width / 2);
+      const dy = event.clientY - (rect.top + rect.height / 2);
+      const distance = Math.hypot(dx, dy);
+      if (distance === 0) return;
+
+      const falloff = Math.min(distance / 400, 1);
+      eyeTargetX.set((dx / distance) * MAX_EYE_SHIFT_X * falloff);
+      eyeTargetY.set((dy / distance) * MAX_EYE_SHIFT_Y * falloff);
+    };
+
+    window.addEventListener("pointermove", handlePointerMove);
+    return () => {
+      window.removeEventListener("pointermove", handlePointerMove);
+    };
+  }, [eyeTargetX, eyeTargetY, prefersReducedMotion]);
 
   const leftEarSwing = prefersReducedMotion
     ? undefined
@@ -59,8 +99,13 @@ export default function NextJsIcon({ className = "" }: NextJsIconProps) {
     ? undefined
     : { scaleX: [1, 1.25, 1] };
 
+  const redEyeMotionStyle = prefersReducedMotion
+    ? undefined
+    : { x: eyeX, y: eyeY };
+
   return (
     <svg
+      ref={svgRef}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 367.941 323.804"
       fill="currentColor"
@@ -71,18 +116,20 @@ export default function NextJsIcon({ className = "" }: NextJsIconProps) {
       <g id="Layer_1" data-name="Layer 1">
         <g>
           <g>
-            <path d="M127.824 159.126 L143.205 159.126 L143.205 143.754 L127.824 143.754 Z" />
+            <motion.g style={redEyeMotionStyle}>
+              <path d="M130.128 156.818 L140.891 156.818 L140.891 146.055 L130.128 146.055 Z" />
+            </motion.g>
             <path d="M118.845 153.838 L122.671 153.838 L122.671 159.126 L127.824 159.126 L135.514 159.126 L143.205 159.126 L143.205 153.838 L143.205 146.171 L143.205 138.504 L138.091 138.504 L138.091 134.651 L130.4 134.651 L122.671 134.651 L122.671 138.504 L118.845 138.504 L118.845 146.171 Z M138.091 130.836 L145.782 130.836 L145.782 138.504 L150.934 138.504 L150.934 146.171 L150.934 153.838 L150.934 161.543 L143.205 161.543 L143.205 166.793 L135.514 166.793 L127.824 166.793 L120.133 166.793 L120.133 161.543 L114.98 161.543 L114.98 153.838 L111.154 153.838 L111.154 146.171 L111.154 138.504 L114.98 138.504 L114.98 130.836 L122.671 130.836 L122.671 126.984 L130.4 126.984 L138.091 126.984 Z" />
             <path d={HAT_PATH_D} />
             <motion.path
               d={LEFT_EAR_PATH_D}
-              style={{ transformBox: "fill-box", transformOrigin: "50% 100%" }}
+              style={{ originX: 0.5, originY: 1 }}
               animate={leftEarSwing}
               transition={EAR_SWING_TRANSITION}
             />
             <motion.path
               d={RIGHT_EAR_PATH_D}
-              style={{ transformBox: "fill-box", transformOrigin: "50% 100%" }}
+              style={{ originX: 0.5, originY: 1 }}
               animate={rightEarSwing}
               transition={EAR_SWING_TRANSITION}
             />
@@ -101,7 +148,9 @@ export default function NextJsIcon({ className = "" }: NextJsIconProps) {
               transition={SMILE_TRANSITION}
             />
             <path d="M172.415 143.489 L180.106 143.489 L180.106 147.304 L187.835 147.304 L187.835 143.489 L195.526 143.489 L195.526 151.156 L187.835 151.156 L187.835 154.971 L180.106 154.971 L180.106 151.156 L172.415 151.156 Z" />
-            <path d="M224.698 159.126 L240.079 159.126 L240.079 143.754 L224.698 143.754 Z" />
+            <motion.g style={redEyeMotionStyle}>
+              <path d="M227.003 156.818 L237.766 156.818 L237.766 146.055 L227.003 146.055 Z" />
+            </motion.g>
             <path d="M240.079 159.126 L232.389 159.126 L224.698 159.126 L224.698 153.838 L224.698 146.171 L224.698 138.504 L229.85 138.504 L229.85 134.651 L237.541 134.651 L245.232 134.651 L245.232 138.504 L249.096 138.504 L249.096 146.171 L249.096 153.838 L245.232 153.838 L245.232 159.126 Z M247.808 161.543 L252.923 161.543 L252.923 153.838 L256.787 153.838 L256.787 146.171 L256.787 138.504 L252.923 138.504 L252.923 130.836 L245.232 130.836 L245.232 126.984 L237.541 126.984 L229.85 126.984 L229.85 130.836 L222.121 130.836 L222.121 138.504 L217.007 138.504 L217.007 146.171 L217.007 153.838 L217.007 161.543 L224.698 161.543 L224.698 166.793 L232.389 166.793 L240.079 166.793 L247.808 166.793 Z" />
           </g>
         </g>
