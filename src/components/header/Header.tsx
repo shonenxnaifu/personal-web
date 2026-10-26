@@ -116,7 +116,7 @@ export default function Header() {
 
       {/* Full Screen Menu (mobile only) */}
       <div
-        className={`bg-neutral z-40 h-screen fixed inset-0 transition-all duration-200 delay-0 ease-in-out ${isOpenMenu ? "translate-x-0" : "translate-x-full delay-75"}`}
+        className={`bg-neutral dark:bg-darkNeutral dark:text-darkOnNeutral z-40 h-screen fixed inset-0 transition-all duration-200 delay-0 ease-in-out ${isOpenMenu ? "translate-x-0" : "translate-x-full delay-75"}`}
       >
         <button
           type="button"
@@ -126,12 +126,12 @@ export default function Header() {
         >
           <div className="w-full">
             <span
-              className={`absolute w-full h-1 bg-primary transition-all ease-in-out duration-300 ${isOpenMenu ? "rotate-45 delay-150" : "rotate-0 delay-0"} top-1/2 -translate-y-1/2 -translate-x-1/2`}
+              className={`absolute w-full h-1 bg-primary dark:bg-darkOnPrimary transition-all ease-in-out duration-300 ${isOpenMenu ? "rotate-45 delay-150" : "rotate-0 delay-0"} top-1/2 -translate-y-1/2 -translate-x-1/2`}
             >
               &nbsp;
             </span>
             <span
-              className={`absolute w-full h-1 bg-primary transition-all ease-in-out duration-300 ${isOpenMenu ? "-rotate-45 delay-150" : "rotate-0 delay-0"}  top-1/2 -translate-y-1/2 -translate-x-1/2`}
+              className={`absolute w-full h-1 bg-primary dark:bg-darkOnPrimary transition-all ease-in-out duration-300 ${isOpenMenu ? "-rotate-45 delay-150" : "rotate-0 delay-0"}  top-1/2 -translate-y-1/2 -translate-x-1/2`}
             >
               &nbsp;
             </span>
@@ -140,12 +140,12 @@ export default function Header() {
         <nav className="flex justify-center text-center text-2xl mt-16">
           <ul className="flex flex-col gap-5">
             <li
-              className={`py-2 ${activeMenu === MenuList.HOME ? "bg-primary text-onPrimary" : "bg-none text-inherit"}`}
+              className={`py-2 ${activeMenu === MenuList.HOME ? "bg-primary dark:bg-darkOnPrimary text-onprimary dark:text-darkPrimary" : "bg-none text-inherit"}`}
             >
               <Link href="/">Home</Link>
             </li>
             <li
-              className={`py-2 ${activeMenu === MenuList.BLOG ? "bg-primary text-onPrimary" : "bg-none text-inherit"}`}
+              className={`py-2 ${activeMenu === MenuList.BLOG ? "bg-primary dark:bg-darkOnPrimary text-onprimary dark:text-darkPrimary" : "bg-none text-inherit"}`}
             >
               <Link href="/blog">Blog</Link>
             </li>
