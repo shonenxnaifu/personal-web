@@ -1,6 +1,7 @@
 "use client";
 
 import MoonIcon from "@/components/icons/MoonIcon";
+import siteMetaData from "@/utils/siteMetaData";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -78,7 +79,7 @@ export default function Header() {
               <Link href="/blog">Blog</Link>
             </li>
             <li className="p-1 my-auto hover:text-tertiaryContainer dark:hover:text-darkOnPrimary transition-all ease-in-out duration-200">
-              <button type="button">Contact Me</button>
+              <a href={`mailto:${siteMetaData.email}`}>Contact Me</a>
             </li>
             <li className="p-1 my-auto">
               <button type="button" className="btn-primary px-3 flex gap-3">
@@ -149,7 +150,7 @@ export default function Header() {
               <Link href="/blog">Blog</Link>
             </li>
             <li className="py-2">
-              <button type="button">Contact Me</button>
+              <a href={`mailto:${siteMetaData.email}`}>Contact Me</a>
             </li>
             <li className="py-2 mx-auto">
               <button type="button" className="btn-primary px-3 flex gap-3">
