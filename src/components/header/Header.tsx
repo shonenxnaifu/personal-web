@@ -140,12 +140,12 @@ export default function Header() {
         <nav className="flex justify-center text-center text-2xl mt-16">
           <ul className="flex flex-col gap-5">
             <li
-              className={`py-2 ${activeMenu === MenuList.HOME ? "bg-primary dark:bg-darkOnPrimary text-onprimary dark:text-darkPrimary" : "bg-none text-inherit"}`}
+              className={`py-2 ${activeMenu === MenuList.HOME ? "bg-primary dark:bg-darkOnPrimary text-onPrimary dark:text-darkPrimary" : "bg-none text-inherit"}`}
             >
               <Link href="/">Home</Link>
             </li>
             <li
-              className={`py-2 ${activeMenu === MenuList.BLOG ? "bg-primary dark:bg-darkOnPrimary text-onprimary dark:text-darkPrimary" : "bg-none text-inherit"}`}
+              className={`py-2 ${activeMenu === MenuList.BLOG ? "bg-primary dark:bg-darkOnPrimary text-onPrimary dark:text-darkPrimary" : "bg-none text-inherit"}`}
             >
               <Link href="/blog">Blog</Link>
             </li>
