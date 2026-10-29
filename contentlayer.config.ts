@@ -2,9 +2,11 @@ import { defineDocumentType, makeSource } from "contentlayer2/source-files";
 import readingTime from "reading-time";
 import GithubSlugger from "github-slugger";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
+import rehypeKatex from "rehype-katex";
 
 const Post = defineDocumentType(() => ({
   name: "Blog",
@@ -96,11 +98,12 @@ export default makeSource({
   contentDirPath: "articles",
   documentTypes: [Post],
   mdx: {
-    remarkPlugins: [remarkGfm],
+    remarkPlugins: [remarkGfm, remarkMath],
     rehypePlugins: [
       rehypeSlug,
       [rehypeAutolinkHeadings, { behavior: "append" }],
       [rehypePrettyCode, codeOptions],
+      rehypeKatex,
     ] as any,
   },
 });
