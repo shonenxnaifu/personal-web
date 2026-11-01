@@ -1,5 +1,5 @@
 import Image from "next/image";
-import "katex/dist/katex.min.css";
+import "../katex.min.css";
 import Toc from "@/app/blog/components/Toc";
 import { allBlogs } from "contentlayer/generated";
 import { notFound } from "next/navigation";
