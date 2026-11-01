@@ -65,11 +65,9 @@ export default function HomePage() {
             </span>
           </h1>
           <p className="text-sm mt-5 dark:text-darkOnNeutral text-primary relative z-10">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae
-            felis vitae nisl lacinia convallis. Integer vel velit vehicula,
-            pharetra turpis at, tincidunt urna. Donec ac sem sed ligula
-            ultricies condimentum. Nam venenatis, nisl non suscipit viverra,
-            felis justo ultricies dolor, nec dictum
+            I&apos;m currently working as a freelance web developer. This
+            isn&apos;t just a personal website — it&apos;s where I document what
+            I&apos;ve learned and write about the work I&apos;ve done.
           </p>
           <div className="flex gap-5 text-xl mt-5 dark:text-darkOnNeutral text-primary relative z-10">
             <a
