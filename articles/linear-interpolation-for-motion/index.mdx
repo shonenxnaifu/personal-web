@@ -1,9 +1,9 @@
 ---
-title: "Linear Interpolation for Motion"
-description: Implementation Linear Interpolation for motion.
-image: "https://res.cloudinary.com/dbegkzvdt/image/upload/v1757232807/paul-esch-laurent-oZMUrWFHOB4-unsplash_zqwmlj.jpg"
-publishedAt: "2023-01-01"
-updatedAt: "2023-01-01"
+title: "Using Linear Interpolation to Map Hand Rotation to Audio Parameters"
+description: This article explains how Linear Interpolation can make animated values respond smoothly to hand movements.
+image: "https://res.cloudinary.com/dbegkzvdt/image/upload/v1793525732/Gemini_Generated_Image_e096sje096sje096_djfcl8.jpg"
+publishedAt: "2026-06-13"
+updatedAt: "2026-06-13"
 author: "Pawitra"
 isPublished: true
 tags:
@@ -12,6 +12,9 @@ tags:
 ---
 
 # Linear Interpolation
+## Introduction
+
+I built web aplication that lets users control audio tracks with hand gestures. The webcam detects both the user's hands, allowing them to select instrument and adjust parameters through gestures. Some parameters change according to hand rotation. To make those values respond smoothly to hand movements, I use Linear Interpolation. This article explains how Linear Interpolation can make animated values respond smoothly to hand movements.
 
 ## Hand Rotation
 
@@ -26,7 +29,7 @@ The `atan2()` function is essentially the inverse of the `atan()` function. To u
 
 Let's look at the diagram below to understand the concept of `atan2()` more easily.
 
-![atan2 axis](images/atan2_diagram.svg)
+![atan2 axis](https://res.cloudinary.com/dbegkzvdt/image/upload/v1793526172/atan2_diagram_adtwbz.svg)
 
 The diagram above represents the angle in radians between the positive/negative x-axis and the ray from (0, 0) to point (-x, y) and point (x, y), using the formula `atan2(y, x)`. I will use this function to calculate the angle in radians from hand rotation, but I need some adjustments.
 
@@ -44,7 +47,7 @@ What I need is the angle in radians between the y-axis and the ray from the
 joint formed by the wrist and middle fingertip. If i represent this in a
 diagram, it looks like this.
 
-![atan2 axis from y to z](images/atan2_z_y_axis.svg)
+![atan2 axis from y to z](https://res.cloudinary.com/dbegkzvdt/image/upload/v1793525953/atan2_z_y_axis_qzdedv.svg)
 
 I make the wrist the pivot point, because `atan2()` calculates the angle of the ray from the origin point (0, 0). I need to adjust the coordinates so that the middle fingertip position becomes relative to the wrist. The wrist point always has a greater value than the middle fingertip, and the middle fingertip always moves toward and away from the camera, so the adjustment formulas look like this.
 
@@ -117,7 +120,7 @@ In this apps there are 3 instruments, each with 3 parameters. I will use bass in
 
 **Linear Interpolation** is commonly used in animation movement. Let's look at the diagram below.
 
-![Linear Interpolation](images/linear-interpolation.svg)
+![Linear Interpolation](https://res.cloudinary.com/dbegkzvdt/image/upload/v1793526037/linear-interpolation_tzmyvy.svg)
 
 > at the initial state, (y) value is not defined yet. Assume that (y) value is unkown.
 
