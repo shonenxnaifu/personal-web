@@ -73,6 +73,7 @@ const Post = defineDocumentType(() => ({
       type: "json",
       resolve: async (doc) => {
         const regExp = /\n(?<flag>#{1,6})\s+(?<content>.+)/g;
+        const slugger = new GithubSlugger();
         const headings = Array.from(doc.body.raw.matchAll(regExp)).map(
           ({ groups }: any) => {
             const flag = groups?.flag;
@@ -81,7 +82,10 @@ const Post = defineDocumentType(() => ({
               ? stripInlineMarkdown(content)
               : undefined;
 
-            const slugger = new GithubSlugger();
+            const slug: string | undefined = plainText
+              ? slugger.slug(plainText)
+              : undefined;
+
             return {
               level: (() => {
                 if (flag?.length === 1) return "one";
@@ -90,7 +94,7 @@ const Post = defineDocumentType(() => ({
                 return "three";
               })(),
               text: plainText,
-              slug: plainText ? slugger.slug(plainText) : undefined,
+              slug,
             };
           },
         );
