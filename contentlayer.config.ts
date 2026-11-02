@@ -8,6 +8,14 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeKatex from "rehype-katex";
 
+const stripInlineMarkdown = (text: string) =>
+  text
+    .replace(/`([^`]*)`/g, "$1")
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/\*([^*]+)\*/g, "$1")
+    .replace(/~~([^~]+)~~/g, "$1");
+
 const Post = defineDocumentType(() => ({
   name: "Blog",
   filePathPattern: "**/*.mdx",
@@ -69,6 +77,9 @@ const Post = defineDocumentType(() => ({
           ({ groups }: any) => {
             const flag = groups?.flag;
             const content = groups?.content;
+            const plainText = content
+              ? stripInlineMarkdown(content)
+              : undefined;
 
             const slugger = new GithubSlugger();
             return {
@@ -78,8 +89,8 @@ const Post = defineDocumentType(() => ({
 
                 return "three";
               })(),
-              text: content,
-              slug: content ? slugger.slug(content) : undefined,
+              text: plainText,
+              slug: plainText ? slugger.slug(plainText) : undefined,
             };
           },
         );
