@@ -33,6 +33,10 @@ export default function HomePage() {
     return item.isFeatured;
   });
 
+  const listLatestWorks = mappedBlogs.filter((item) => {
+    return item.isLatestWork;
+  });
+
   return (
     <main className="flex-grow dark:bg-darkNeutral">
       <section className="flex flex-col md:flex-row md:h-2/3 xl:h-1/3 relative overflow-hidden">
@@ -146,25 +150,25 @@ export default function HomePage() {
           <div className="w-full mx-auto xl:w-2/3 pt-8">
             <Slider>
               <CardNoImage2
-                title={listFeaturedBlogs[0].title}
-                date={listFeaturedBlogs[0].publishedAt}
-                tags={listFeaturedBlogs[0].tags || []}
-                shortDesc={listFeaturedBlogs[0].description.substring(0, 100)}
-                url={listFeaturedBlogs[0].url}
+                title={listLatestWorks[0].title}
+                date={listLatestWorks[0].publishedAt}
+                tags={listLatestWorks[0].tags || []}
+                shortDesc={listLatestWorks[0].description.substring(0, 100)}
+                url={listLatestWorks[0].url}
               />
               <CardNoImage2
-                title={listFeaturedBlogs[0].title}
-                date={listFeaturedBlogs[0].publishedAt}
-                tags={listFeaturedBlogs[0].tags || []}
-                shortDesc={listFeaturedBlogs[0].description.substring(0, 100)}
-                url={listFeaturedBlogs[0].url}
+                title={listLatestWorks[0].title}
+                date={listLatestWorks[0].publishedAt}
+                tags={listLatestWorks[0].tags || []}
+                shortDesc={listLatestWorks[0].description.substring(0, 100)}
+                url={listLatestWorks[0].url}
               />
               <CardNoImage2
-                title={listFeaturedBlogs[0].title}
-                date={listFeaturedBlogs[0].publishedAt}
-                tags={listFeaturedBlogs[0].tags || []}
-                shortDesc={listFeaturedBlogs[0].description.substring(0, 100)}
-                url={listFeaturedBlogs[0].url}
+                title={listLatestWorks[0].title}
+                date={listLatestWorks[0].publishedAt}
+                tags={listLatestWorks[0].tags || []}
+                shortDesc={listLatestWorks[0].description.substring(0, 100)}
+                url={listLatestWorks[0].url}
               />
             </Slider>
           </div>

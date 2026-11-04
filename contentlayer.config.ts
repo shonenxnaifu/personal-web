@@ -56,6 +56,10 @@ const Post = defineDocumentType(() => ({
       type: "boolean",
       default: false,
     },
+    isLatestWork: {
+      type: "boolean",
+      default: false,
+    },
   },
   computedFields: {
     url: {
