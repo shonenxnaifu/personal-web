@@ -14,26 +14,25 @@ interface BlogListProps {
 export default function BlogList({ searchParams }: BlogListProps) {
   const allTags: Array<string> = ["all"];
 
-  const blogs = allBlogs.filter((item) => {
-    /**
-     * check every tags of each blog
-     */
-    return item.tags?.some((tag) => {
+  allBlogs.forEach((blog) => {
+    blog.tags?.forEach((tag) => {
       const slugified = slug(tag);
-      /**
-       * get all tags
-       */
       if (!allTags.includes(slugified)) {
         allTags.push(slugified);
       }
-
-      if (searchParams.t === "all" || !searchParams.t) {
-        return true;
-      }
-
-      return slugified === searchParams.t;
     });
   });
+
+  const selectedTag = Array.isArray(searchParams.t)
+    ? searchParams.t[0]
+    : searchParams.t;
+
+  const blogs =
+    !selectedTag || selectedTag === "all"
+      ? allBlogs
+      : allBlogs.filter((item) =>
+          item.tags?.some((tag) => slug(tag) === selectedTag),
+        );
 
   const mappedBlogs = blogs.map((item) => {
     // const imgFilePath = item.image?.filePath;
