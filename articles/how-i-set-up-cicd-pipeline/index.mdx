@@ -1,0 +1,75 @@
+---
+title: "How I Set Up CI/CD Pipeline for NextJS 14 using Docker, NGINX, and GitHub Actions"
+description: This article covers how i set up a CI/CD pipeline for auto-deployment on my personal web. I use NextJS 14 for the tech stack. I will use Docker to containerize the NextJS app and use NGINX as a web server and reverse proxy. for the runner, i use GitHub Actions.
+image: "https://res.cloudinary.com/dbegkzvdt/image/upload/v1793759703/Gemini_Generated_Image_8jacd68jacd68jac_qpelpz.jpg"
+publishedAt: "2025-08-19"
+updatedAt: "2025-08-19"
+author: "Pawitra Warda"
+isPublished: true
+isLatestWork: false
+isFeatured: true
+tags:
+  - webdev
+  - devops
+  - cicd
+---
+
+# CI/CD for NextJS Project
+
+## Introduction
+
+This article covers how i set up a CI/CD pipeline for auto-deployment on my personal web. I use NextJS 14 for the tech stack. I will use Docker to containerize the NextJS app and use NGINX as a web server and reverse proxy. for the runner, i use GitHub Actions.
+
+The pipeline will look like this:
+![my cicd pipeline](https://res.cloudinary.com/dbegkzvdt/image/upload/v1793783677/pipeline_image_wok9uk.png)
+
+## Docker
+
+### What is Docker
+
+> Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly. With Docker, you can manage your infrastructure in the same ways you manage your applications. By taking advantage of Docker's methodologies for shipping, testing, and deploying code, you can significantly reduce the delay between writing code and running it in production.
+>
+> <br /> Source:
+> [docs.docker.com](https://docs.docker.com/get-started/docker-overview/)
+
+This article only covers how i containerize my app, if you want to know more or dive deep into how Docker works, or other features like persistent storage or networking inside it, you can explore the documentation.
+
+I use a minimal Docker set up in this pipeline, i just need a dockerfile and docker compose. For the Dockerfile, i use two separate files for different environments (development and production). This separation makes it esier to manage. For example, if i want to make changes or experiment with the Docker config in the development environment without affecting the production environment. These files will also be used in separate GitHub Actions workflows, since i use two different workflow files for development and production.
+
+Here are the dockerfiles:
+
+Dockerfile.dev and Dockerfile.prod
+
+```dockerfile
+FROM node:22-alpine AS dependency
+
+WORKDIR /app
+COPY package.json .
+COPY package-lock.json .
+RUN npm install --legacy-peer-deps
+
+FROM node:22-alpine AS builder
+WORKDIR /app
+COPY . .
+COPY --from=dependency /app/node_modules ./node_modules
+RUN npm install --cpu=x64 --os=linux --libc=glibc sharp
+RUN npm run build
+
+FROM gcr.io/distroless/nodejs22-debian12:latest-amd64 AS runner
+WORKDIR /app
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+ENV NODE_ENV=production
+CMD ["server.js"]
+```
+
+### Docker Compose
+
+## Server Configuration
+
+### NGINX
+
+### SSH For Github Action
+
+## Github Action
