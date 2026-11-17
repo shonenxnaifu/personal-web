@@ -38,8 +38,9 @@ I use a minimal Docker set up in this pipeline, i just need a dockerfile and doc
 
 Here are the dockerfiles:
 
+`Dockerfile.dev` and `Dockerfile.dev`
+
 ```dockerfile
-# Dockerfile.dev and Dockerfile.dev
 
 FROM node:22-alpine AS dependency
 
@@ -72,8 +73,9 @@ CMD ["server.js"]
 
 Docker Compose makes it easy to manage services, networks, and volumes with a single yaml file. It will be useful because i will use two services: one for production and one for development. Each services will also be used in different GitHub Actions workflows.
 
+`docker-compose.yml`
+
 ```yaml
-// docker-compose.yml
 services:
   personal-web-dev:
     image: pawitrawarda/docker_shonen_dev:latest
@@ -105,8 +107,9 @@ I will use NGINX as reverse proxy inside my VPS, so the browser not directly acc
 
 I use this configuration:
 
+`nginx-conf.d`
+
 ```nginx
-# nginx-conf.d
 server {
     listen 443 ssl http2;
     listen [::]:443 ssl http2;
@@ -146,5 +149,29 @@ As seen above, `proxy_pass` point to the container inside the VPS that runs on 1
   Tells the application that client is already using HTTPS protocol (Browser -> Nginx), even though communication between Nginx and the containerized application uses HTTP (Nginx -> Container App). This is important for security, auth, and URL redirects, especially if you are using cookie.
 
 ## Github Action
+
+> GitHub Actions is a continuous integration and continuous delivery (CI/CD) platform that allows you to automate your build, test, and deployment pipeline. You can create workflows that build and test every pull request to your repository, or deploy merged pull requests to production.
+>
+> <br /> Source: [wikipedia](https://en.wikipedia.org/wiki/Nginx)
+
+To create workflows, you can just define a YAML file under the `.github/workflows` folder. As i mentioned before, i will use 2 workflow for production and development, and one more workflow to check the linter.
+
+the complete folder structure will look like this:
+
+```text
+project-root/
+├── .github/
+│   └── workflows/
+│       ├── lint.yml
+│       ├── build-and-deploy-dev.yml
+│       └── build-and-deploy-prod.yml
+│
+├── src/
+├── public/
+├── Dockerfile.dev
+├── Dockerfile.prod
+├── docker-compose.yml
+└── package.json
+```
 
 ### SSH For Github Action
