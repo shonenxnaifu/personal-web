@@ -152,7 +152,8 @@ As seen above, `proxy_pass` point to the container inside the VPS that runs on 1
 
 > GitHub Actions is a continuous integration and continuous delivery (CI/CD) platform that allows you to automate your build, test, and deployment pipeline. You can create workflows that build and test every pull request to your repository, or deploy merged pull requests to production.
 >
-> <br /> Source: [wikipedia](https://en.wikipedia.org/wiki/Nginx)
+> <br /> Source:
+> [docs.github.com](https://docs.github.com/en/actions/get-started/quickstart)
 
 To create workflows, you can just define a YAML file under the `.github/workflows` folder. As i mentioned before, i will use 2 workflow for production and development, and one more workflow to check the linter.
 
@@ -174,4 +175,34 @@ project-root/
 └── package.json
 ```
 
-### SSH For Github Action
+### Set Repository Secrets
+
+To connect the GitHub Actions workflows and the server, i use `appleboy/ssh-action@master`, so i need to define some repository secrets in the GitHub repo. In the repository, go to menu **Settings -> Secrets and Variables -> Actions**. Click the **New repository secret** button and add these variables to the Repository Secrets:
+
+- `host`
+
+  Server IP.
+
+- `username`
+
+  Server username.
+
+- `key`
+
+  Your generated SSH private key. You can generate a private key using this command on your server:
+
+  ```bash
+  ssh-keygen -t ed25519 -C "your_email@example.com"
+  ```
+
+- `port`
+
+  SSH server port (22).
+
+- `passphrase`
+
+  Your passphrase when generating SSH key. You can omit this if you didn't define a passphrase.
+
+Those secrets will be used in the GitHub Actions workflows.
+
+### Linter Workflow
