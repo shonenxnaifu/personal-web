@@ -155,7 +155,7 @@ As seen above, `proxy_pass` point to the container inside the VPS that runs on 1
 > <br /> Source:
 > [docs.github.com](https://docs.github.com/en/actions/get-started/quickstart)
 
-To create workflows, you can just define a YAML file under the `.github/workflows` folder. As i mentioned before, i will use 2 workflow for production and development, and one more workflow to check the linter.
+To create workflows, you can just define a YAML file under the `.github/workflows` folder. As i mentioned before, i will use 2 workflow for production and development, and one more workflow to run the linter.
 
 the complete folder structure will look like this:
 
@@ -206,3 +206,214 @@ To connect the GitHub Actions workflows and the server, i use `appleboy/ssh-acti
 Those secrets will be used in the GitHub Actions workflows.
 
 ### Linter Workflow
+
+I will run the linter on every pull request to the `main` and `development` branches. If there is an error on the linter, the pull request can't be merged. This will minimize errors and keep the code consistent on the `main` and `development` branches.
+
+I use the Airbnb style guide for the linter. My ESLint config looks like this:
+
+`.eslintrc.json`
+
+```json
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "next/core-web-vitals",
+    "airbnb",
+    "airbnb-typescript",
+    "plugin:import/typescript",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["react", "@typescript-eslint", "prettier"],
+  "rules": {
+    "quotes": [
+      "error",
+      "double",
+      {
+        "avoidEscape": true
+      }
+    ],
+    "@typescript-eslint/quotes": [
+      "error",
+      "double",
+      {
+        "avoidEscape": true
+      }
+    ],
+    "react/jsx-uses-react": ["off"],
+    "react/react-in-jsx-scope": ["off"],
+    "react/jsx-props-no-spreading": ["warn"],
+    "react/jsx-one-expression-per-line": ["off"],
+    "react/require-default-props": ["off"],
+    "no-shadow": "off",
+    "operator-linebreak": ["off"],
+    "object-curly-newline": "off"
+  }
+}
+```
+
+The workflow looks like this:
+
+`lint.yml`
+
+```yaml
+name: Lint
+on:
+  pull_request:
+    branches:
+      - main
+      - development
+
+env:
+  NODE_VERSION: 18
+
+jobs:
+  linting:
+    name: Linting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install Dependencies
+        run: bun install
+
+      - name: Code Linting
+        run: bun --bun run lint
+```
+
+To prevent merging if there is an error in the linter, i need to set up a branch protection rule in the GitHub. Go to **Settings -> Branchs -> Add rule**. Check **Require status checks to pass before merging** and add your linter workflow.
+
+![branch protection rule](https://res.cloudinary.com/dbegkzvdt/image/upload/v1794973823/Screenshot_from_2026-11-18_09-17-08_q43rfx.png)
+
+### Deployment Workflow
+
+As i mentioned before, i use two different workflows (development and production). For the development branch, the trigger will start when ther is a merge on development branch, and for production on the main branch.
+So i will only put one example of the YAML file here, The differences are only in the IMAGE_NAME, the target branch, and the Docker Compose service name.
+
+`build-and-deploy.yml`
+
+```yaml
+name: Build and Deploy Web shonen-dev to Development
+
+on:
+  push:
+    branches: [development]
+
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Development"
+        required: true
+        type: string
+
+#2
+env:
+  IMAGE_NAME: "docker_shonen_dev"
+
+#3
+jobs:
+  build_and_push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v2
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+        with:
+          images: pawitrawarda/${{ env.IMAGE_NAME }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+        with:
+          context: .
+          file: ./Dockerfile.dev
+          push: true
+          tags: pawitrawarda/${{ env.IMAGE_NAME }}:latest
+          labels: latest
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build_and_push
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v4
+
+      - name: Create directory on server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST_KAZUHA }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSHKEY_KAZUHA }}
+          port: ${{ secrets.PORT }}
+          passphrase: ${{ secrets.PASSPHRASE_KAZUHA }}
+          script: |
+            # Create directory if doesn't exist
+            sudo mkdir -p /opt/apps-container/personal-web
+
+      - name: Copy docker-compose.yml to server
+        uses: appleboy/scp-action@v1
+        with:
+          host: ${{ secrets.HOST_KAZUHA }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSHKEY_KAZUHA }}
+          port: ${{ secrets.PORT }}
+          passphrase: ${{ secrets.PASSPHRASE_KAZUHA }}
+          source: "./docker-compose.yml"
+          target: "/opt/apps-container/personal-web/"
+
+      - name: Deploy using Docker Compose
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST_KAZUHA }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSHKEY_KAZUHA }}
+          port: ${{ secrets.PORT }}
+          passphrase: ${{ secrets.PASSPHRASE_KAZUHA }}
+          script: |
+            # Navigate to the directory and deploy
+            cd /opt/apps-container/personal-web
+
+            # Pull latest image
+            docker compose pull personal-web-dev
+
+            # Stop and remove existing container
+            docker compose down --remove-orphans personal-web-dev
+
+            # Start services
+            docker compose up -d --force-recreate personal-web-dev
+
+            # Check status of the containers
+            docker compose ps
+
+            # Remove unused images
+            docker image prune -f
+```
+
+To make sure GitHub Actions is works, you can try making a pull request to the development branch. After it is merged into development branch, go to the **Actions** tab, and you will see a list of all the workflows and can monitor them.
+
+![github actions workflows](https://res.cloudinary.com/dbegkzvdt/image/upload/v1794986804/Screenshot_from_2026-11-18_14-26-31_hqn51c.png)
