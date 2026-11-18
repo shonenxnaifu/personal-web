@@ -21,8 +21,7 @@ export default function Toc({ dataToc }: TocProps) {
         {(() => {
           let parentNumber = 0;
           return dataToc.map((tocItem, index, array) => {
-            const copySlicedItems = structuredClone(array);
-            const slicedItems = copySlicedItems.slice(index + 1);
+            const slicedItems = array.slice(index + 1);
 
             const findNextIdx = slicedItems.findIndex(
               (item) => item.level === "two",
@@ -31,7 +30,10 @@ export default function Toc({ dataToc }: TocProps) {
             if (tocItem.level === "two") {
               parentNumber += 1;
 
-              const childs = slicedItems.slice(0, findNextIdx);
+              const childs =
+                findNextIdx === -1
+                  ? slicedItems
+                  : slicedItems.slice(0, findNextIdx);
               return (
                 <li key={tocItem.text} className="mt-3">
                   <a
