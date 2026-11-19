@@ -1,0 +1,95 @@
+---
+title: "Jogja Sonic Index Scraper: A Simple Web Scraper API to Export Project Data to CSV"
+description: A brief overview of JSI Scraper, a FastAPI-based web scraper built to extract project data from jogjasonicindex.com and export it into CSV for Excel analysis.
+image: "https://res.cloudinary.com/dbegkzvdt/image/upload/v1795050955/Screenshot_from_2026-11-19_08-15-46_ssxzje.png"
+publishedAt: "2025-12-12"
+updatedAt: "2025-12-12"
+author: "Pawitra Warda"
+isPublished: true
+isLatestWork: false
+isFeatured: true
+tags:
+  - web-scraping
+  - python
+  - fastapi
+---
+
+# Jogja Sonic Index Scraper: A Simple Web Scraper API to Export Project Data to CSV
+
+## Introduction
+
+Recently, a friend asked me to build a web scraper for [jogjasonicindex.com](https://jogjasonicindex.com/). They needed an easy way to collect project data from the website and convert it into a CSV file so they could easily process and analyze the data in Microsoft Excel.
+
+Instead of just running a local script every time they needed the data, I decided to wrap the scraper into a simple REST API with interactive Swagger documentation. That way, my friend can just open the browser, specify the pages they want to scrape, and download the CSV file directly without touching any code.
+
+You can check out the live API documentation here: [jsi-scrap.shonen-dev.xyz/docs](https://jsi-scrap.shonen-dev.xyz/docs) or explore the source code on my GitHub repository: [shonenxnaifu/jsi-scraper](https://github.com/shonenxnaifu/jsi-scraper).
+
+![JSI Scraper Swagger UI](https://res.cloudinary.com/dbegkzvdt/image/upload/v1795049981/Screenshot_from_2026-11-19_07-59-20_blv9o0.png)
+
+## Tech Stack & Dependencies
+
+To keep this project lightweight, fast, and easy to deploy, I used Python and containerized it with Docker. Here are the main libraries and tools I used:
+
+- **Python 3.11** - Main programming language
+- **FastAPI** - Web framework for building the API and automatic Swagger UI (`/docs`)
+- **BeautifulSoup4 (`bs4`)** - For parsing HTML elements from the target website
+- **Requests** - For making HTTP requests to fetch the web pages
+- **Pydantic** - For data validation and structuring the response schema
+- **Uvicorn & Gunicorn** - ASGI and WSGI server for running the app in production
+- **Docker & Docker Compose** - For containerizing and deploying the application
+
+## What Data Does It Scrape?
+
+The scraper parses HTML elements from each project page on Jogja Sonic Index and extracts structured information, including:
+
+- **Project Info**: Project name (`nama_projek`), author, date posted, description, and status
+- **Music Details**: Format, members (`anggota`), genre, and active year (`tahun`)
+- **Discography (`diskografi`)**: Release year, title, release type, format, and related links
+- **Metadata & Links**: Tags, external links (`pranala`), and media URLs
+
+## Key Features
+
+I kept the features simple and focused on making the data collection process reliable and easy to use:
+
+### 1. Export Directly to CSV (and JSON)
+
+The main goal of this project is to provide data that is ready for Excel. The API provides endpoints to return the scraped data either as a raw **JSON** response (great for inspecting data) or as a downloadable **CSV** file that can be opened directly in Excel or Google Sheets.
+
+![Downloaded CSV Opened in Excel](https://res.cloudinary.com/dbegkzvdt/image/upload/v1795050841/Screenshot_from_2026-11-19_08-13-47_mesikn.png)
+
+### 2. Page Limit & Page Range Filtering
+
+Scraping the entire website at once can take a long time and risk hitting server timeouts. To solve this, I added two ways to control the scraping scope:
+
+- **Max Pages (`max_pages`)**: Limit the total number of pages to scrape from the beginning.
+
+- **Page Range (`page_from` & `page_to`)**: Scrape only specific pages (for example, from page 1 to page 5), making it easy to collect data in smaller batches.
+
+### 3. Production Timeout & Async Handling
+
+When deploying a web scraper to production, long-running requests can easily trigger a `504 Gateway Timeout` error. To handle this, I implemented:
+
+- **Thread Pool Executor**: Runs the scraping process in separate threads so it does not block the main FastAPI server.
+- **Retry & Timeout Protection**: Each HTTP request has a timeout limit with a retry mechanism and exponential backoff.
+- **Gunicorn Configuration**: Configured multiple workers and extended timeouts for smoother production execution.
+
+### 4. Interactive UI via Swagger Docs
+
+By using FastAPI, the project automatically generates a Swagger UI at the `/docs` endpoint. My friend doesn't need Postman or terminal commands—they can simply fill in the parameters on the web page, click **Execute**, and click the **Download file** button to get the CSV.
+
+![Executing CSV Download on Swagger UI](https://res.cloudinary.com/dbegkzvdt/image/upload/v1795050708/Screenshot_from_2026-11-19_08-11-31_yolp1k.png)
+
+## API Endpoints Overview
+
+Here is a quick summary of the available endpoints in JSI Scraper:
+
+- `GET /scrape/csv` - Scrape project data and download it as a CSV file (supports optional `max_pages`).
+- `GET /scrape/csv/range` - Scrape project data within a specific page range (`page_from` and `page_to`) and download it as a CSV file.
+- `GET /scrape/json` - Scrape project data and return it in JSON format.
+- `GET /scrape/json/range` - Scrape project data within a specific page range and return it in JSON format.
+- `GET /scrape/status` - Check the current status of the scraping process.
+- `GET /health` - Simple health check endpoint to ensure the server is running properly.
+
+## Conclusion
+
+This was a fun and practical mini-project to build. By combining **BeautifulSoup4** with **FastAPI** and **Docker**, a simple Python scraping script can be turned into a user-friendly web service that anyone—even non-technical friends—can use to export web data into Excel with just a few clicks.
