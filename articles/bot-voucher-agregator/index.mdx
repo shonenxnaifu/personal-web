@@ -1,0 +1,109 @@
+---
+title: "Building BOT Voucher Mitra: A Partner Dashboard for a Voucher Aggregator Platform"
+description: An overview of the tech stack and features I built for BOT Voucher Mitra, a web dashboard that helps partners monitor voucher transactions, manage balances, and track invoices.
+image: "https://res.cloudinary.com/dbegkzvdt/image/upload/v1795045816/Screenshot_2026-07-06_at_8.51.21_AM_vy9h9c.png"
+publishedAt: "2026-07-07"
+updatedAt: "2026-07-07"
+author: "Pawitra Warda"
+isPublished: true
+isLatestWork: true
+isFeatured: false
+tags:
+  - vuejs
+  - typescript
+  - tailwindcss
+  - frontend
+  - dashboard
+---
+
+# Jogja Sonic Index Scraper: A Simple Web Scraper API to Export Project Data to CSV
+
+## Introduction
+
+In this article, I want to share a brief overview of an internal company project I worked on: a **Voucher Aggregator Platform**. The platform consists of two main dashboard applications:
+
+1. **Back Office Internal** (for the internal operations team)
+2. **BOT Voucher Mitra** (for external partners / _mitra_)
+
+I was responsible for building the **BOT Voucher Mitra** application. This dashboard serves as a self-service tool for partners to monitor their voucher sales transactions, check available product catalogs, track invoices, and manage their account balances in real time.
+
+_(Note: Since this is an internal company project, the source code and live URL are private.)_
+
+![BOT Voucher Mitra Overview](https://res.cloudinary.com/dbegkzvdt/image/upload/v1795045816/Screenshot_2026-07-06_at_8.51.21_AM_vy9h9c.png)
+
+## Tech Stack & Libraries
+
+I built the frontend as a modern Single Page Application (SPA) focusing on type safety, clean data-fetching patterns, and a responsive UI. Here is the tech stack used in this project:
+
+- **Core Framework**: Vue 3, TypeScript, and Vite
+- **UI & Styling**: Tailwind CSS v4, Reka UI (headless UI primitives), CVA (`class-variance-authority`), Lucide Icons, and FontAwesome
+- **State Management & Data Fetching**: Pinia (client state), TanStack Vue Query (server state & caching), and Axios
+- **Tables & Data Visualization**: TanStack Vue Table (complex data tables) and Chart.js (`vue-chartjs`)
+- **Forms & Validation**: Vee-Validate, Yup, and `vue-input-otp`
+- **Data Export & Utilities**: SheetJS (`xlsx`) & `file-saver` (for exporting reports to Excel), `date-fns`, and VueUse
+- **Mocking & Code Quality**: `json-server` (for running a local mock API with `concurrently`) and `@antfu/eslint-config`
+
+## Key Features
+
+Here are the main modules and features I implemented in **BOT Voucher Mitra**:
+
+### 1. Dashboard
+
+Provides a high-level summary of the partner's activity, including sales performance charts, transaction summaries, and current balance highlights using `vue-chartjs`.
+
+![Dashboard Feature](https://res.cloudinary.com/dbegkzvdt/image/upload/v1795045816/Screenshot_2026-07-06_at_8.51.14_AM_tiopy4.png)
+
+### 2. Transaction Monitoring (_Monitoring Transaksi_)
+
+Allows partners to monitor real-time and historical voucher sales transactions. Built with `@tanstack/vue-table`, it supports pagination, filtering by date or status, and searching specific transaction IDs.
+
+![Transaction Monitoring Feature](https://res.cloudinary.com/dbegkzvdt/image/upload/v1795045817/Screenshot_2026-07-06_at_8.52.29_AM_wi4bit.png)
+
+### 3. Balance Management (Saldo)
+
+A dedicated module for partners to check their current deposit balance, view balance mutation history (top-ups and deductions), and manage top-up requests so they can continue transacting smoothly.
+
+![Balance Management Feature](https://res.cloudinary.com/dbegkzvdt/image/upload/v1795045817/Screenshot_2026-07-06_at_8.53.39_AM_dg9jba.png)
+
+![Balance Management Topup 1](https://res.cloudinary.com/dbegkzvdt/image/upload/v1795045816/Screenshot_2026-07-06_at_8.53.58_AM_q4jahj.png)
+![Balance Management Topup 2](https://res.cloudinary.com/dbegkzvdt/image/upload/v1795045817/Screenshot_2026-07-06_at_8.55.01_AM_gw0cw7.png)
+
+### 4. Invoice
+
+Helps partners track their billing and payment statuses, view invoice details, and monitor due dates or settlement history.
+
+![Invoice Feature](https://res.cloudinary.com/dbegkzvdt/image/upload/v1795045817/Screenshot_2026-07-06_at_8.53.31_AM_itilsb.png)
+
+### 5. Product List (Daftar Produk)
+
+Displays the complete catalog of available digital vouchers, including product codes, denominations, partner pricing, and stock/availability status.
+
+![Product List Feature](https://res.cloudinary.com/dbegkzvdt/image/upload/v1795045819/Screenshot_2026-07-06_at_8.57.45_AM_wldpre.png)
+
+### 6. Reports (Laporan)
+
+Enables partners to generate and download periodic transaction and financial reports. Using SheetJS (`xlsx`) and `file-saver`, users can export their filtered table data directly into Excel spreadsheets for reconciliation.
+
+![Reports Feature](https://res.cloudinary.com/dbegkzvdt/image/upload/v1795045821/Screenshot_2026-07-06_at_9.00.17_AM_fmwkq2.png)
+
+### 7. User Management (Manajemen Pengguna)
+
+Allows the main partner account to manage team access by adding sub-users, assigning roles, and controlling permissions within their organization.
+
+![User Management Feature](https://res.cloudinary.com/dbegkzvdt/image/upload/v1795045818/Screenshot_2026-07-06_at_8.57.14_AM_mpmjfu.png)
+
+### 8. Credentials
+
+A self-service developer/integration page where partners can view and manage their API keys, secret tokens, or webhook configurations required to connect their system to the Voucher Aggregator API.
+
+![Credentials Feature](https://res.cloudinary.com/dbegkzvdt/image/upload/v1795045819/Screenshot_2026-07-06_at_8.58.35_AM_fbjvaj.png)
+
+### 9. Profile (Profil)
+
+Allows users to view and update their company/partner profile information, account security settings, and password.
+
+![Profile Feature](https://res.cloudinary.com/dbegkzvdt/image/upload/v1795045822/Screenshot_2026-07-06_at_9.01.03_AM_xz2dpu.png)
+
+## Conclusion
+
+Building **BOT Voucher Mitra** was a great experience in designing a data-heavy dashboard with **Vue 3** and the **TanStack** ecosystem (`vue-query` and `vue-table`). Combining headless components from **Reka UI** with **Tailwind CSS v4** also made it much faster to build a clean, consistent, and accessible interface for our partners.
