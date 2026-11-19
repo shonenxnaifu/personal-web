@@ -14,26 +14,25 @@ interface BlogListProps {
 export default function BlogList({ searchParams }: BlogListProps) {
   const allTags: Array<string> = ["all"];
 
-  const blogs = allBlogs.filter((item) => {
-    /**
-     * check every tags of each blog
-     */
-    return item.tags?.some((tag) => {
+  allBlogs.forEach((blog) => {
+    blog.tags?.forEach((tag) => {
       const slugified = slug(tag);
-      /**
-       * get all tags
-       */
       if (!allTags.includes(slugified)) {
         allTags.push(slugified);
       }
-
-      if (searchParams.t === "all" || !searchParams.t) {
-        return true;
-      }
-
-      return slugified === searchParams.t;
     });
   });
+
+  const selectedTag = Array.isArray(searchParams.t)
+    ? searchParams.t[0]
+    : searchParams.t;
+
+  const blogs =
+    !selectedTag || selectedTag === "all"
+      ? allBlogs
+      : allBlogs.filter((item) =>
+          item.tags?.some((tag) => slug(tag) === selectedTag),
+        );
 
   const mappedBlogs = blogs.map((item) => {
     // const imgFilePath = item.image?.filePath;
@@ -59,12 +58,12 @@ export default function BlogList({ searchParams }: BlogListProps) {
   return (
     <main className="min-h-screen dark:bg-black">
       <header className="py-5 px-3">
-        <h1 className="text-4xl font-bold dark:text-[#FFF59F]">
+        <h1 className="text-4xl font-bold text-primary dark:text-darkOnNeutralVariant">
           Browse all Posts.
         </h1>
       </header>
       <section className="py-5 px-3">
-        <h2 className="text-2xl font-semibold dark:text-[#FFF59F]">
+        <h2 className="text-2xl font-semibold text-primary dark:text-darkOnNeutralVariant">
           Browse by Tags
         </h2>
 

@@ -2,9 +2,19 @@ import { defineDocumentType, makeSource } from "contentlayer2/source-files";
 import readingTime from "reading-time";
 import GithubSlugger from "github-slugger";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
+import rehypeKatex from "rehype-katex";
+
+const stripInlineMarkdown = (text: string) =>
+  text
+    .replace(/`([^`]*)`/g, "$1")
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/\*([^*]+)\*/g, "$1")
+    .replace(/~~([^~]+)~~/g, "$1");
 
 const Post = defineDocumentType(() => ({
   name: "Blog",
@@ -46,6 +56,10 @@ const Post = defineDocumentType(() => ({
       type: "boolean",
       default: false,
     },
+    isLatestWork: {
+      type: "boolean",
+      default: false,
+    },
   },
   computedFields: {
     url: {
@@ -63,12 +77,19 @@ const Post = defineDocumentType(() => ({
       type: "json",
       resolve: async (doc) => {
         const regExp = /\n(?<flag>#{1,6})\s+(?<content>.+)/g;
+        const slugger = new GithubSlugger();
         const headings = Array.from(doc.body.raw.matchAll(regExp)).map(
           ({ groups }: any) => {
             const flag = groups?.flag;
             const content = groups?.content;
+            const plainText = content
+              ? stripInlineMarkdown(content)
+              : undefined;
 
-            const slugger = new GithubSlugger();
+            const slug: string | undefined = plainText
+              ? slugger.slug(plainText)
+              : undefined;
+
             return {
               level: (() => {
                 if (flag?.length === 1) return "one";
@@ -76,8 +97,8 @@ const Post = defineDocumentType(() => ({
 
                 return "three";
               })(),
-              text: content,
-              slug: content ? slugger.slug(content) : undefined,
+              text: plainText,
+              slug,
             };
           },
         );
@@ -96,11 +117,12 @@ export default makeSource({
   contentDirPath: "articles",
   documentTypes: [Post],
   mdx: {
-    remarkPlugins: [remarkGfm],
+    remarkPlugins: [remarkGfm, remarkMath],
     rehypePlugins: [
       rehypeSlug,
       [rehypeAutolinkHeadings, { behavior: "append" }],
       [rehypePrettyCode, codeOptions],
+      rehypeKatex,
     ] as any,
   },
 });

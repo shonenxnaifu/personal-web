@@ -4,7 +4,7 @@
 
 @layer components {
   .btn-primary {
-    @apply p-2 text-sm font-semibold bg-[#FFA6F6] dark:bg-[#9747FF] text-[#161313] dark:text-[#FFA6F6] hover:bg-opacity-50 transition-all ease-in-out duration-200 border-2 border-black dark:border-[#FFA6F6] rounded-lg shadow-[2px_2px_0_0_rgba(0,0,0,1)] dark:shadow-[2px_2px_0_0_rgba(255,166,246,1)];
+    @apply p-2 text-sm font-semibold bg-tertiaryContainer dark:bg-darkTertiaryContainer text-onTertiaryContainer dark:text-darkOnTertiaryContainer hover:bg-tertiary hover:text-onTertiary transition-all ease-in-out duration-200 border-2 border-primary dark:border-darkOnTertiaryContainer dark:hover:bg-darkTertiary dark:hover:text-darkOnTertiary rounded-lg shadow-[2px_2px_0_0_rgba(0,0,0,1)] dark:shadow-[2px_2px_0_0_#4b691d];
   }
 }
 
@@ -65,4 +65,21 @@
   75% {
     transform: translate(23vw, 2vh) scale(0.6);
   }
+}
+
+/* Inline code: remove typography plugin's decorative backticks and style as code */
+.prose code::before,
+.prose code::after {
+  content: none;
+}
+
+.prose :where(:not(pre) > code) {
+  background-color: #e5e2e0; /* secondaryContainer */
+  padding: 0.15em 0.4em;
+  border-radius: 0.375rem;
+  font-weight: 500;
+}
+
+.dark .prose :where(:not(pre) > code) {
+  background-color: #232322; /* subtle lift over darkNeutral */
 }

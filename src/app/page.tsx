@@ -1,7 +1,7 @@
-import CommingSoon from "./comming-soon/CommingSoon";
-// import HomePage from "./home/HomePage";
+// import CommingSoon from "./comming-soon/CommingSoon";
+import HomePage from "./home/HomePage";
 
 export default function Home() {
-  // return <HomePage />;
-  return <CommingSoon />;
+  return <HomePage />;
+  // return <CommingSoon />;
 }
