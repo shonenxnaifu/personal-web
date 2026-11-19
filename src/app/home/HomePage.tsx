@@ -163,13 +163,6 @@ export default function HomePage() {
                 shortDesc={listLatestWorks[0].description.substring(0, 100)}
                 url={listLatestWorks[0].url}
               />
-              <CardNoImage2
-                title={listLatestWorks[0].title}
-                date={listLatestWorks[0].publishedAt}
-                tags={listLatestWorks[0].tags || []}
-                shortDesc={listLatestWorks[0].description.substring(0, 100)}
-                url={listLatestWorks[0].url}
-              />
             </Slider>
           </div>
         </section>
