@@ -1,0 +1,180 @@
+---
+title: "Building a Zero-Shot Garbage Classifier API with FastAPI and OpenAI CLIP"
+description: "A fun weekend project built with OpenCode Go: a zero-shot image classification REST API using FastAPI, PyTorch, and Hugging Face's CLIP model to identify waste categories."
+image: "https://res.cloudinary.com/dbegkzvdt/image/upload/v1795075887/Screenshot_2026-11-19_at_3.10.26_PM_ghs5zz.png"
+publishedAt: "2026-10-13"
+updatedAt: "2026-10-13"
+author: "Pawitra Warda"
+isPublished: true
+isLatestWork: true
+isFeatured: false
+tags:
+  - python
+  - fastapi
+  - machine-learning
+  - docker
+---
+
+# Building a Zero-Shot Garbage Classifier API with FastAPI and OpenAI CLIP
+
+## Introduction
+
+Recently, I decided to build a fun side project using **OpenCode Go**: a **Garbage Classifier API**. The idea was simple—I wanted to build an API where you can upload an image of a piece of trash, and the system automatically identifies what kind of waste it is along with its confidence score.
+
+Instead of training a custom computer vision model from scratch with thousands of garbage images, I used a **Zero-Shot Image Classification** approach powered by OpenAI's **CLIP (Contrastive Language-Image Pre-training)** model from Hugging Face. With zero-shot classification, the model can classify images into text categories it was never explicitly fine-tuned on!
+
+You can try the live demo directly via the Swagger UI here: [api.shonen-dev.xyz/api/docs](https://api.shonen-dev.xyz/api/docs) or check out the complete source code on my GitHub repository: [shonenxnaifu/garbage-classifier](https://github.com/shonenxnaifu/garbage-classifier).
+
+![Garbage Classifier API Swagger UI](https://res.cloudinary.com/dbegkzvdt/image/upload/v1795076120/Screenshot_2026-11-19_at_3.15.07_PM_vwrpo9.png)
+
+## Tech Stack & Dependencies
+
+To keep the API fast and easy to containerize, I built it with Python and ran the CPU version of PyTorch so it can run on a standard server without requiring a dedicated GPU:
+
+- **FastAPI** - Modern Python web framework for handling HTTP requests and generating Swagger UI (`/api/docs`)
+- **Transformers (Hugging Face)** - For loading and running the `openai/clip-vit-base-patch32` model
+- **PyTorch (`torch==2.3.0+cpu`)** - Deep learning framework for tensor calculations and model inference
+- **Pillow (`PIL`)** - For reading and preprocessing uploaded image bytes
+- **Pydantic** - For validating and structuring the classification JSON response
+- **Uvicorn** - ASGI server for running the FastAPI application
+- **Docker** - For containerizing the application and its ML dependencies
+
+## How It Works & Waste Categories
+
+The architecture of this project is straightforward:
+
+1. A user uploads an image file via a `POST` request to the FastAPI endpoint.
+2. **Pillow** processes the image bytes and converts them into an RGB image.
+3. The **CLIPProcessor** encodes both the uploaded image and the list of candidate waste labels into tensors.
+4. The **CLIPModel** calculates the similarity logits between the image and each text label, applies a `softmax` function to get probability scores, and returns the top matching category.
+
+### Defining the Waste Labels
+
+Initially, I tested the API with 8 basic categories (`plastic bottle`, `glass bottle`, `paper`, `cardboard`, `metal can`, `organic waste`, `electronic waste`, and `textile`).
+
+Later, I expanded the classification scope in `WASTE_DEFINITION.md` by breaking down waste into **5 primary categories** with over **80 specific candidate labels**:
+
+- **Organic Waste**: _food scraps, vegetable waste, fruit peels, coffee grounds, fallen leaves, egg shells, etc._
+- **Hazardous Waste**: _batteries, lithium batteries, paint cans, medical waste, used syringes, expired medicines, electronic waste, etc._
+- **Solid Waste**: _plastic packaging, food containers, disposable utensils, discarded clothing, broken furniture, construction debris, etc._
+- **Liquid Waste**: _used cooking oil, motor oil, chemical wastewater, detergent wastewater, etc._
+- **Recyclable Waste**: _PET containers, HDPE containers, cardboard boxes, aluminum cans, glass jars, scrap metal, etc._
+
+### 1. Zero-Shot Image Classification
+
+Because it uses `openai/clip-vit-base-patch32`, adding or changing waste categories does not require retraining the model. I only need to update the array of text labels in the code, and CLIP will immediately evaluate images against the new labels.
+
+### 2. Detailed Confidence Scores
+
+When classifying an image through `POST /classify_predef_cat` (or `/classify_bycats` with custom comma-separated categories), the API returns the highest-scoring category (`top_class`), its `confidence` score, and a complete breakdown of `predictions` across all candidate labels.
+
+For example, here is the sample image I uploaded to test the classifier:
+
+![Sample Garbage Image Input](https://res.cloudinary.com/dbegkzvdt/image/upload/v1795076792/1030468_PE836287_S4_obucke.jpg)
+
+And here is the classification result returned by the API:
+
+```json
+{
+  "top_class": "glass bottles",
+  "confidence": 0.15636059641838074,
+  "predictions": {
+    "food scraps": 0.0031670674216002226,
+    "vegetable waste": 0.001657421700656414,
+    "fruit peels": 0.0003502635227050632,
+    "coffee grounds": 0.000018843606085283682,
+    "tea leaves": 0.0001597069640411064,
+    "egg shells": 0.000030519699066644534,
+    "yard trimmings": 0.00002853917067113798,
+    "grass clippings": 0.00019700500706676394,
+    "fallen leaves": 0.000009040743861987721,
+    "plant debris": 0.0003361179551575333,
+    "wood chips": 0.00021128133812453598,
+    "paper towels": 0.00013418414164334536,
+    "food-soiled paper": 0.00022434312268160284,
+    "compostable materials": 0.03797838091850281,
+    "biodegradable waste": 0.006372758653014898,
+    "organic matter": 0.004657316952943802,
+    "chemical containers": 0.0016881524352356791,
+    "paint cans": 0.0000190937498700805,
+    "solvent bottles": 0.11792073398828506,
+    "batteries": 0.000005069564849691233,
+    "lead-acid batteries": 0.000006698121524095768,
+    "lithium batteries": 0.000014401438420463819,
+    "medical waste": 0.004453759174793959,
+    "used syringes": 0.0010877144522964954,
+    "medical sharps": 0.00017725318321026862,
+    "infectious waste": 0.0007704815943725407,
+    "pharmaceuticals": 0.00018623832147568464,
+    "expired medicines": 0.00013872167619410902,
+    "pesticide containers": 0.0003470800002105534,
+    "herbicide bottles": 0.00759230088442564,
+    "toxic substances": 0.002280352870002389,
+    "flammable materials": 0.0008632325916551054,
+    "corrosive liquids": 0.011759387329220772,
+    "electronic waste": 0.00017001591913867742,
+    "e-waste": 0.00003745340654859319,
+    "packaging materials": 0.008682578802108765,
+    "plastic packaging": 0.03349363058805466,
+    "food containers": 0.005489775910973549,
+    "disposable utensils": 0.002761122537776828,
+    "discarded clothing": 0.00003748392191482708,
+    "worn-out textiles": 0.001664343406446278,
+    "household goods": 0.029062993824481964,
+    "broken furniture": 0.00007615731010446325,
+    "discarded appliances": 0.00000881729465618264,
+    "non-recyclable plastics": 0.08538195490837097,
+    "mixed waste": 0.0019934254232794046,
+    "general trash": 0.000020514164134510793,
+    "landfill waste": 0.0015218554763123393,
+    "bulky waste": 0.0005320667405612767,
+    "construction debris": 0.0002897976664826274,
+    "demolition waste": 0.0016913949511945248,
+    "wastewater": 0.001056420849636197,
+    "used cooking oil": 0.018740013241767883,
+    "motor oil": 0.00025236906367354095,
+    "industrial discharge": 0.00045551673974841833,
+    "chemical wastewater": 0.007022292818874121,
+    "medical liquids": 0.07257213443517685,
+    "contaminated water": 0.01644737645983696,
+    "sewage water": 0.0009116493165493011,
+    "liquid chemicals": 0.014175307005643845,
+    "solvent waste": 0.012606481090188026,
+    "paint waste": 0.00023991503985598683,
+    "cleaning solutions": 0.07941732555627823,
+    "detergent wastewater": 0.0018624586518853903,
+    "laboratory liquids": 0.07818383723497391,
+    "photographic chemicals": 0.023647252470254898,
+    "plastic bottles": 0.03933745622634888,
+    "PET containers": 0.0014393338933587074,
+    "HDPE containers": 0.0005776234320364892,
+    "paper products": 0.002276902087032795,
+    "cardboard boxes": 0.000010888902579608839,
+    "office paper": 0.0000610879942541942,
+    "newspapers": 0.00001119307034969097,
+    "magazines": 0.00002502154529793188,
+    "glass bottles": 0.15636059641838074,
+    "glass jars": 0.0478326752781868,
+    "aluminum cans": 0.000843280868139118,
+    "tin cans": 0.0001815352006815374,
+    "metal containers": 0.003954053856432438,
+    "scrap metal": 0.000036464716686168686,
+    "electronics recycling": 0.0003547101223375648,
+    "recyclable packaging": 0.02358212321996689,
+    "clear plastic": 0.016358554363250732,
+    "colored glass": 0.001407271483913064
+  }
+}
+```
+
+### 3. Startup Model Pre-loading & CPU Optimization
+
+The CLIP model is loaded once at application startup in `app/clip_model.py` rather than on every request, keeping inference responsive. In addition, using the CPU-only PyTorch wheel (`torch==2.3.0+cpu`) significantly reduces the Docker image size compared to bundling full CUDA libraries.
+
+### 4. Docker Memory Analysis (Alpine vs. Debian-Slim)
+
+While containerizing this project, I also tested whether using an `alpine` base image would save runtime RAM compared to `python:3.10-slim`. The benchmark showed only a ~1 MB difference at runtime—negligible compared to the CLIP model itself (~500–800 MB in memory)—while `slim` offers much better compatibility with PyTorch wheels (`manylinux`).
+
+## Conclusion
+
+Experimenting with **OpenCode Go** to build this **Garbage Classifier API** was a great way to explore practical AI integration. By combining Hugging Face's **CLIP** model with **FastAPI**, it is surprisingly easy to build a flexible, zero-shot image classification service without the overhead of collecting datasets or training a model from scratch.
