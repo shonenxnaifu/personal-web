@@ -157,11 +157,11 @@ export default function HomePage() {
                 url={listLatestWorks[0].url}
               />
               <CardNoImage2
-                title={listLatestWorks[0].title}
-                date={listLatestWorks[0].publishedAt}
-                tags={listLatestWorks[0].tags || []}
-                shortDesc={listLatestWorks[0].description.substring(0, 100)}
-                url={listLatestWorks[0].url}
+                title={listLatestWorks[1].title}
+                date={listLatestWorks[1].publishedAt}
+                tags={listLatestWorks[1].tags || []}
+                shortDesc={listLatestWorks[1].description.substring(0, 100)}
+                url={listLatestWorks[1].url}
               />
             </Slider>
           </div>
