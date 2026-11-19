@@ -82,10 +82,15 @@ export default function Header() {
               <a href={`mailto:${siteMetaData.email}`}>Contact Me</a>
             </li>
             <li className="p-1 my-auto">
-              <button type="button" className="btn-primary px-3 flex gap-3">
+              <a
+                href={siteMetaData.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary px-3 flex gap-3"
+              >
                 My Resume
                 <DownloadIcon className="max-w-3" />
-              </button>
+              </a>
             </li>
           </ul>
         </nav>
@@ -153,10 +158,15 @@ export default function Header() {
               <a href={`mailto:${siteMetaData.email}`}>Contact Me</a>
             </li>
             <li className="py-2 mx-auto">
-              <button type="button" className="btn-primary px-3 flex gap-3">
+              <a
+                href={siteMetaData.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary px-3 flex gap-3"
+              >
                 My Resume
                 <DownloadIcon className="max-w-3" />
-              </button>
+              </a>
             </li>
           </ul>
         </nav>
