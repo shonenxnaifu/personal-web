@@ -65,7 +65,7 @@ export default function Slider({
                 role="group"
                 aria-roledescription="slide"
                 aria-label={`Slide ${key} of ${totalSlides}`}
-                className="flex-shrink-0 w-full"
+                className="flex flex-col [&>*]:flex-1 flex-shrink-0 w-full"
               >
                 {child}
               </li>
