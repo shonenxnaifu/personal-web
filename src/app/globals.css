@@ -83,3 +83,9 @@
 .dark .prose :where(:not(pre) > code) {
   background-color: #232322; /* subtle lift over darkNeutral */
 }
+
+/* KaTeX: keep wide display equations scrollable inside their block,
+   never widen the page */
+.katex-display {
+  overflow-x: auto;
+}
