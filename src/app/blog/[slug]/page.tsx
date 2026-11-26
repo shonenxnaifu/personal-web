@@ -88,7 +88,7 @@ export default function BlogPage({ params }: BlogPageProps) {
   };
 
   return (
-    <main className="pb-5 min-h-screen mx-auto dark:bg-darkNeutral">
+    <main className="pb-5 min-h-screen dark:bg-darkNeutral">
       <article className="flex flex-col lg:flex-row lg:flex-wrap lg:mx-5">
         <header className="lg:w-full flex flex-col m-3 border-b border-outlineVariant pb-5 dark:border-darkOutline">
           <figure className="relative h-[200px] md:h-[360px] mx-1 my-3 rounded-3xl overflow-hidden">
