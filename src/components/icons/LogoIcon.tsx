@@ -88,16 +88,10 @@ export default function NextJsIcon({ className = "" }: NextJsIconProps) {
     };
   }, [eyeTargetX, eyeTargetY, prefersReducedMotion]);
 
-  const leftEarSwing = prefersReducedMotion
-    ? undefined
-    : { rotate: [7, -7, 7] };
-  const rightEarSwing = prefersReducedMotion
-    ? undefined
-    : { rotate: [-7, 7, -7] };
-  const eyesBlink = prefersReducedMotion ? undefined : { scaleY: [1, 0.08, 1] };
-  const mouthSmile = prefersReducedMotion
-    ? undefined
-    : { scaleX: [1, 1.25, 1] };
+  const leftEarSwing = { rotate: [7, -7, 7] };
+  const rightEarSwing = { rotate: [-7, 7, -7] };
+  const eyesBlink = { scaleY: [1, 0.08, 1] };
+  const mouthSmile = { scaleX: [1, 1.25, 1] };
 
   const redEyeMotionStyle = prefersReducedMotion
     ? undefined
